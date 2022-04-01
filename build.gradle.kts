@@ -12,15 +12,14 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.6.10")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
 }
 
 tasks.test {
     useJUnitPlatform()
 }
 
-
-tasks.withType<KotlinCompile>() {
+tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
 }
