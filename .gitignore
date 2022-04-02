@@ -1,7 +1,5 @@
 # Project exclude paths
-/.gradle/
-/build/
-/gradle/
-/gradlew
-/gradlew.bat
-/.idea/
+.DS_Store
+**/target/
+**/.idea/
+**/*.iml
