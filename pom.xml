@@ -22,6 +22,7 @@
 
     <modules>
         <module>weather-core</module>
+        <module>weather-architecture</module>
     </modules>
 
     <dependencyManagement>
