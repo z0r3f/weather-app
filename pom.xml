@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.archimedesfw.maven.micronaut</groupId>
         <artifactId>micronaut-kotlin-parent</artifactId>
-        <version>3.4.0</version>
+        <version>3.4.3</version>
     </parent>
 
     <groupId>me.fernando.weather</groupId>
@@ -21,8 +21,9 @@
     </properties>
 
     <modules>
-        <module>weather-core</module>
         <module>weather-architecture</module>
+        <module>weather-core</module>
+        <module>weather-delivery</module>
     </modules>
 
     <dependencyManagement>
