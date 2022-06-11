@@ -1,4 +1,4 @@
-package me.fernando.weather.api
+package me.fernando.weather.repository
 
 import me.fernando.weather.domain.Location
 import me.fernando.weather.domain.WeatherData
