@@ -18,6 +18,7 @@
     <properties>
         <postgresql.version>42.3.3</postgresql.version>
         <docker-maven-plugin.version>0.39.1</docker-maven-plugin.version>
+        <archimedes.version>0.1.0</archimedes.version>
     </properties>
 
     <modules>
@@ -33,6 +34,16 @@
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.version}</version>
                 <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.archimedesfw.usecase</groupId>
+                <artifactId>archimedes-usecase</artifactId>
+                <version>${archimedes.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.archimedesfw.context</groupId>
+                <artifactId>archimedes-context-micronaut</artifactId>
+                <version>${archimedes.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -114,7 +125,7 @@
         </plugins>
     </build>
 
-    <name>${project.groupId}:${project.artifactId}</name>
+<!--    <name>${project.groupId}:${project.artifactId}</name>-->
     <description>Kotlin parent example.</description>
     <url>https://www.archimedesfw.io/</url>
     <licenses>

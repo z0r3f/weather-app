@@ -43,6 +43,17 @@
             <artifactId>micronaut-jdbc-hikari</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.archimedesfw.usecase</groupId>
+            <artifactId>archimedes-usecase</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.archimedesfw.context</groupId>
+            <artifactId>archimedes-context-micronaut</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>
