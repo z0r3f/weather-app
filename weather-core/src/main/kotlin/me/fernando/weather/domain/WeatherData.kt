@@ -1,6 +1,6 @@
 package me.fernando.weather.domain
 
 data class WeatherData(
-    val location: Location,
-    val forecasts: List<Forecast>
+    val location: Location? = null,
+    val forecasts: List<Forecast>? = null,
 )

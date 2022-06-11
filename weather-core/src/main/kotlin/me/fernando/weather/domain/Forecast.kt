@@ -1,14 +1,14 @@
 package me.fernando.weather.domain
 
 data class Forecast(
-    val timeDataForecasted: Long,
-    val temperature: Double,
+    val timeDataForecasted: Long? = null,
+    val temperature: Double? = null,
     val feelsLike: Double? = null,
-    val temperatureMin: Double,
-    val temperatureMax: Double,
+    val temperatureMin: Double? = null,
+    val temperatureMax: Double? = null,
     val pressure: Double? = null,
     val humidity: Int? = null,
-    val weather: List<Weather>,
+    val weather: List<Weather>? = null,
     val windSpeed: Double? = null,
     val visibility: Int? = null,
     val probabilityOfPrecipitation: Double? = null,

@@ -7,11 +7,14 @@ import me.fernando.weather.domain.WeatherData
 import me.fernando.weather.repository.GetForecastRepository
 
 class GetForecastQry(
-    location: Location,
-    getForecastRepository: GetForecastRepository = locate()
+    private val location: Location,
+    private val getForecastRepository: GetForecastRepository = locate()
 ): Query<WeatherData>() {
 
     override fun run(): WeatherData {
-        TODO("Not yet implemented")
+        if (location.isInvalid()) {
+            throw IllegalArgumentException("Invalid location")
+        }
+        return getForecastRepository.getForecast(location)
     }
 }

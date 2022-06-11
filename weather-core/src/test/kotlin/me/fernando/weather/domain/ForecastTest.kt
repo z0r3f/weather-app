@@ -23,8 +23,8 @@ internal class ForecastTest {
         assert(forecast.temperature == 7.04)
         assert(forecast.temperatureMin == 4.83)
         assert(forecast.temperatureMax == 9.04)
-        assert(forecast.weather.size == 1)
-        assert(forecast.weather[0].id == 800)
-        assert(forecast.weather[0].main == "Clear")
+        assert(forecast.weather?.size  == 1)
+        assert(forecast.weather?.get(0)?.id == 800)
+        assert(forecast.weather?.get(0)?.main == "Clear")
     }
 }
