@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <postgresql.version>42.3.3</postgresql.version>
+        <postgresql.version>42.3.6</postgresql.version>
         <docker-maven-plugin.version>0.39.1</docker-maven-plugin.version>
         <archimedes.version>0.1.0</archimedes.version>
     </properties>
@@ -69,6 +69,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+            <version>1.2.11</version>
             <scope>runtime</scope>
         </dependency>
 
