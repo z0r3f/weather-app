@@ -23,12 +23,10 @@ internal class GetForecastRestRepositoryIT {
             getForecastRestClient,
             weatherDataMapper
         )
-        val result = repository.getForecast(Location(
-            name = "Ciudad Real",
-            country = "ES",
+        val result = repository.getForecast(
             latitude = 38.9851,
-            longitude = -3.9284
-        ))
+            longitude = -3.9284,
+        )
         assertNotNull(result)
     }
 }

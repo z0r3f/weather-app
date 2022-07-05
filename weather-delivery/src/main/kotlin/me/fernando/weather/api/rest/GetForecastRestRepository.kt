@@ -13,8 +13,8 @@ open class GetForecastRestRepository(
     private val weatherDataMapper: WeatherDataMapper
 ): GetForecastRepository {
 
-    override fun getForecast(location: Location): WeatherData {
-        val response = getForecastRestClient.getForecast(location.latitude, location.longitude)
+    override fun getForecast(latitude: Double, longitude: Double): WeatherData {
+        val response = getForecastRestClient.getForecast(latitude, longitude)
         return weatherDataMapper.toEntity(response)
     }
 }

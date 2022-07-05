@@ -4,5 +4,5 @@ import me.fernando.weather.domain.Location
 import me.fernando.weather.domain.WeatherData
 
 interface GetForecastRepository {
-    fun getForecast(location: Location): WeatherData
+    fun getForecast(latitude: Double, longitude: Double): WeatherData
 }

@@ -22,7 +22,7 @@ internal class GetForecastQryTest {
 
     @Test
     fun return_the_forecast_when_the_location_requested_is_valid() {
-        `when`(getForecastRepository.getForecast(MADRID)).thenReturn(MADRID_FORECAST)
+        `when`(getForecastRepository.getForecast(MADRID.latitude!!, MADRID.longitude!!)).thenReturn(MADRID_FORECAST)
 
         val forecast = GetForecastQry(MADRID, getForecastRepository).fakeRun()
 

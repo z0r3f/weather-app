@@ -15,6 +15,6 @@ class GetForecastQry(
         if (location.isInvalid()) {
             throw IllegalArgumentException("Invalid location")
         }
-        return getForecastRepository.getForecast(location)
+        return getForecastRepository.getForecast(location.latitude!!, location.longitude!!)
     }
 }
