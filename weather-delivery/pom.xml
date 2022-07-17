@@ -20,6 +20,10 @@
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-http-client</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-http-server-netty</artifactId>
+        </dependency>
     </dependencies>
 
     <properties>

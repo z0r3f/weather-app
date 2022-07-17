@@ -4,7 +4,6 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import me.fernando.weather.api.client.GetForecastRestClient
 import me.fernando.weather.api.mapper.WeatherDataMapper
-import me.fernando.weather.domain.Location
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 
