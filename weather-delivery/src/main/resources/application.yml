@@ -1,0 +1,14 @@
+weather:
+  url: "https://api.openweathermap.org/data/2.5"
+  api-key: "<YOUR-API-KEY>"
+
+telegram:
+  token: "<YOUR TELEGRAM TOKEN>"
+  webhook: "<YOUR WEBHOOK POST ENDPOINT>"
+
+micronaut:
+  ssl:
+    enabled: true
+    key-store:
+      path: "<YOUR DIGITAL CERTIFICATE>"
+      password: "<YOUR DIGITAL CERTIFICATE PASSWORD>"
