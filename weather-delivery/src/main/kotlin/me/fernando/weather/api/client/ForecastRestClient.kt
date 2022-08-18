@@ -7,10 +7,11 @@ import io.micronaut.http.annotation.Header
 import io.micronaut.http.client.annotation.Client
 import me.fernando.weather.api.dto.WeatherDataDto
 
-@Client("\${weather.url}")
+@Client("\${weather.data.url}")
 @Header(name = USER_AGENT, value = "Micronaut HTTP Client")
 @Header(name = ACCEPT, value = "application/vnd.github.v3+json, application/json")
-interface GetForecastRestClient {
+interface ForecastRestClient {
+
     @Get("/forecast?appid=\${weather.api-key}&lat={latitude}&lon={longitude}&units=metric")
     fun getForecast(latitude: Double, longitude: Double): WeatherDataDto
 }

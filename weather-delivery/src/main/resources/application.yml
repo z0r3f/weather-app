@@ -1,6 +1,11 @@
 weather:
-  url: "https://api.openweathermap.org/data/2.5"
   api-key: "<YOUR-API-KEY>"
+  url-base: "https://api.openweathermap.org"
+  data:
+    url: "${weather.url-base}/data/2.5"
+  geo:
+    url: "${weather.url-base}/geo/1.0/direct"
+    results-limit: 5
 
 telegram:
   token: "<YOUR TELEGRAM TOKEN>"

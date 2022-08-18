@@ -1,20 +1,19 @@
 package me.fernando.weather.api.rest
 
 import jakarta.inject.Singleton
-import me.fernando.weather.repository.GetForecastRepository
-import me.fernando.weather.api.client.GetForecastRestClient
+import me.fernando.weather.api.client.ForecastRestClient
 import me.fernando.weather.api.mapper.WeatherDataMapper
-import me.fernando.weather.domain.Location
 import me.fernando.weather.domain.WeatherData
+import me.fernando.weather.repository.ForecastRepository
 
 @Singleton
-open class GetForecastRestRepository(
-    private val getForecastRestClient: GetForecastRestClient,
+open class ForecastRestRepository(
+    private val forecastRestClient: ForecastRestClient,
     private val weatherDataMapper: WeatherDataMapper
-): GetForecastRepository {
+): ForecastRepository {
 
     override fun getForecast(latitude: Double, longitude: Double): WeatherData {
-        val response = getForecastRestClient.getForecast(latitude, longitude)
+        val response = forecastRestClient.getForecast(latitude, longitude)
         return weatherDataMapper.toEntity(response)
     }
 }
