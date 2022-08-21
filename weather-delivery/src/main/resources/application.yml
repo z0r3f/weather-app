@@ -17,3 +17,23 @@ micronaut:
     key-store:
       path: "<YOUR DIGITAL CERTIFICATE>"
       password: "<YOUR DIGITAL CERTIFICATE PASSWORD>"
+
+flyway:
+  datasources:
+    default:
+      enabled: true
+
+datasources:
+  default:
+    url: "<YOUR DB URL>"
+    username: "<YOUR DB USERNAME >"
+    password: "<YOUR DB PASSWORD >"
+    driverClassName: org.postgresql.Driver
+
+jpa:
+  default:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true

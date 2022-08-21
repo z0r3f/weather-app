@@ -3,6 +3,7 @@ package me.fernando.weather.api.mapper
 import jakarta.inject.Singleton
 import me.fernando.weather.api.dto.ForecastDto
 import me.fernando.weather.domain.Forecast
+import java.time.Instant
 
 @Singleton
 class ForecastMapper(
@@ -14,7 +15,7 @@ class ForecastMapper(
 
     override fun toEntity(dto: ForecastDto): Forecast {
         return Forecast(
-            timeDataForecasted = dto.dt,
+            timeDataForecasted = Instant.ofEpochSecond(dto.dt),
             temperature = dto.main.temp,
             feelsLike = dto.main.feelsLike,
             temperatureMin = dto.main.tempMin,

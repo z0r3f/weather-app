@@ -10,7 +10,7 @@ open class LocationMother {
         population: Long? = 1000000,
         timezone: Long? = 7200,
         sunrise: Long? = 1652677343,
-        sunset: Long? = 1652728918
+        sunset: Long? = 1652728918,
     ): Location {
         return Location(
             name = name,

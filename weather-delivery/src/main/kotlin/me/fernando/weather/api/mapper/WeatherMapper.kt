@@ -5,7 +5,7 @@ import me.fernando.weather.api.dto.WeatherDto
 import me.fernando.weather.domain.Weather
 
 @Singleton
-class WeatherMapper: Mapper<Weather, WeatherDto> {
+open class WeatherMapper: Mapper<Weather, WeatherDto> {
     override fun toDto(entity: Weather): WeatherDto {
         TODO("Not yet implemented")
     }

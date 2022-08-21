@@ -1,4 +1,4 @@
-package me.fernando. weather.domain
+package me.fernando.weather.domain
 
 data class Location(
     val name: String? = null,
@@ -8,7 +8,7 @@ data class Location(
     val population: Long? = null,
     val timezone: Long? = null,
     val sunrise: Long? = null,
-    val sunset: Long? = null
+    val sunset: Long? = null,
 ) {
-    fun isInvalid() = latitude == null || latitude.isNaN() || longitude == null || longitude.isNaN()
+    fun isInvalid() = (latitude == null) || latitude.isNaN() || (longitude == null) || longitude.isNaN()
 }

@@ -11,86 +11,15 @@
     <artifactId>weather-architecture</artifactId>
 
     <dependencies>
-        <!-- Use Micronaut data to use @Transactional and JdbcOperations -->
-        <!--<dependency>
-            <groupId>io.micronaut.data</groupId>
-            <artifactId>micronaut-data-jdbc</artifactId>
-        </dependency>-->
-
-        <!-- Use Flyway to manage automatically database changes -->
-       <!-- <dependency>
-            <groupId>io.micronaut.flyway</groupId>
-            <artifactId>micronaut-flyway</artifactId>
-            <scope>runtime</scope>
-        </dependency>-->
-
-        <!--<dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>test</scope>
-        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>io.micronaut.sql</groupId>-->
-<!--            <artifactId>micronaut-jdbc-hikari</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
         <dependency> <!-- TODO Cool? Should not to be -->
             <groupId>io.github.microutils</groupId>
             <artifactId>kotlin-logging-jvm</artifactId>
             <version>2.1.23</version>
         </dependency>
-
-        <dependency>
-            <groupId>io.archimedesfw.usecase</groupId>
-            <artifactId>archimedes-usecase</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-<!--            <plugin>-->
-<!--                &lt;!&ndash; Run a dockerized PostgreSQL for integration tests &ndash;&gt;-->
-<!--                &lt;!&ndash; If you want to run PostgreSQL manually from the command line, you can use the command: &ndash;&gt;-->
-<!--                &lt;!&ndash;     mvn io.fabric8:docker-maven-plugin:run &ndash;&gt;-->
-<!--                <groupId>io.fabric8</groupId>-->
-<!--                <artifactId>docker-maven-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <images>-->
-<!--                        <image>-->
-<!--                            <name>${it.postgresql.image}</name>-->
-<!--                            <run>-->
-<!--                                <ports>-->
-<!--                                    <port>${it.postgresql.port}:5432</port>-->
-<!--                                </ports>-->
-<!--                                <env>-->
-<!--                                    <POSTGRES_PASSWORD>${it.postgresql.password}</POSTGRES_PASSWORD>-->
-<!--                                    <POSTGRES_DB>${it.postgresql.db}</POSTGRES_DB>-->
-<!--                                </env>-->
-<!--                                <wait>-->
-<!--                                    <log>database system is ready to accept connections</log>-->
-<!--                                </wait>-->
-<!--                            </run>-->
-<!--                        </image>-->
-<!--                    </images>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>start</id>-->
-<!--                        <phase>pre-integration-test</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>start</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>stop</id>-->
-<!--                        <phase>post-integration-test</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>stop</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

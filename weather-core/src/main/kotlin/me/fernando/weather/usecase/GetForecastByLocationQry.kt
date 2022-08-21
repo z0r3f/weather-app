@@ -6,7 +6,7 @@ import me.fernando.weather.domain.Location
 import me.fernando.weather.domain.WeatherData
 import me.fernando.weather.repository.ForecastRepository
 
-class GetForecastQry(
+class GetForecastByLocationQry(
     private val location: Location,
     private val forecastRepository: ForecastRepository = locate()
 ): Query<WeatherData>() {

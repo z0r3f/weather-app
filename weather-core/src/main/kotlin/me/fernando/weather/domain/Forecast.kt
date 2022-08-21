@@ -1,7 +1,9 @@
 package me.fernando.weather.domain
 
+import java.time.Instant
+
 data class Forecast(
-    val timeDataForecasted: Long? = null,
+    val timeDataForecasted: Instant? = null,
     val temperature: Double? = null,
     val feelsLike: Double? = null,
     val temperatureMin: Double? = null,

@@ -18,7 +18,7 @@
     <properties>
         <postgresql.version>42.3.6</postgresql.version>
         <docker-maven-plugin.version>0.39.1</docker-maven-plugin.version>
-        <archimedes.version>0.1.0</archimedes.version>
+        <archimedes.version>0.1.2-SNAPSHOT</archimedes.version>
     </properties>
 
     <modules>
@@ -48,6 +48,16 @@
             <dependency>
                 <groupId>io.archimedesfw.context</groupId>
                 <artifactId>archimedes-context-micronaut</artifactId>
+                <version>${archimedes.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.archimedesfw.cqrs</groupId>
+                <artifactId>archimedes-cqrs</artifactId>
+                <version>${archimedes.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.archimedesfw.data</groupId>
+                <artifactId>archimedes-data-jdbc-micronaut</artifactId>
                 <version>${archimedes.version}</version>
             </dependency>
         </dependencies>
@@ -105,7 +115,7 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <!-- We will use in domain module to run a dockerized PostgreSQL for integration tests -->
+                    <!-- We will use in delivery module to run a dockerized PostgreSQL for integration tests -->
                     <groupId>io.fabric8</groupId>
                     <artifactId>docker-maven-plugin</artifactId>
                     <version>${docker-maven-plugin.version}</version>
@@ -116,7 +126,7 @@
         <plugins>
             <plugin>
                 <!-- Activate integration tests -->
-                <!-- This plugin is preconfigured in micronaut-base-parent so you only need to declare it -->
+                <!-- This plugin is preconfigured in micronaut-base-parent, so you only need to declare it -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
@@ -131,7 +141,9 @@
         </plugins>
     </build>
 
-<!--    <name>${project.groupId}:${project.artifactId}</name>-->
+
+
+    <!--    <name>${project.groupId}:${project.artifactId}</name>-->
     <description>Kotlin parent example.</description>
     <url>https://www.archimedesfw.io/</url>
     <licenses>
