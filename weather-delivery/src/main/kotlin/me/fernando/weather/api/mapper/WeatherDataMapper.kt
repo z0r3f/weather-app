@@ -16,7 +16,10 @@ class WeatherDataMapper(
     override fun toEntity(dto: WeatherDataDto): WeatherData {
         return WeatherData(
             location = locationMapper.toEntity(dto.city),
-            forecasts = dto.list.map { forecastMapper.toEntity(it) }
+            forecasts = dto.list.map {
+                it.timezone = dto.city.timezone
+                forecastMapper.toEntity(it)
+            }
         )
     }
 }

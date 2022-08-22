@@ -1,13 +1,14 @@
 package me.fernando.weather.domain
 
 import org.junit.jupiter.api.Test
-import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 internal class ForecastTest {
     @Test
     fun creationForecast() {
         val forecast = Forecast(
-            timeDataForecasted = Instant.parse("2022-02-15T18:35:24.00Z"),
+            timeDataForecasted = LocalDateTime.ofEpochSecond(1644958800, 0, ZoneOffset.UTC),
             temperature = 7.04,
             temperatureMin = 4.83,
             temperatureMax = 9.04,
@@ -20,7 +21,7 @@ internal class ForecastTest {
                 )
             )
         )
-        assert(forecast.timeDataForecasted == Instant.parse("2022-02-15T18:35:24.00Z"))
+        assert(forecast.timeDataForecasted == LocalDateTime.ofEpochSecond(1644958800, 0, ZoneOffset.UTC))
         assert(forecast.temperature == 7.04)
         assert(forecast.temperatureMin == 4.83)
         assert(forecast.temperatureMax == 9.04)

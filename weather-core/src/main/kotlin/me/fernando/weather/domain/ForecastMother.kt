@@ -1,10 +1,11 @@
 package me.fernando.weather.domain
 
-import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 open class ForecastMother {
     open fun of(
-        timeDataForecasted: Instant? = Instant.parse("2022-02-15T21:00:00.00Z"),
+        timeDataForecasted: LocalDateTime? = LocalDateTime.ofEpochSecond(1644958800, 0, ZoneOffset.UTC),
         temperature: Double? = 23.05,
         feelsLike: Double? = 22.51,
         temperatureMin: Double? = 23.05,

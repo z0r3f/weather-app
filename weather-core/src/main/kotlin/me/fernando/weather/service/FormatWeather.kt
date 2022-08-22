@@ -10,7 +10,11 @@ class FormatWeather {
 
     companion object {
 
-        private val HOURS = listOf(9, 15, 21)
+        private val HOURS = listOf(
+            8, 9, 10,   // morning
+            14, 15, 16, // afternoon
+            20, 21, 22  // evening
+        )
         private const val PATTERN_FORMAT = "EE dd-MM-yyyy"
         private val icons = mapOf(
             "01d" to "☀️",
@@ -34,15 +38,17 @@ class FormatWeather {
         )
 
         fun overview(weatherData: WeatherData): String {
-            return sanitize("""
+            return sanitize(
+                """
                 *${weatherData.location?.name}*
                 ${generateHours(filterListingByTheMostImportantHours(weatherData))}
-            """)
+            """
+            )
         }
 
         private fun filterListingByTheMostImportantHours(weatherData: WeatherData): WeatherData {
             val weatherDataFiltered =
-                weatherData.forecasts?.filter { it.timeDataForecasted?.atZone(ZoneOffset.UTC)!!.hour in HOURS }
+                weatherData.forecasts?.filter { it.timeDataForecasted?.hour in HOURS }
 
             return weatherData.copy(
                 forecasts = weatherDataFiltered

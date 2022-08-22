@@ -6,7 +6,7 @@ data class Location(
     val latitude: Double? = null,
     val longitude: Double? = null,
     val population: Long? = null,
-    val timezone: Long? = null,
+    val timezone: Int? = null,
     val sunrise: Long? = null,
     val sunset: Long? = null,
 ) {

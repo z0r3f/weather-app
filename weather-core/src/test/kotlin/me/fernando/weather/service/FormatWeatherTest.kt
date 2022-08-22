@@ -6,6 +6,7 @@ import me.fernando.weather.domain.WeatherMother
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import java.time.Instant
+import java.time.ZoneId
 
 internal class FormatWeatherTest {
 
@@ -27,42 +28,58 @@ internal class FormatWeatherTest {
             forecasts =
             listOf(
                 ForecastMother().of(
-                    timeDataForecasted = Instant.parse("2022-02-15T09:00:00.00Z"),
+                    timeDataForecasted = Instant.parse("2022-02-15T09:00:00.00Z").atZone(
+                        ZoneId.of("Europe/Madrid")
+                    ).toLocalDateTime(),
                     temperature = 12.0,
                     weather = listOf(WeatherMother().of(icon = "01n"))
                 ),
                 ForecastMother().of(
-                    timeDataForecasted = Instant.parse("2022-02-15T15:00:00.00Z"),
+                    timeDataForecasted = Instant.parse("2022-02-15T15:00:00.00Z").atZone(
+                        ZoneId.of("Europe/Madrid")
+                    ).toLocalDateTime(),
                     temperature = 23.0,
                     weather = listOf(WeatherMother().of(icon = "02d"))
                 ),
                 ForecastMother().of(
-                    timeDataForecasted = Instant.parse("2022-02-15T21:00:00.00Z"),
+                    timeDataForecasted = Instant.parse("2022-02-15T21:00:00.00Z").atZone(
+                        ZoneId.of("Europe/Madrid")
+                    ).toLocalDateTime(),
                     temperature = 18.0,
                     weather = listOf(WeatherMother().of(icon = "01n"))
                 ),
                 ForecastMother().of(
-                    timeDataForecasted = Instant.parse("2022-02-16T09:00:00.00Z"),
+                    timeDataForecasted = Instant.parse("2022-02-16T09:00:00.00Z").atZone(
+                        ZoneId.of("Europe/Madrid")
+                    ).toLocalDateTime(),
                     temperature = 13.0,
                     weather = listOf(WeatherMother().of(icon = "01n"))
                 ),
                 ForecastMother().of(
-                    timeDataForecasted = Instant.parse("2022-02-16T15:00:00.00Z"),
+                    timeDataForecasted = Instant.parse("2022-02-16T15:00:00.00Z").atZone(
+                        ZoneId.of("Europe/Madrid")
+                    ).toLocalDateTime(),
                     temperature = 24.0,
                     weather = listOf(WeatherMother().of(icon = "01n"))
                 ),
                 ForecastMother().of(
-                    timeDataForecasted = Instant.parse("2022-02-16T21:00:00.00Z"),
+                    timeDataForecasted = Instant.parse("2022-02-16T21:00:00.00Z").atZone(
+                        ZoneId.of("Europe/Madrid")
+                    ).toLocalDateTime(),
                     temperature = 17.0,
                     weather = listOf(WeatherMother().of(icon = "02d"))
                 ),
                 ForecastMother().of(
-                    timeDataForecasted = Instant.parse("2022-02-17T15:00:00.00Z"),
+                    timeDataForecasted = Instant.parse("2022-02-17T15:00:00.00Z").atZone(
+                        ZoneId.of("Europe/Madrid")
+                    ).toLocalDateTime(),
                     temperature = 24.0,
                     weather = listOf(WeatherMother().of(icon = "01n"))
                 ),
                 ForecastMother().of(
-                    timeDataForecasted = Instant.parse("2022-02-17T21:00:00.00Z"),
+                    timeDataForecasted = Instant.parse("2022-02-17T21:00:00.00Z").atZone(
+                        ZoneId.of("Europe/Madrid")
+                    ).toLocalDateTime(),
                     temperature = 17.0,
                     weather = listOf(WeatherMother().of(icon = "02d"))
                 ),

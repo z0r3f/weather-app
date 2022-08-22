@@ -4,18 +4,19 @@ import jakarta.inject.Singleton
 import me.fernando.weather.api.dto.ForecastDto
 import me.fernando.weather.domain.Forecast
 import java.time.Instant
+import java.time.LocalDateTime
 
 @Singleton
 class ForecastMapper(
-    private val weatherMapper: WeatherMapper
-): Mapper<Forecast, ForecastDto> {
+    private val weatherMapper: WeatherMapper,
+) : Mapper<Forecast, ForecastDto> {
     override fun toDto(entity: Forecast): ForecastDto {
         TODO("Not yet implemented")
     }
 
     override fun toEntity(dto: ForecastDto): Forecast {
         return Forecast(
-            timeDataForecasted = Instant.ofEpochSecond(dto.dt),
+            timeDataForecasted = getLocalDateTime(dto.dt, dto.timezone),
             temperature = dto.main.temp,
             feelsLike = dto.main.feelsLike,
             temperatureMin = dto.main.tempMin,
@@ -28,4 +29,7 @@ class ForecastMapper(
             probabilityOfPrecipitation = dto.probabilityOfPrecipitation,
         )
     }
+
+    private fun getLocalDateTime(epochSecond: Long, timezone: Int?) =
+        LocalDateTime.ofInstant(Instant.ofEpochSecond(epochSecond), java.time.ZoneOffset.ofTotalSeconds(timezone ?: 0))
 }

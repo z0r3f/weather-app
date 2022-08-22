@@ -1,9 +1,9 @@
 package me.fernando.weather.domain
 
-import java.time.Instant
+import java.time.LocalDateTime
 
 data class Forecast(
-    val timeDataForecasted: Instant? = null,
+    val timeDataForecasted: LocalDateTime? = null,
     val temperature: Double? = null,
     val feelsLike: Double? = null,
     val temperatureMin: Double? = null,
