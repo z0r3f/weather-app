@@ -1,19 +1,20 @@
 package me.fernando.weather.service
 
+import me.fernando.util.trimLeadingSpaces
 import me.fernando.weather.domain.Forecast
 import me.fernando.weather.domain.WeatherData
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
-class FormatWeather {
+class FormatForecast {
 
     companion object {
 
         private val HOURS = listOf(
-            8, 9, 10,   // morning
-            14, 15, 16, // afternoon
-            20, 21, 22  // evening
+            7, 8, 9,   // morning
+            13, 14, 15, // afternoon
+            21, 22, 23  // evening
         )
         private const val PATTERN_FORMAT = "EE dd-MM-yyyy"
         private val icons = mapOf(
@@ -37,14 +38,11 @@ class FormatWeather {
             "50n" to "🌫️",
         )
 
-        fun overview(weatherData: WeatherData): String {
-            return sanitize(
-                """
+        fun overview(weatherData: WeatherData) =
+            """
                 *${weatherData.location?.name}*
                 ${generateHours(filterListingByTheMostImportantHours(weatherData))}
-            """
-            )
-        }
+            """.trimLeadingSpaces()
 
         private fun filterListingByTheMostImportantHours(weatherData: WeatherData): WeatherData {
             val weatherDataFiltered =
@@ -56,6 +54,8 @@ class FormatWeather {
         }
 
         private fun generateHours(weatherData: WeatherData): String {
+
+            println("generateHours:\n${weatherData}")
 
             val forecastByDays = forecastByDays(weatherData)
             val forecastByDaysWithThreeHours = filterDaysWithThreeHours(forecastByDays)
@@ -83,10 +83,6 @@ class FormatWeather {
             return forecasts.joinToString(separator = "|") {
                 "${icons[it.weather?.first()?.icon]} ${it.temperature?.roundToInt()}°C"
             }
-        }
-
-        private fun sanitize(text: String): String {
-            return text.replace("-", "\\-").trimIndent()
         }
     }
 }
