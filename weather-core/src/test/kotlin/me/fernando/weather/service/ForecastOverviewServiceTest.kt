@@ -8,11 +8,13 @@ import org.junit.jupiter.api.assertAll
 import java.time.Instant
 import java.time.ZoneId
 
-internal class FormatForecastTest {
+internal class ForecastOverviewServiceTest {
+
+    private val sut = ForecastOverviewService()
 
     @Test
-    fun format() {
-        val actual = FormatForecast.overview(WEATHER_DATA)
+    fun generateForecastOverviewMessage() {
+        val actual = sut.generateOverviewMessage(WEATHER_DATA)
 
         assertAll(
             { assert(actual.contains("*Madrid*")) },

@@ -3,11 +3,13 @@ package me.fernando.weather.service
 import me.fernando.telegram.domain.BotCommand
 import org.junit.jupiter.api.Test
 
-internal class FormatHelpTest {
+internal class HelpOverviewServiceTest {
+
+    private val sut = HelpOverviewService()
 
     @Test
-    fun format() {
-        val actual = FormatHelp.overview()
+    fun generateHelpOverviewMessage() {
+        val actual = sut.generateOverviewMessage()
 
         BotCommand.values().forEach {
             assert(actual.contains(it.command))

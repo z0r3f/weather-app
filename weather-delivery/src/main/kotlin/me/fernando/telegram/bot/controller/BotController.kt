@@ -14,8 +14,9 @@ import me.fernando.telegram.domain.BotCommand.FORECAST
 import me.fernando.telegram.domain.BotCommand.HELP
 import me.fernando.telegram.domain.BotCommandRequest
 import me.fernando.util.sanitizeForTelegram
-import me.fernando.weather.service.FormatForecast
-import me.fernando.weather.service.FormatHelp
+import me.fernando.weather.service.ForecastOverviewService
+import me.fernando.weather.service.HelpOverviewService
+import me.fernando.weather.service.generateOverviewMessage
 import me.fernando.weather.usecase.GetForecastByCityNameQry
 
 @Controller("/bot")
@@ -23,6 +24,8 @@ import me.fernando.weather.usecase.GetForecastByCityNameQry
 class BotController(
     private val telegramApiClient: TelegramApiClient,
     private val bus: UseCaseBus,
+    private val forecastOverviewService: ForecastOverviewService,
+    private val helpOverviewService: HelpOverviewService
 ) {
 
     @Produces(MediaType.TEXT_PLAIN)
@@ -50,9 +53,9 @@ class BotController(
             val response = when (botCommandRequest.command) {
                 FORECAST -> {
                     val weatherData = bus(GetForecastByCityNameQry(botCommandRequest.arguments))
-                    FormatForecast.overview(weatherData)
+                    forecastOverviewService.generateOverviewMessage(weatherData)
                 }
-                HELP -> FormatHelp.overview()
+                HELP -> helpOverviewService.generateOverviewMessage()
                 else -> "Command not supported"
             }.trimIndent().sanitizeForTelegram()
 
