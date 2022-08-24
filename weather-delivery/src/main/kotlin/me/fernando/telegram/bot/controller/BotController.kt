@@ -8,21 +8,19 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.annotation.Produces
 import jakarta.annotation.security.PermitAll
-import me.fernando.telegram.bot.client.TelegramApiClient
 import me.fernando.telegram.bot.dto.UpdateDto
 import me.fernando.telegram.domain.BotCommand.FORECAST
 import me.fernando.telegram.domain.BotCommand.HELP
 import me.fernando.telegram.domain.BotCommandRequest
-import me.fernando.util.sanitizeForTelegram
+import me.fernando.telegram.usecase.SendMessageCmd
+import me.fernando.util.generateOverviewMessage
 import me.fernando.weather.service.ForecastOverviewService
 import me.fernando.weather.service.HelpOverviewService
-import me.fernando.weather.service.generateOverviewMessage
 import me.fernando.weather.usecase.GetForecastByCityNameQry
 
 @Controller("/bot")
 @PermitAll
 class BotController(
-    private val telegramApiClient: TelegramApiClient,
     private val bus: UseCaseBus,
     private val forecastOverviewService: ForecastOverviewService,
     private val helpOverviewService: HelpOverviewService
@@ -57,16 +55,14 @@ class BotController(
                 }
                 HELP -> helpOverviewService.generateOverviewMessage()
                 else -> "Command not supported"
-            }.trimIndent().sanitizeForTelegram()
+            }
 
-            println("Response:\n${response}")
-
-            telegramApiClient.sendMessage(chatId, response)
+            bus(SendMessageCmd(chatId, response))
 
         }.onFailure { e ->
             val response = e.message ?: "Error processing your request"
-            println("Response:\n${response}")
-            telegramApiClient.sendMessage(chatId, response.sanitizeForTelegram())
+
+            bus(SendMessageCmd(chatId, response))
         }
     }
 

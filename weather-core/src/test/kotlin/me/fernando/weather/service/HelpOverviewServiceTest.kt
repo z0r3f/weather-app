@@ -1,6 +1,7 @@
 package me.fernando.weather.service
 
 import me.fernando.telegram.domain.BotCommand
+import me.fernando.util.generateOverviewMessage
 import org.junit.jupiter.api.Test
 
 internal class HelpOverviewServiceTest {
