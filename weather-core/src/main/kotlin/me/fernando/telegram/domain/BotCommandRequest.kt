@@ -1,6 +1,6 @@
 package me.fernando.telegram.domain
 
 data class BotCommandRequest(
-    val command: BotCommand,
+    val command: BotCommandType,
     val arguments: String
 )

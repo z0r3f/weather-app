@@ -1,7 +1,7 @@
 package me.fernando.weather.service
 
 import jakarta.inject.Singleton
-import me.fernando.telegram.domain.BotCommand
+import me.fernando.telegram.domain.BotCommandType
 import me.fernando.util.trimLeadingSpaces
 
 @Singleton
@@ -20,7 +20,7 @@ class HelpOverviewService: OverviewService<Unit> {
 
     private fun getCommands(): String {
         var text = ""
-        BotCommand.values().forEach {
+        BotCommandType.values().forEach {
             text += """
                 *${it.command}* - ${it.description}
                 """

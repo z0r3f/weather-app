@@ -9,9 +9,9 @@ import io.micronaut.http.annotation.Post
 import io.micronaut.http.annotation.Produces
 import jakarta.annotation.security.PermitAll
 import me.fernando.telegram.bot.dto.UpdateDto
-import me.fernando.telegram.domain.BotCommand.FORECAST
-import me.fernando.telegram.domain.BotCommand.HELP
 import me.fernando.telegram.domain.BotCommandRequest
+import me.fernando.telegram.domain.BotCommandType.FORECAST
+import me.fernando.telegram.domain.BotCommandType.HELP
 import me.fernando.telegram.usecase.SendMessageCmd
 import me.fernando.util.generateOverviewMessage
 import me.fernando.weather.service.ForecastOverviewService

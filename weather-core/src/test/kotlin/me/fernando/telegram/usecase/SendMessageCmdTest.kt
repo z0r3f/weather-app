@@ -6,33 +6,32 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
-import org.mockito.Mockito
 import org.mockito.Mockito.*
 
 internal class SendMessageCmdTest {
 
-    private val telegramApiClient = mock(TelegramRepository::class.java)
+    private val telegramRepository = mock(TelegramRepository::class.java)
 
     @AfterEach
     fun tearDown() {
-        Mockito.verifyNoMoreInteractions(telegramApiClient)
+        verifyNoMoreInteractions(telegramRepository)
     }
 
     @Test
     fun throw_exception_when_the_message_requested_is_empty() {
         val exceptionThrown = assertThrows(IllegalArgumentException::class.java) {
-            SendMessageCmd(CHAT_ID, MESSAGE_EMPTY, telegramApiClient).fakeRun()
+            SendMessageCmd(CHAT_ID, MESSAGE_EMPTY, telegramRepository).fakeRun()
         }
 
         assertTrue(exceptionThrown.message == "The message is empty. Nothing to send")
-        verifyNoInteractions(telegramApiClient)
+        verifyNoInteractions(telegramRepository)
     }
 
     @Test
     fun sends_the_message_when_there_are_no_errors() {
-        SendMessageCmd(CHAT_ID, MESSAGE, telegramApiClient).fakeRun()
+        SendMessageCmd(CHAT_ID, MESSAGE, telegramRepository).fakeRun()
 
-        verify(telegramApiClient).sendMessage(CHAT_ID, MESSAGE_SENT)
+        verify(telegramRepository).sendMessage(CHAT_ID, MESSAGE_SENT)
     }
 
     private companion object {
