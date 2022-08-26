@@ -4,9 +4,25 @@ import io.archimedesfw.context.ServiceLocator
 import io.archimedesfw.usecase.Command
 import me.fernando.telegram.domain.BotCommandType
 import me.fernando.telegram.port.TelegramRepository
+import org.slf4j.LoggerFactory
 
 class ConfigureAllAvailableCommandsCmd(
     private val telegramRepository: TelegramRepository = ServiceLocator.locate(),
 ) : Command<Unit>() {
-    override fun run() = telegramRepository.setAllTheCommands(BotCommandType.getAvailableCommands())
+    override fun run() {
+        val configuredCommands = telegramRepository.getAllTheCommands()
+        val availableCommands = BotCommandType.getAvailableCommands()
+
+        if (configuredCommands == availableCommands) {
+            LOG.info("All the commands are configured correctly")
+        } else {
+            LOG.info("Some commands are not configured. Configuring them...")
+            telegramRepository.setAllTheCommands(BotCommandType.getAvailableCommands())
+            LOG.info("All the commands are now configured correctly")
+        }
+    }
+
+    companion object {
+        private val LOG = LoggerFactory.getLogger(ConfigureAllAvailableCommandsCmd::class.java)
+    }
 }

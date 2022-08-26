@@ -17,10 +17,22 @@ internal class ConfigureAllAvailableCommandsCmdTest {
     }
 
     @Test
-    fun should_configure_all_commands() {
+    fun should_configure_all_commands_when_some_commands_are_not_configured() {
+        `when`(telegramRepository.getAllTheCommands()).thenReturn(emptySet())
+
         ConfigureAllAvailableCommandsCmd(telegramRepository).fakeRun()
 
+        verify(telegramRepository).getAllTheCommands()
         verify(telegramRepository).setAllTheCommands(ACTIVE_COMMANDS)
+    }
+
+    @Test
+    fun should_not_configure_any_commands_when_all_the_commands_are_configured_correctly() {
+        `when`(telegramRepository.getAllTheCommands()).thenReturn(ACTIVE_COMMANDS)
+
+        ConfigureAllAvailableCommandsCmd(telegramRepository).fakeRun()
+
+        verify(telegramRepository).getAllTheCommands()
     }
 
     private companion object {
