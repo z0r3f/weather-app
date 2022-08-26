@@ -49,11 +49,17 @@
             <scope>runtime</scope>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.postgresql</groupId>-->
-<!--            <artifactId>postgresql</artifactId>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>io.archimedesfw.context</groupId>
+            <artifactId>archimedes-context-micronaut</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.archimedesfw.context</groupId>
+            <artifactId>archimedes-context-micronaut</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -110,5 +116,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

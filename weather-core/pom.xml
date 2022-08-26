@@ -47,6 +47,13 @@
         </dependency>
 
         <dependency>
+            <groupId>io.archimedesfw.context</groupId>
+            <artifactId>archimedes-context-micronaut</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>io.archimedesfw.usecase</groupId>
             <artifactId>archimedes-usecase-test</artifactId>
             <scope>test</scope>

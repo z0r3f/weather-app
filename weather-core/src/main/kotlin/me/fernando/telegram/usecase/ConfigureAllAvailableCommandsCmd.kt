@@ -1,13 +1,13 @@
 package me.fernando.telegram.usecase
 
-import io.archimedesfw.context.ServiceLocator
+import io.archimedesfw.context.ServiceLocator.locate
 import io.archimedesfw.usecase.Command
 import me.fernando.telegram.domain.BotCommandType
 import me.fernando.telegram.port.TelegramRepository
 import org.slf4j.LoggerFactory
 
 class ConfigureAllAvailableCommandsCmd(
-    private val telegramRepository: TelegramRepository = ServiceLocator.locate(),
+    private val telegramRepository: TelegramRepository = locate(),
 ) : Command<Unit>() {
     override fun run() {
         val configuredCommands = telegramRepository.getAllTheCommands()
