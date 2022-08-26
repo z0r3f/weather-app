@@ -1,4 +1,4 @@
-package me.fernando.weather.api.rest
+package me.fernando.weather.api.adapter
 
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 
 @MicronautTest(propertySources = ["application-test.yml"])
-internal class DirectGeocodingRestRepositoryIT {
+internal class DirectGeocodingAdapterRepositoryIT {
 
     @Inject
     lateinit var directGeocodingRestClient: DirectGeocodingRestClient
@@ -19,7 +19,7 @@ internal class DirectGeocodingRestRepositoryIT {
 
     @Test
     fun `should return a list of coordinates`() {
-        val repository = DirectGeocodingRestRepository(
+        val repository = DirectGeocodingAdapterRepository(
             directGeocodingRestClient,
             geographicalCoordinateMapper
         )

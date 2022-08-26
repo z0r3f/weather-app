@@ -3,8 +3,8 @@ package me.fernando.weather.usecase
 import io.archimedesfw.context.ServiceLocator.locate
 import io.archimedesfw.usecase.Query
 import me.fernando.weather.domain.WeatherData
-import me.fernando.weather.repository.DirectGeocodingRepository
-import me.fernando.weather.repository.ForecastRepository
+import me.fernando.weather.port.DirectGeocodingRepository
+import me.fernando.weather.port.ForecastRepository
 
 class GetForecastByCityNameQry(
     private val cityName: String,

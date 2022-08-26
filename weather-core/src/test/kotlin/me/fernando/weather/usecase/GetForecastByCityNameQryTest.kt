@@ -3,8 +3,8 @@ package me.fernando.weather.usecase
 import io.archimedesfw.usecase.fakeRun
 import me.fernando.weather.domain.GeographicalCoordinateMother
 import me.fernando.weather.domain.WeatherDataMother
-import me.fernando.weather.repository.DirectGeocodingRepository
-import me.fernando.weather.repository.ForecastRepository
+import me.fernando.weather.port.DirectGeocodingRepository
+import me.fernando.weather.port.ForecastRepository
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

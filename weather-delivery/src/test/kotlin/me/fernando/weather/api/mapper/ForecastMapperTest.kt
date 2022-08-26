@@ -20,12 +20,12 @@ internal class ForecastMapperTest {
     }
 
     @Test
-    fun toEntity() {
-        `when`(weatherMapper.toEntity(WeatherDtoMother().of())).thenReturn(WeatherMother().of())
+    fun toModel() {
+        `when`(weatherMapper.toModel(WeatherDtoMother().of())).thenReturn(WeatherMother().of())
 
-        val result = sut.toEntity(ForecastDtoMother().of())
+        val result = sut.toModel(ForecastDtoMother().of())
 
         assertEquals(ForecastMother().of(), result)
-        verify(weatherMapper).toEntity(WeatherDtoMother().of())
+        verify(weatherMapper).toModel(WeatherDtoMother().of())
     }
 }

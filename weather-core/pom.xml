@@ -11,6 +11,12 @@
     <artifactId>weather-core</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>me.fernando.weather</groupId>
+            <artifactId>weather-architecture</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- Use Micronaut data to use @Transactional and JdbcOperations -->
         <dependency>
             <groupId>io.micronaut.data</groupId>

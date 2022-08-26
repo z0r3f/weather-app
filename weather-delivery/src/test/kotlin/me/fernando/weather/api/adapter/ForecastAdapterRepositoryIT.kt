@@ -1,4 +1,4 @@
-package me.fernando.weather.api.rest
+package me.fernando.weather.api.adapter
 
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 
 @MicronautTest(propertySources = ["application-test.yml"])
-internal class ForecastRestRepositoryIT {
+internal class ForecastAdapterRepositoryIT {
 
     @Inject
     lateinit var forecastRestClient: ForecastRestClient
@@ -18,7 +18,7 @@ internal class ForecastRestRepositoryIT {
 
     @Test
     fun `should return a list of forecasts`() {
-        val repository = ForecastRestRepository(
+        val repository = ForecastAdapterRepository(
             forecastRestClient,
             weatherDataMapper
         )

@@ -7,4 +7,13 @@ data class GeographicalCoordinate(
     @JsonProperty("lat") val latitude: Double, // -33.86
     @JsonProperty("lon") val longitude: Double, // 151.21
     @JsonProperty("country") val country: String, // Country code (GB, JP etc.)
-)
+) {
+    fun toLocation(): Location {
+        return Location(
+            name = name,
+            latitude = latitude,
+            longitude = longitude,
+            country = country,
+        )
+    }
+}

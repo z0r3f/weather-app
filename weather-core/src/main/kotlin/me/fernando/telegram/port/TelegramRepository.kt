@@ -1,4 +1,4 @@
-package me.fernando.telegram.repository
+package me.fernando.telegram.port
 
 import me.fernando.telegram.domain.BotCommand
 

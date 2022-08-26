@@ -1,14 +1,14 @@
-package me.fernando.telegram.bot.rest
+package me.fernando.telegram.bot.adapter
 
 import jakarta.inject.Singleton
 import me.fernando.telegram.bot.client.TelegramApiClient
 import me.fernando.telegram.bot.dto.BotCommandDto
 import me.fernando.telegram.bot.dto.BotSetCommandsRequestDto
 import me.fernando.telegram.domain.BotCommand
-import me.fernando.telegram.repository.TelegramRepository
+import me.fernando.telegram.port.TelegramRepository
 
 @Singleton
-class TelegramRestRepository(
+class TelegramAdapterRepository(
     private val telegramApiClient: TelegramApiClient,
 ) : TelegramRepository {
     override fun sendMessage(chatId: Long, message: String) {

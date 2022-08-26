@@ -4,7 +4,7 @@ import io.archimedesfw.context.ServiceLocator.locate
 import io.archimedesfw.usecase.Query
 import me.fernando.weather.domain.Location
 import me.fernando.weather.domain.WeatherData
-import me.fernando.weather.repository.ForecastRepository
+import me.fernando.weather.port.ForecastRepository
 
 class GetForecastByLocationQry(
     private val location: Location,

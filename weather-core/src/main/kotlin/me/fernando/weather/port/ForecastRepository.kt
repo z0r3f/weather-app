@@ -1,4 +1,4 @@
-package me.fernando.weather.repository
+package me.fernando.weather.port
 
 import me.fernando.weather.domain.WeatherData
 

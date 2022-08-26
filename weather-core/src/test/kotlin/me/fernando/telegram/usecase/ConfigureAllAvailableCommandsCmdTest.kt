@@ -2,7 +2,7 @@ package me.fernando.telegram.usecase
 
 import io.archimedesfw.usecase.fakeRun
 import me.fernando.telegram.domain.BotCommandType
-import me.fernando.telegram.repository.TelegramRepository
+import me.fernando.telegram.port.TelegramRepository
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*

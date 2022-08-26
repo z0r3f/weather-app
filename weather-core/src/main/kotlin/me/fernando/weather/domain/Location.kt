@@ -1,5 +1,7 @@
 package me.fernando.weather.domain
 
+import me.fernando.chat.domain.FavoriteLocation
+
 data class Location(
     val name: String? = null,
     val country: String? = null,
@@ -11,4 +13,11 @@ data class Location(
     val sunset: Long? = null,
 ) {
     fun isInvalid() = (latitude == null) || latitude.isNaN() || (longitude == null) || longitude.isNaN()
+
+    fun toFavoriteLocation() = FavoriteLocation(
+        name = name,
+        country = country,
+        latitude = latitude,
+        longitude = longitude,
+    )
 }

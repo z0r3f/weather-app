@@ -23,7 +23,7 @@
         <dependency>
             <groupId>me.fernando.weather</groupId>
             <artifactId>weather-core</artifactId>
-            <version>0.0.1</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>io.micronaut</groupId>

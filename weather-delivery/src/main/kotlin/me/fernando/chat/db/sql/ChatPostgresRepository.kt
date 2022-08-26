@@ -1,9 +1,9 @@
-package me.fernando.telegram.repository
+package me.fernando.chat.db.sql
 
 import io.micronaut.data.jdbc.annotation.JdbcRepository
 import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.repository.CrudRepository
-import me.fernando.telegram.domain.Chat
+import me.fernando.chat.db.entities.ChatEntity
 
 @JdbcRepository(dialect = Dialect.POSTGRES)
-interface ChatRepository : CrudRepository<Chat, Long>
+interface ChatPostgresRepository : CrudRepository<ChatEntity, Long>

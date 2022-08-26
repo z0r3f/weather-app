@@ -22,6 +22,14 @@ internal class BotCommandTypeTest {
                 {
                     "command": "help", 
                     "description": "Show this help"
+                },
+                {
+                    "command": "addlocation", 
+                    "description": "Add a new location"
+                },
+                {
+                    "command": "dellocation", 
+                    "description": "Remove a location"
                 }
             ]
         """

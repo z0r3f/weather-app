@@ -7,3 +7,5 @@ fun String.sanitizeForTelegram() = this.replace("([.\\-\\\\(\\\\)|])".toRegex(),
 fun String.trimLeadingSpaces() = this.replace("(?m)(^ +)".toRegex(), "").trim()
 
 fun OverviewService<Unit>.generateOverviewMessage() = generateOverviewMessage(Unit)
+
+fun Any?.isNull() = this == null
