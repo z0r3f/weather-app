@@ -17,7 +17,7 @@ open class ChatAdapterRepository(
     private val chatMapper: ChatMapper,
     private val favoriteLocationMapper: FavoriteLocationMapper,
 ) : ChatRepository {
-    override fun addLocationFavorite(chat: Chat, favoriteLocation: FavoriteLocation) {
+    override fun addFavoriteLocation(chat: Chat, favoriteLocation: FavoriteLocation) {
         val chatEntityOptional = chatPostgresRepository.findById(chat.id)
 
         val chatEntity = if (chatEntityOptional.isPresent) {
@@ -36,10 +36,16 @@ open class ChatAdapterRepository(
         }
     }
 
-    override fun removeLocationFavorite(chat: Chat, favoriteLocation: FavoriteLocation) {
-        chatPostgresRepository.findById(chat.id).ifPresent {
-            it.favoriteLocations.remove(favoriteLocationMapper.toDto(favoriteLocation))
-            chatPostgresRepository.update(it)
-        }
+    override fun getFavoriteLocation(chat: Chat, cityName: String): FavoriteLocation? =
+        favoriteLocationPostgresRepository.findOneByChatAndName(
+            chatMapper.toDto(chat), cityName
+        )?.let { favoriteLocationMapper.toModel(it) }
+
+    override fun removeFavoriteLocation(chat: Chat, favoriteLocation: FavoriteLocation) {
+        favoriteLocationPostgresRepository.delete(favoriteLocationMapper.toDto(favoriteLocation))
     }
+
+    override fun getFavoriteLocations(chat: Chat) =
+        favoriteLocationPostgresRepository.findByChat(chatMapper.toDto(chat))
+            .map { favoriteLocationMapper.toModel(it) }
 }

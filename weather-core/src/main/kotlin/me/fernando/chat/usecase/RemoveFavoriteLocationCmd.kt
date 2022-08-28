@@ -12,6 +12,6 @@ class RemoveFavoriteLocationCmd(
     private val chatRepository: ChatRepository = locate()
 ): Command<Unit>() {
     override fun run() {
-        chatRepository.removeLocationFavorite(chat, favoriteLocation)
+        chatRepository.removeFavoriteLocation(chat, favoriteLocation)
     }
 }

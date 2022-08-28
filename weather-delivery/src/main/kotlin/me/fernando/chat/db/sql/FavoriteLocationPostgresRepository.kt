@@ -9,4 +9,5 @@ import me.fernando.chat.db.entities.FavoriteLocationEntity
 @JdbcRepository(dialect = Dialect.POSTGRES)
 interface FavoriteLocationPostgresRepository : CrudRepository<FavoriteLocationEntity, Long> {
     fun findOneByChatAndName(chat: ChatEntity, name: String): FavoriteLocationEntity?
+    fun findByChat(chat: ChatEntity): List<FavoriteLocationEntity>
 }

@@ -12,6 +12,6 @@ class AddFavoriteLocationCmd(
     private val chatRepository: ChatRepository = locate()
 ): Command<Unit>() {
     override fun run() {
-        chatRepository.addLocationFavorite(chat, favoriteLocation)
+        chatRepository.addFavoriteLocation(chat, favoriteLocation)
     }
 }
