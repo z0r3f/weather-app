@@ -4,8 +4,8 @@ import jakarta.inject.Singleton
 import me.fernando.telegram.bot.client.TelegramApiClient
 import me.fernando.telegram.bot.dto.BotCommandDto
 import me.fernando.telegram.bot.dto.BotSetCommandsRequestDto
-import me.fernando.telegram.domain.BotCommand
 import me.fernando.telegram.domain.callback.BotCallback
+import me.fernando.telegram.domain.message.BotMessage
 import me.fernando.telegram.port.TelegramRepository
 
 @Singleton
@@ -18,18 +18,18 @@ class TelegramAdapterRepository(
         telegramApiClient.sendMessage(chatId, message, replyMarkup)
     }
 
-    override fun getAllTheCommands(): Set<BotCommand> {
+    override fun getAllTheCommands(): Set<BotMessage> {
         val botCommands = telegramApiClient.getBotCommands()
         return if (botCommands.isSuccessful()) {
             botCommands.result.map { botCommand ->
-                BotCommand(botCommand.command, botCommand.description)
+                BotMessage(botCommand.command, botCommand.description)
             }.toSet()
         } else {
             emptySet()
         }
     }
 
-    override fun setAllTheCommands(commands: Set<BotCommand>) {
+    override fun setAllTheCommands(commands: Set<BotMessage>) {
         telegramApiClient.setBotCommands(
             BotSetCommandsRequestDto(
                 commands.map { botCommand ->

@@ -1,6 +1,6 @@
 package me.fernando.weather.service
 
-import me.fernando.telegram.domain.BotCommandType
+import me.fernando.telegram.domain.message.BotMessageType
 import me.fernando.util.generateOverviewMessage
 import org.junit.jupiter.api.Test
 
@@ -12,7 +12,7 @@ internal class HelpOverviewServiceTest {
     fun generateHelpOverviewMessage() {
         val actual = sut.generateOverviewMessage()
 
-        BotCommandType.values().forEach {
+        BotMessageType.values().forEach {
             assert(actual.contains(it.command))
             assert(actual.contains(it.description))
         }

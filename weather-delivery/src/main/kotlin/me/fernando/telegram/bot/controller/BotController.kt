@@ -8,10 +8,10 @@ import jakarta.annotation.security.PermitAll
 import me.fernando.chat.domain.Chat
 import me.fernando.telegram.bot.dto.MessageDto
 import me.fernando.telegram.bot.dto.UpdateDto
-import me.fernando.telegram.domain.BotCommandRequest
-import me.fernando.telegram.domain.BotCommandType.*
 import me.fernando.telegram.domain.callback.BotCallback
 import me.fernando.telegram.domain.callback.BotCallbackType
+import me.fernando.telegram.domain.message.BotMessageRequest
+import me.fernando.telegram.domain.message.BotMessageType.*
 import me.fernando.telegram.usecase.*
 import org.slf4j.LoggerFactory
 
@@ -88,28 +88,28 @@ class BotController(
         }
     }
 
-    private fun choiceBotCommand(messageText: String): BotCommandRequest {
+    private fun choiceBotCommand(messageText: String): BotMessageRequest {
         return when {
-            messageText.startsWith(FORECAST.command) -> BotCommandRequest(
+            messageText.startsWith(FORECAST.command) -> BotMessageRequest(
                 command = FORECAST,
                 arguments = messageText.substringAfter(FORECAST.command)
             )
-            messageText.startsWith(HELP.command) -> BotCommandRequest(
+            messageText.startsWith(HELP.command) -> BotMessageRequest(
                 command = HELP,
                 arguments = messageText.substringAfter(HELP.command)
             )
-            messageText.startsWith(ADD_LOCATION.command) -> BotCommandRequest(
+            messageText.startsWith(ADD_LOCATION.command) -> BotMessageRequest(
                 command = ADD_LOCATION,
                 arguments = messageText.substringAfter(ADD_LOCATION.command).takeIf { it.isNotBlank() }
                     ?: throw IllegalArgumentException("Missing arguments")
             )
-            messageText.startsWith(DEL_LOCATION.command) -> BotCommandRequest(
+            messageText.startsWith(DEL_LOCATION.command) -> BotMessageRequest(
                 command = DEL_LOCATION,
                 arguments = messageText.substringAfter(DEL_LOCATION.command).takeIf { it.isNotBlank() }
                     ?: throw IllegalArgumentException("Missing arguments")
             )
             messageText.startsWith("/") -> throw IllegalArgumentException("Command not supported")
-            else -> BotCommandRequest(
+            else -> BotMessageRequest(
                 command = FORECAST,
                 arguments = messageText
             )

@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SNAKE_CASE
 import me.fernando.telegram.bot.client.TelegramApiClient
 import me.fernando.telegram.bot.dto.*
-import me.fernando.telegram.domain.BotCommand
 import me.fernando.telegram.domain.callback.BotCallback
 import me.fernando.telegram.domain.callback.BotCallbackType.UNKNOWN
+import me.fernando.telegram.domain.message.BotMessage
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -107,9 +107,9 @@ internal class TelegramAdapterRepositoryTest {
         )
 
         val COMMANDS = setOf(
-            BotCommand(
+            BotMessage(
                 command = "start", description = "Start the bot"
-            ), BotCommand(
+            ), BotMessage(
                 command = "help", description = "Help"
             )
         )

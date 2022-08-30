@@ -1,7 +1,7 @@
 package me.fernando.telegram.usecase
 
 import io.archimedesfw.usecase.fakeRun
-import me.fernando.telegram.domain.BotCommandType
+import me.fernando.telegram.domain.message.BotMessageType
 import me.fernando.telegram.port.TelegramRepository
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
@@ -36,6 +36,6 @@ internal class ConfigureAllAvailableCommandsCmdTest {
     }
 
     private companion object {
-        val ACTIVE_COMMANDS = BotCommandType.getAvailableCommands()
+        val ACTIVE_COMMANDS = BotMessageType.getAvailableCommands()
     }
 }
