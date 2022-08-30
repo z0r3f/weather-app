@@ -16,5 +16,4 @@ data class ChatDto(
     @JsonProperty("pinned_message") val pinnedMessage: MessageDto?,
     @JsonProperty("sticker_set_name") val stickerSetName: String?,
     @JsonProperty("can_set_sticker_set") val canSetStickerSet: Boolean?
-
 )

@@ -17,8 +17,8 @@ interface TelegramApiClient {
     @Post("/deleteWebhook")
     fun deleteWebhook()
 
-    @Post("/sendMessage{?chat_id*}{&text*}&parse_mode=MarkdownV2")
-    fun sendMessage(@QueryValue chat_id: Long, @QueryValue text: String)
+    @Post("/sendMessage{?chat_id*}{&text*}{&reply_markup*}&parse_mode=MarkdownV2")
+    fun sendMessage(@QueryValue chat_id: Long, @QueryValue text: String, @QueryValue reply_markup: String? = null)
 
     @Get("/getMyCommands")
     fun getBotCommands(): BotGetCommandsResponseDto

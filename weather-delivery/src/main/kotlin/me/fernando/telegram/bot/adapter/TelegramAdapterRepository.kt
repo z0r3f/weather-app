@@ -5,19 +5,23 @@ import me.fernando.telegram.bot.client.TelegramApiClient
 import me.fernando.telegram.bot.dto.BotCommandDto
 import me.fernando.telegram.bot.dto.BotSetCommandsRequestDto
 import me.fernando.telegram.domain.BotCommand
+import me.fernando.telegram.domain.callback.BotCallback
 import me.fernando.telegram.port.TelegramRepository
 
 @Singleton
 class TelegramAdapterRepository(
     private val telegramApiClient: TelegramApiClient,
 ) : TelegramRepository {
-    override fun sendMessage(chatId: Long, message: String) {
-        telegramApiClient.sendMessage(chatId, message)
+    override fun sendMessage(chatId: Long, message: String, callbacks: List<BotCallback>?) {
+        val replyMarkup = callbacks?.let { callbackList -> "{\"inline_keyboard\":[${callbackList.map { it.toJson() }}]}" }
+
+        telegramApiClient.sendMessage(chatId, message, replyMarkup)
     }
 
     override fun getAllTheCommands(): Set<BotCommand> {
-        return if (telegramApiClient.getBotCommands().isSuccessful()) {
-            telegramApiClient.getBotCommands().result.map { botCommand ->
+        val botCommands = telegramApiClient.getBotCommands()
+        return if (botCommands.isSuccessful()) {
+            botCommands.result.map { botCommand ->
                 BotCommand(botCommand.command, botCommand.description)
             }.toSet()
         } else {

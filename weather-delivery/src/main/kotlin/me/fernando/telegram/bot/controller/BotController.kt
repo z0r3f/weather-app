@@ -3,16 +3,15 @@ package me.fernando.telegram.bot.controller
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.archimedesfw.usecase.UseCaseBus
 import io.micronaut.http.MediaType
-import io.micronaut.http.annotation.Controller
-import io.micronaut.http.annotation.Get
-import io.micronaut.http.annotation.Post
-import io.micronaut.http.annotation.Produces
+import io.micronaut.http.annotation.*
 import jakarta.annotation.security.PermitAll
 import me.fernando.chat.domain.Chat
 import me.fernando.telegram.bot.dto.MessageDto
 import me.fernando.telegram.bot.dto.UpdateDto
 import me.fernando.telegram.domain.BotCommandRequest
 import me.fernando.telegram.domain.BotCommandType.*
+import me.fernando.telegram.domain.callback.BotCallback
+import me.fernando.telegram.domain.callback.BotCallbackType
 import me.fernando.telegram.usecase.*
 import org.slf4j.LoggerFactory
 
@@ -27,13 +26,44 @@ class BotController(
     fun showAdvice() = "Look this: https://t.me/WeaFerBot"
 
     @Post
-    fun incomingUpdate(update: UpdateDto) {
-        processRequest(update)
-    }
-
-    private fun processRequest(update: UpdateDto) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    fun incomingUpdate(@Body update: UpdateDto) {
 
         LOG.debug("Processing:\n${ObjectMapper().writeValueAsString(update)}")
+
+        if (update.hasCallbackQuery()) {
+            processCallBack(update)
+        } else {
+            processMessage(update)
+        }
+    }
+
+    private fun processCallBack(update: UpdateDto) {
+        update.callbackQuery?.message?.let { message ->
+            val chat = getChat(message)
+            val botCallback = choiceBotCallback(update)
+
+            when (botCallback.type) {
+                BotCallbackType.ADD -> bus(AddLocationCmd(chat, botCallback.data))
+                BotCallbackType.DELETE -> bus(DelLocationCmd(chat, botCallback.data))
+                else -> bus(CallbackUnknownCmd(chat))
+            }
+        }
+    }
+
+    private fun choiceBotCallback(update: UpdateDto): BotCallback {
+        return update.callbackQuery?.data?.split(":")?.let { data ->
+            BotCallback(
+                type = BotCallbackType.fromString(data[0]),
+                data = data[1]
+            )
+        } ?: BotCallback(
+            type = BotCallbackType.UNKNOWN,
+            data = ""
+        )
+    }
+
+    private fun processMessage(update: UpdateDto) {
 
         val message = update.message ?: update.editedMessage ?: throw IllegalArgumentException("Message not found")
         val chat = getChat(message)
