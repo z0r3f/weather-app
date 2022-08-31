@@ -6,6 +6,7 @@ import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.*
 import jakarta.annotation.security.PermitAll
 import me.fernando.chat.domain.Chat
+import me.fernando.chat.usecase.AddAlertCmd
 import me.fernando.telegram.bot.dto.MessageDto
 import me.fernando.telegram.bot.dto.UpdateDto
 import me.fernando.telegram.domain.callback.BotCallback
@@ -29,7 +30,7 @@ class BotController(
     @Consumes(MediaType.APPLICATION_JSON)
     fun incomingUpdate(@Body update: UpdateDto) {
 
-        LOG.debug("Processing:\n${ObjectMapper().writeValueAsString(update)}")
+        LOG.debug("Processing: ${ObjectMapper().writeValueAsString(update)}")
 
         if (update.hasCallbackQuery()) {
             processCallBack(update)
@@ -69,7 +70,7 @@ class BotController(
         val chat = getChat(message)
 
         runCatching {
-            val text = message.text ?: throw IllegalArgumentException("Text not found")
+            val text = message.text ?: throw IllegalArgumentException("Hi!!")
 
             val botCommandRequest = choiceBotCommand(text)
 
@@ -78,6 +79,7 @@ class BotController(
                 HELP -> bus(HelpCmd(chat))
                 ADD_LOCATION -> bus(AddLocationCmd(chat, botCommandRequest.arguments))
                 DEL_LOCATION -> bus(DelLocationCmd(chat, botCommandRequest.arguments))
+                ADD_ALERT -> bus(AddAlertCmd(chat, botCommandRequest.arguments))
                 else -> bus(NotSupportedCmd(chat))
             }
 
@@ -106,6 +108,11 @@ class BotController(
             messageText.startsWith(DEL_LOCATION.command) -> BotMessageRequest(
                 command = DEL_LOCATION,
                 arguments = messageText.substringAfter(DEL_LOCATION.command).takeIf { it.isNotBlank() }
+                    ?: throw IllegalArgumentException("Missing arguments")
+            )
+            messageText.startsWith(ADD_ALERT.command) -> BotMessageRequest(
+                command = ADD_ALERT,
+                arguments = messageText.substringAfter(ADD_ALERT.command).takeIf { it.isNotBlank() }
                     ?: throw IllegalArgumentException("Missing arguments")
             )
             messageText.startsWith("/") -> throw IllegalArgumentException("Command not supported")

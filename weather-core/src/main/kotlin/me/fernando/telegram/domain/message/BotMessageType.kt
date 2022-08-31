@@ -11,7 +11,8 @@ enum class BotMessageType(val command: String, val description: String) {
     FORECAST("/forecast", "Overview next days (morning | afternoon | evening)"),
     HELP("/help", "Show this help"),
     ADD_LOCATION("/addlocation", "Add a new location"),
-    DEL_LOCATION("/dellocation", "Remove a location");
+    DEL_LOCATION("/dellocation", "Remove a location"),
+    ADD_ALERT("/addalert", "Add a new alert");
 
     private fun getCommandRaw(): String {
         return command.replace("/", "")

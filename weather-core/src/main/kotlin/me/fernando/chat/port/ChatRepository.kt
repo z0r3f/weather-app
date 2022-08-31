@@ -11,4 +11,8 @@ interface ChatRepository {
     fun getFavoriteLocations(chat: Chat): List<FavoriteLocation>
 
     fun getFavoriteLocation(chat: Chat, cityName: String): FavoriteLocation?
+
+    fun addAlert(chat: Chat, hourOfDay: Int)
+
+    fun getAlerts(hourOfDay: Int): List<Chat>
 }

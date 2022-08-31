@@ -31,6 +31,10 @@ internal class BotMessageTypeTest {
                 {
                     "command": "dellocation", 
                     "description": "Remove a location"
+                },
+                {
+                    "command": "addalert", 
+                    "description": "Add a new alert"
                 }
             ]
         """
