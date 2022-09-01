@@ -7,8 +7,8 @@ import me.fernando.chat.port.ChatRepository
 import me.fernando.telegram.usecase.SendMessageCmd
 import me.fernando.weather.service.AddAlertOverviewService
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertThrows
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.verifyNoInteractions
 import org.mockito.kotlin.mock
@@ -32,7 +32,7 @@ internal class AddAlertCmdTest {
             AddAlertCmd(CHAT, "Not is valid number", chatRepository, addAlertOverviewService).fakeRun()
         }
 
-        Assertions.assertTrue(exceptionThrown.message == "Invalid hour of day: \"Not is valid number\". Should be an integer between 0 and 23")
+        assertTrue(exceptionThrown.message == "Invalid hour of day: \"Not is valid number\". Should be an integer between 0 and 23")
         verifyNoInteractions(chatRepository, addAlertOverviewService)
     }
 
@@ -42,7 +42,7 @@ internal class AddAlertCmdTest {
             AddAlertCmd(CHAT, "24", chatRepository, addAlertOverviewService).fakeRun()
         }
 
-        Assertions.assertTrue(exceptionThrown.message == "Hour of day must be between 0 and 23")
+        assertTrue(exceptionThrown.message == "Hour of day must be between 0 and 23")
         verifyNoInteractions(chatRepository, addAlertOverviewService)
     }
 

@@ -10,7 +10,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.verifyNoMoreInteractions
 
-internal class AddFavoriteLocationCmdTest {
+internal class RemoveFavoriteLocationCmdTest {
 
     private val chatRepository: ChatRepository = mock()
 
@@ -21,9 +21,9 @@ internal class AddFavoriteLocationCmdTest {
 
     @Test
     fun run_success() {
-        AddFavoriteLocationCmd(CHAT, FAVORITE_LOCATION, chatRepository).fakeRun()
+        RemoveFavoriteLocationCmd(CHAT, FAVORITE_LOCATION, chatRepository).fakeRun()
 
-        verify(chatRepository).addFavoriteLocation(CHAT, FAVORITE_LOCATION)
+        verify(chatRepository).removeFavoriteLocation(CHAT, FAVORITE_LOCATION)
     }
 
     private companion object {
