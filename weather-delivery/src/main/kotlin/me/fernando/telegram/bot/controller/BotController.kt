@@ -1,6 +1,7 @@
 package me.fernando.telegram.bot.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.archimedesfw.cqrs.ActionBus
 import io.archimedesfw.usecase.UseCaseBus
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.*
@@ -20,6 +21,7 @@ import org.slf4j.LoggerFactory
 @PermitAll
 class BotController(
     private val bus: UseCaseBus,
+    private val actionBus: ActionBus,
 ) {
 
     @Produces(MediaType.TEXT_PLAIN)
