@@ -16,7 +16,8 @@ steps:
      SonarCloud: 'SonarSC'
      organization: 'ferozar'
      scannerMode: 'CLI'
-     configMode: 'file'
+     projectKey: 'ferozar_Weather-Bot'
+     projectName: 'Weather Bot'
      
 # - task: Maven@3
 #   inputs:
