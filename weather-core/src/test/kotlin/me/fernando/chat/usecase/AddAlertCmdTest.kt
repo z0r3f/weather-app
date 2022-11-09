@@ -59,6 +59,5 @@ internal class AddAlertCmdTest {
         val CHAT = Chat(id = CHAT_ID)
         const val ALERT_MOMENT = "23"
         const val ALERT_MOMENT_AS_INT = 23
-        const val RESPONSE = "You will receive an alert at $ALERT_MOMENT hour"
     }
 }

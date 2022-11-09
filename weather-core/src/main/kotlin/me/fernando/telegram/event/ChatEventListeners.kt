@@ -9,6 +9,7 @@ import me.fernando.telegram.usecase.SendMessageCmd
 import me.fernando.weather.service.AddAlertOverviewService
 import me.fernando.weather.service.AddFavoriteOverviewService
 
+// TODO Change the name, repeat with `me.fernando.chat.event.ChatEventListeners`
 @Singleton
 class ChatEventListeners(
     private val bus: UseCaseBus,

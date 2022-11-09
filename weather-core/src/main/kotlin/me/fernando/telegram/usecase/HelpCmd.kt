@@ -2,16 +2,15 @@ package me.fernando.telegram.usecase
 
 import io.archimedesfw.context.ServiceLocator.locate
 import io.archimedesfw.usecase.Command
+import io.micronaut.context.event.ApplicationEventPublisher
 import me.fernando.chat.domain.Chat
-import me.fernando.util.generateOverviewMessage
-import me.fernando.weather.service.HelpOverviewService
+import me.fernando.chat.event.RequestHelpDataEvent
 
 class HelpCmd(
     private val chat: Chat,
-    private val helpOverviewService: HelpOverviewService = locate(),
+    private val requestHelpDataEventPublisher: ApplicationEventPublisher<RequestHelpDataEvent> = locate(),
 ) : Command<Unit>() {
     override fun run() {
-        val response = helpOverviewService.generateOverviewMessage()
-        run(SendMessageCmd(chat, response))
+        requestHelpDataEventPublisher.publishEvent(RequestHelpDataEvent(chat))
     }
 }

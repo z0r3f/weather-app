@@ -7,6 +7,7 @@ import io.micronaut.http.annotation.Header
 import io.micronaut.http.client.annotation.Client
 import me.fernando.weather.api.dto.WeatherDataDto
 
+// TODO Add cache option
 @Client("\${weather.data.url}")
 @Header(name = USER_AGENT, value = "Micronaut HTTP Client")
 @Header(name = ACCEPT, value = "application/vnd.github.v3+json, application/json")
