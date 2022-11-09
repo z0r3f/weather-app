@@ -10,14 +10,14 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
- - task: SonarCloudPrepare@1
-   displayName: 'Prepare analysis configuration'
-   inputs:
-     SonarCloud: 'SonarSC'
-     organization: 'ferozar'
-     scannerMode: 'MSBuild'
-     projectKey: 'ferozar_Weather-Bot'
-     projectName: 'Weather Bot'
+# - task: SonarCloudPrepare@1
+#   displayName: 'Prepare analysis configuration'
+#   inputs:
+#     SonarCloud: 'SonarSC'
+#     organization: 'ferozar'
+#     scannerMode: 'MSBuild'
+#     projectKey: 'ferozar_Weather-Bot'
+#     projectName: 'Weather Bot'
      
  - task: Maven@3
    inputs:
