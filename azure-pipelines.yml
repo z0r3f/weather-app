@@ -15,23 +15,29 @@ steps:
    inputs:
      SonarCloud: 'SonarSC'
      organization: 'ferozar'
-     scannerMode: 'CLI'
-     projectKey: 'ferozar_Weather-Bot'
-     projectName: 'Weather Bot'
-     
-# - task: Maven@3
-#   inputs:
-#     mavenPomFile: 'pom.xml'
-#     mavenOptions: '-Xmx3072m'
-#     javaHomeOption: 'JDKVersion'
-#     jdkVersionOption: '1.8'
-#     jdkArchitectureOption: 'x64'
-#     publishJUnitResults: true
-#     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-#     goals: 'package'
+     scannerMode: 'Other'
+     extraProperties: |
+       # Additional properties that will be passed to the scanner,
+       # Put one key=value per line, example:
+       # sonar.exclusions=**/*.bin
+       sonar.projectKey=ferozar_Weather-Bot
+       sonar.projectName=Weather Bot
 
- - task: SonarCloudAnalyze@1
-   displayName: 'Run SonarCloud analysis'
+ - task: Maven@3
+   inputs:
+     mavenPomFile: 'pom.xml'
+     publishJUnitResults: true
+     testResultsFiles: '**/surefire-reports/TEST-*.xml'
+     javaHomeOption: 'JDKVersion'
+     jdkVersionOption: '1.17'
+     mavenVersionOption: 'Default'
+     mavenOptions: '-Xmx3072m'
+     mavenAuthenticateFeed: false
+     effectivePomSkip: false
+     sonarQubeRunAnalysis: true
+     sqMavenPluginVersionChoice: 'pom'
 
  - task: SonarCloudPublish@1
    displayName: 'Publish results on build summary'
+   inputs:
+     pollingTimeoutSec: '1000'
