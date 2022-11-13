@@ -80,6 +80,7 @@ class BotController(
                 ADD_LOCATION -> bus(AddLocationCmd(chat, botCommandRequest.arguments))
                 DEL_LOCATION -> bus(DelLocationCmd(chat, botCommandRequest.arguments))
                 ADD_ALERT -> bus(AddAlertCmd(chat, botCommandRequest.arguments))
+                // TODO Add to be able to show all favorite locations and send the forecast on them
                 else -> bus(NotSupportedCmd(chat))
             }
 

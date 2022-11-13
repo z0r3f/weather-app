@@ -14,7 +14,7 @@ class HourlyJob(
     private val bus: UseCaseBus,
 ) {
 
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "0 0 0/1 * * *")
     fun execute() {
         LOG.debug("Hourly job started")
         val chats = chatAdapterRepository.getAlerts(getHourSystemNow())

@@ -29,7 +29,12 @@ class TelegramEventListeners(
         sendMessage(MessageEvent(event.chat, responseForNewLocationEvent))
     }
 
+    @EventListener
+    fun onNewMessage(event: MessageEvent) {
+        sendMessage(event)
+    }
+
     private fun sendMessage(messageEvent: MessageEvent) {
-        bus(SendMessageCmd(messageEvent.chat, messageEvent.message))
+        bus(SendMessageCmd(messageEvent.chat, messageEvent.message, messageEvent.botCallbacks))
     }
 }
