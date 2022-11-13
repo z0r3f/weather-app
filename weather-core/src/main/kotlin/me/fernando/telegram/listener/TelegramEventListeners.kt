@@ -1,17 +1,18 @@
-package me.fernando.telegram.event
+package me.fernando.telegram.listener
 
 import io.archimedesfw.usecase.UseCaseBus
 import io.micronaut.runtime.event.annotation.EventListener
 import jakarta.inject.Singleton
 import me.fernando.chat.event.NewAlertEvent
 import me.fernando.chat.event.NewLocationEvent
+import me.fernando.telegram.event.MessageEvent
 import me.fernando.telegram.usecase.SendMessageCmd
 import me.fernando.weather.service.AddAlertOverviewService
 import me.fernando.weather.service.AddFavoriteOverviewService
 
-// TODO Change the name, repeat with `me.fernando.chat.event.ChatEventListeners`
+// TODO Change the name, repeat with `me.fernando.chat.listener.ChatEventListeners`
 @Singleton
-class ChatEventListeners(
+class TelegramEventListeners(
     private val bus: UseCaseBus,
     private val addAlertOverviewService: AddAlertOverviewService,
     private val addFavoriteOverviewService: AddFavoriteOverviewService,

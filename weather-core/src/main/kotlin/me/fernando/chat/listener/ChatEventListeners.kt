@@ -1,8 +1,10 @@
-package me.fernando.chat.event
+package me.fernando.chat.listener
 
 import io.archimedesfw.usecase.UseCaseBus
 import io.micronaut.runtime.event.annotation.EventListener
 import jakarta.inject.Singleton
+import me.fernando.chat.event.NewFavoriteEvent
+import me.fernando.chat.event.RequestHelpDataEvent
 import me.fernando.chat.usecase.AddFavoriteLocationCmd
 import me.fernando.telegram.usecase.SendMessageCmd
 import me.fernando.util.generateOverviewMessage
