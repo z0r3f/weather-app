@@ -8,6 +8,7 @@ import me.fernando.telegram.port.TelegramRepository
 import me.fernando.util.sanitizeForTelegram
 import org.slf4j.LoggerFactory
 
+@Deprecated("Use me.fernando.telegram.cqrs.SendMessage instead")
 class SendMessageCmd(
     private val chat: Chat,
     private val message: String,

@@ -2,11 +2,13 @@ package me.fernando.telegram.cqrs.handler
 
 import io.archimedesfw.context.ServiceLocator
 import io.archimedesfw.cqrs.ActionHandler
+import jakarta.inject.Singleton
 import me.fernando.telegram.cqrs.SendMessage
 import me.fernando.telegram.port.TelegramRepository
 import me.fernando.util.sanitizeForTelegram
 import org.slf4j.LoggerFactory
 
+@Singleton
 class SendMessageHandler(
     private val telegramRepository: TelegramRepository = ServiceLocator.locate(),
 ) : ActionHandler<SendMessage, Unit> {

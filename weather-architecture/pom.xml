@@ -16,6 +16,11 @@
             <artifactId>kotlin-logging-jvm</artifactId>
             <version>2.1.23</version>
         </dependency>
+        <dependency>
+            <groupId>io.archimedesfw.cqrs</groupId>
+            <artifactId>archimedes-cqrs-micronaut</artifactId>
+            <version>${archimedes.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

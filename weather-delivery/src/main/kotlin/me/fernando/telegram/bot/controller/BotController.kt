@@ -10,6 +10,7 @@ import me.fernando.chat.domain.Chat
 import me.fernando.chat.usecase.AddAlertCmd
 import me.fernando.telegram.bot.dto.MessageDto
 import me.fernando.telegram.bot.dto.UpdateDto
+import me.fernando.telegram.cqrs.HelpQueryMessage
 import me.fernando.telegram.domain.callback.BotCallback
 import me.fernando.telegram.domain.callback.BotCallbackType
 import me.fernando.telegram.domain.message.BotMessageRequest
@@ -20,8 +21,8 @@ import org.slf4j.LoggerFactory
 @Controller("/bot")
 @PermitAll
 class BotController(
-    private val bus: UseCaseBus,
-    private val actionBus: ActionBus,
+    private val deprecatedBus: UseCaseBus,
+    private val bus: ActionBus,
 ) {
 
     @Produces(MediaType.TEXT_PLAIN)
@@ -47,9 +48,9 @@ class BotController(
             val botCallback = choiceBotCallback(update)
 
             when (botCallback.type) {
-                BotCallbackType.ADD -> bus(AddLocationCmd(chat, botCallback.data))
-                BotCallbackType.DELETE -> bus(DelLocationCmd(chat, botCallback.data))
-                else -> bus(CallbackUnknownCmd(chat))
+                BotCallbackType.ADD -> deprecatedBus(AddLocationCmd(chat, botCallback.data))
+                BotCallbackType.DELETE -> deprecatedBus(DelLocationCmd(chat, botCallback.data))
+                else -> deprecatedBus(CallbackUnknownCmd(chat))
             }
         }
     }
@@ -77,19 +78,19 @@ class BotController(
             val botCommandRequest = choiceBotCommand(text)
 
             when (botCommandRequest.command) {
-                FORECAST -> bus(ForecastCmd(chat, botCommandRequest.arguments))
-                HELP -> bus(HelpCmd(chat))
-                ADD_LOCATION -> bus(AddLocationCmd(chat, botCommandRequest.arguments))
-                DEL_LOCATION -> bus(DelLocationCmd(chat, botCommandRequest.arguments))
-                ADD_ALERT -> bus(AddAlertCmd(chat, botCommandRequest.arguments))
+                FORECAST -> deprecatedBus(ForecastCmd(chat, botCommandRequest.arguments))
+                HELP -> bus.dispatch(HelpQueryMessage(chat))
+                ADD_LOCATION -> deprecatedBus(AddLocationCmd(chat, botCommandRequest.arguments))
+                DEL_LOCATION -> deprecatedBus(DelLocationCmd(chat, botCommandRequest.arguments))
+                ADD_ALERT -> deprecatedBus(AddAlertCmd(chat, botCommandRequest.arguments))
                 // TODO Add to be able to show all favorite locations and send the forecast on them
-                else -> bus(NotSupportedCmd(chat))
+                else -> deprecatedBus(NotSupportedCmd(chat))
             }
 
         }.onFailure { e ->
             val response = e.message ?: "Error processing your request"
 
-            bus(SendMessageCmd(chat, response))
+            deprecatedBus(SendMessageCmd(chat, response))
         }
     }
 

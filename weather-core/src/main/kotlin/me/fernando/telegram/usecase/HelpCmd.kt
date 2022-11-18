@@ -6,6 +6,7 @@ import io.micronaut.context.event.ApplicationEventPublisher
 import me.fernando.chat.domain.Chat
 import me.fernando.chat.event.RequestHelpDataEvent
 
+@Deprecated("Use me.fernando.telegram.cqrs.HelpQueryMessage instead")
 class HelpCmd(
     private val chat: Chat,
     private val requestHelpDataEventPublisher: ApplicationEventPublisher<RequestHelpDataEvent> = locate(),

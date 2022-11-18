@@ -2,16 +2,16 @@ package me.fernando.telegram.cqrs.handler
 
 import io.archimedesfw.context.ServiceLocator
 import io.archimedesfw.cqrs.ActionHandler
+import io.micronaut.context.event.ApplicationEventPublisher
+import jakarta.inject.Singleton
+import me.fernando.chat.event.RequestHelpDataEvent
 import me.fernando.telegram.cqrs.HelpQueryMessage
-import me.fernando.telegram.usecase.SendMessageCmd
-import me.fernando.util.generateOverviewMessage
-import me.fernando.weather.service.HelpOverviewService
 
+@Singleton
 class HelpHandler(
-    private val helpOverviewService: HelpOverviewService = ServiceLocator.locate(),
+    private val requestHelpDataEventPublisher: ApplicationEventPublisher<RequestHelpDataEvent> = ServiceLocator.locate(),
 ): ActionHandler<HelpQueryMessage, Unit> {
     override fun handle(action: HelpQueryMessage) {
-        val response = helpOverviewService.generateOverviewMessage()
-        run(SendMessageCmd(chat, response))
+        requestHelpDataEventPublisher.publishEvent(RequestHelpDataEvent(action.chat))
     }
 }
