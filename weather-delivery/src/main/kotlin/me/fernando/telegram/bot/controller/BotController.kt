@@ -1,28 +1,30 @@
 package me.fernando.telegram.bot.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import io.archimedesfw.context.ServiceLocator.locate
 import io.archimedesfw.cqrs.ActionBus
-import io.archimedesfw.usecase.UseCaseBus
+import io.micronaut.context.event.ApplicationEventPublisher
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.*
 import jakarta.annotation.security.PermitAll
+import me.fernando.chat.cqrs.AddAlertMessage
 import me.fernando.chat.domain.Chat
-import me.fernando.chat.usecase.AddAlertCmd
 import me.fernando.telegram.bot.dto.MessageDto
 import me.fernando.telegram.bot.dto.UpdateDto
-import me.fernando.telegram.cqrs.HelpQueryMessage
+import me.fernando.telegram.cqrs.*
 import me.fernando.telegram.domain.callback.BotCallback
 import me.fernando.telegram.domain.callback.BotCallbackType
 import me.fernando.telegram.domain.message.BotMessageRequest
 import me.fernando.telegram.domain.message.BotMessageType.*
-import me.fernando.telegram.usecase.*
+import me.fernando.telegram.event.MessageEvent
+import me.fernando.weather.cqrs.ForecastMessage
 import org.slf4j.LoggerFactory
 
 @Controller("/bot")
 @PermitAll
 class BotController(
-    private val deprecatedBus: UseCaseBus,
     private val bus: ActionBus,
+    private val newMessageEventPublisher: ApplicationEventPublisher<MessageEvent> = locate(),
 ) {
 
     @Produces(MediaType.TEXT_PLAIN)
@@ -48,9 +50,9 @@ class BotController(
             val botCallback = choiceBotCallback(update)
 
             when (botCallback.type) {
-                BotCallbackType.ADD -> deprecatedBus(AddLocationCmd(chat, botCallback.data))
-                BotCallbackType.DELETE -> deprecatedBus(DelLocationCmd(chat, botCallback.data))
-                else -> deprecatedBus(CallbackUnknownCmd(chat))
+                BotCallbackType.ADD -> bus.dispatch(AddLocationMessage(chat, botCallback.data))
+                BotCallbackType.DELETE -> bus.dispatch(DeleteMessage(chat, botCallback.data))
+                else -> bus.dispatch(CallbackUnknownMessage(chat))
             }
         }
     }
@@ -78,19 +80,19 @@ class BotController(
             val botCommandRequest = choiceBotCommand(text)
 
             when (botCommandRequest.command) {
-                FORECAST -> deprecatedBus(ForecastCmd(chat, botCommandRequest.arguments))
+                FORECAST -> bus.dispatch(ForecastMessage(chat, botCommandRequest.arguments))
                 HELP -> bus.dispatch(HelpQueryMessage(chat))
-                ADD_LOCATION -> deprecatedBus(AddLocationCmd(chat, botCommandRequest.arguments))
-                DEL_LOCATION -> deprecatedBus(DelLocationCmd(chat, botCommandRequest.arguments))
-                ADD_ALERT -> deprecatedBus(AddAlertCmd(chat, botCommandRequest.arguments))
+                ADD_LOCATION -> bus.dispatch(AddLocationMessage(chat, botCommandRequest.arguments))
+                DEL_LOCATION -> bus.dispatch(DeleteMessage(chat, botCommandRequest.arguments))
+                ADD_ALERT -> bus.dispatch(AddAlertMessage(chat, botCommandRequest.arguments))
                 // TODO Add to be able to show all favorite locations and send the forecast on them
-                else -> deprecatedBus(NotSupportedCmd(chat))
+                else -> bus.dispatch(NotSupportedQueryMessage(chat))
             }
 
         }.onFailure { e ->
             val response = e.message ?: "Error processing your request"
 
-            deprecatedBus(SendMessageCmd(chat, response))
+            newMessageEventPublisher.publishEvent(MessageEvent(chat, response))
         }
     }
 

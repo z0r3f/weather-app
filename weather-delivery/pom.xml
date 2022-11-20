@@ -67,6 +67,11 @@
             <version>1.5.1</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>io.micronaut.cache</groupId>
+            <artifactId>micronaut-cache-caffeine</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
