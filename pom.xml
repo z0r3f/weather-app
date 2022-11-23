@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <postgresql.version>42.4.2</postgresql.version>
+        <postgresql.version>42.4.3</postgresql.version>
         <docker-maven-plugin.version>0.39.1</docker-maven-plugin.version>
         <archimedes.version>0.1.1</archimedes.version>
         <mockito.version>4.4.0</mockito.version>
