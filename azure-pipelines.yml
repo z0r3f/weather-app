@@ -1,0 +1,43 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- '*'
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+ - task: SonarCloudPrepare@1
+   displayName: 'Prepare analysis configuration'
+   inputs:
+     SonarCloud: 'SonarSC'
+     organization: 'ferozar'
+     scannerMode: 'Other'
+     extraProperties: |
+       # Additional properties that will be passed to the scanner,
+       # Put one key=value per line, example:
+       # sonar.exclusions=**/*.bin
+       sonar.projectKey=ferozar_Weather-Bot
+       sonar.projectName=Weather Bot
+
+ - task: Maven@3
+   inputs:
+     mavenPomFile: 'pom.xml'
+     publishJUnitResults: true
+     testResultsFiles: '**/surefire-reports/TEST-*.xml'
+     javaHomeOption: 'JDKVersion'
+     jdkVersionOption: '1.17'
+     mavenVersionOption: 'Default'
+     mavenOptions: '-Xmx3072m'
+     mavenAuthenticateFeed: false
+     effectivePomSkip: false
+     sonarQubeRunAnalysis: true
+     sqMavenPluginVersionChoice: 'pom'
+
+ - task: SonarCloudPublish@1
+   displayName: 'Publish results on build summary'
+   inputs:
+     pollingTimeoutSec: '1000'
