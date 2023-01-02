@@ -1,25 +1,25 @@
 package me.fernando.telegram.bot.job
 
-import io.archimedesfw.usecase.UseCaseBus
+import io.archimedesfw.cqrs.ActionBus
 import io.micronaut.scheduling.annotation.Scheduled
 import jakarta.inject.Singleton
 import me.fernando.chat.db.adapter.ChatAdapterRepository
-import me.fernando.telegram.usecase.ForecastCmd
+import me.fernando.weather.cqrs.ForecastMessage
 import org.slf4j.LoggerFactory
 import java.time.LocalTime
 
 @Singleton
 class HourlyJob(
     private val chatAdapterRepository: ChatAdapterRepository,
-    private val bus: UseCaseBus,
+    private val bus: ActionBus,
 ) {
 
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "0 0 0/1 * * *")
     fun execute() {
         LOG.debug("Hourly job started")
         val chats = chatAdapterRepository.getAlerts(getHourSystemNow())
         LOG.debug("Found {} chats to alert", chats.size)
-        chats.forEach { bus(ForecastCmd(it)) }
+        chats.forEach{ bus.dispatch(ForecastMessage(it)) }
         LOG.debug("Hourly job finished")
     }
 

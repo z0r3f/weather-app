@@ -1,10 +1,10 @@
 package me.fernando.telegram.bot.config
 
-import io.archimedesfw.usecase.UseCaseBus
+import io.archimedesfw.cqrs.ActionBus
 import io.micronaut.runtime.server.event.ServerShutdownEvent
 import io.micronaut.runtime.server.event.ServerStartupEvent
 import me.fernando.telegram.bot.client.TelegramApiClient
-import me.fernando.telegram.usecase.ConfigureAllAvailableCommandsCmd
+import me.fernando.telegram.cqrs.ConfigureAllAvailableCommandsMessage
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -14,7 +14,7 @@ import org.mockito.kotlin.verifyNoMoreInteractions
 
 internal class ConfigBotTest {
     private val telegramApiClient = mock<TelegramApiClient>()
-    private val bus = mock<UseCaseBus>()
+    private val bus = mock<ActionBus>()
 
     private lateinit var sut: ConfigBot
 
@@ -34,7 +34,7 @@ internal class ConfigBotTest {
         sut.onStartup(STARTUP_EVENT)
 
         verify(telegramApiClient).setWebhook(MY_WEBHOOK_URL)
-        verify(bus).invoke(ConfigureAllAvailableCommandsCmd())
+        verify(bus).dispatch(ConfigureAllAvailableCommandsMessage())
     }
 
     @Test
