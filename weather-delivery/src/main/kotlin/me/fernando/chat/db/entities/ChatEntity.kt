@@ -5,7 +5,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "chat")
-class ChatEntity(
+data class ChatEntity(
     @Id
     @Column(name = "id", nullable = false, updatable = false)
     var id: Long = 0L,

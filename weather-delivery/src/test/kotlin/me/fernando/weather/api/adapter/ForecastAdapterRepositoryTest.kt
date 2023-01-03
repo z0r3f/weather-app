@@ -7,8 +7,8 @@ import me.fernando.weather.api.mapper.WeatherDataMapper
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 
-@MicronautTest(propertySources = ["application-test.yml"])
-internal class ForecastAdapterRepositoryIT {
+@MicronautTest
+internal class ForecastAdapterRepositoryTest {
 
     @Inject
     lateinit var forecastRestClient: ForecastRestClient

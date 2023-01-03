@@ -4,10 +4,9 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "alert")
-open class AlertEntity (
+data class AlertEntity (
     @Id
-    @SequenceGenerator(name = "alert_seq", sequenceName = "alert_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "alert_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     var id: Long? = null,
 

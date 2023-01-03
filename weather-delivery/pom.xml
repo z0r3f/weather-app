@@ -12,11 +12,7 @@
     <artifactId>weather-delivery</artifactId>
 
     <properties>
-        <it.postgresql.image>postgres:10-alpine</it.postgresql.image>
-        <it.postgresql.host>localhost</it.postgresql.host>
-        <it.postgresql.port>5432</it.postgresql.port>
-        <it.postgresql.db>todo</it.postgresql.db>
-        <it.postgresql.password>ddbbpassword</it.postgresql.password>
+
     </properties>
 
     <dependencies>
@@ -76,48 +72,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <!-- Run a dockerized PostgreSQL for integration tests -->
-                <!-- If you want to run PostgreSQL manually from the command line, you can use the command: -->
-                <!--     mvn io.fabric8:docker-maven-plugin:run -->
-                <groupId>io.fabric8</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <configuration>
-                    <images>
-                        <image>
-                            <name>${it.postgresql.image}</name>
-                            <run>
-                                <ports>
-                                    <port>${it.postgresql.port}:5432</port>
-                                </ports>
-                                <env>
-                                    <POSTGRES_PASSWORD>${it.postgresql.password}</POSTGRES_PASSWORD>
-                                    <POSTGRES_DB>${it.postgresql.db}</POSTGRES_DB>
-                                </env>
-                                <wait>
-                                    <log>database system is ready to accept connections</log>
-                                </wait>
-                            </run>
-                        </image>
-                    </images>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>start</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>stop</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
