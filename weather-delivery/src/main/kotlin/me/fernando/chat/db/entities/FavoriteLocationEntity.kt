@@ -4,10 +4,9 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "location_favorite")
-open class FavoriteLocationEntity(
+data class FavoriteLocationEntity(
     @Id
-    @SequenceGenerator(name = "location_favorite_seq", sequenceName = "location_favorite_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location_favorite_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     var id: Long? = null,
 

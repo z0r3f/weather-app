@@ -5,7 +5,7 @@ import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.repository.CrudRepository
 import me.fernando.chat.db.entities.AlertEntity
 
-@JdbcRepository(dialect = Dialect.POSTGRES)
-interface AlertPostgresRepository : CrudRepository<AlertEntity, Long> {
+@JdbcRepository(dialect = Dialect.H2)
+interface AlertH2Repository : CrudRepository<AlertEntity, Long> {
     fun findByHourOfDay(hourOfDay: Int): List<AlertEntity>
 }
