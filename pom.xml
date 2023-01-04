@@ -16,6 +16,7 @@
     <packaging>pom</packaging>
 
     <properties>
+        <kotlin.version>1.7.22</kotlin.version>
         <flyway.version>5.4.1</flyway.version>
         <h2.version>2.1.210</h2.version>
         <archimedes.version>0.1.2</archimedes.version>
@@ -31,6 +32,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
             <dependency>
                 <groupId>io.micronaut.flyway</groupId>
                 <artifactId>micronaut-flyway</artifactId>
