@@ -1,2 +1,1 @@
-application-pro.yml filter=git-crypt diff=git-crypt
-application-test.yml filter=git-crypt diff=git-crypt
+application-*.yml filter=git-crypt diff=git-crypt
