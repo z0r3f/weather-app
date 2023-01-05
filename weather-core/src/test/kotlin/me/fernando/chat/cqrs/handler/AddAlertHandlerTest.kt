@@ -56,7 +56,7 @@ internal class AddAlertHandlerTest {
         sut.handle(AddAlertMessage(CHAT, ALERT_MOMENT))
 
         verify(chatRepository).addAlert(CHAT, ALERT_MOMENT_AS_INT)
-        verify(eventPublisher).publishEvent(NewAlertEvent(CHAT, ALERT_MOMENT_AS_INT))
+        verify(eventPublisher).publishEventAsync(NewAlertEvent(CHAT, ALERT_MOMENT_AS_INT))
     }
 
     private companion object {

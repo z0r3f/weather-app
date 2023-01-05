@@ -38,7 +38,7 @@ internal class HelpHandlerTest {
         sut.handle(HelpQueryMessage(CHAT))
 
         verify(helpOverviewService).generateOverviewMessage()
-        verify(eventPublisher).publishEvent(MessageEvent(CHAT, "Help message"))
+        verify(eventPublisher).publishEventAsync(MessageEvent(CHAT, "Help message"))
     }
 
     private companion object {

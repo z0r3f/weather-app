@@ -20,7 +20,7 @@ class DeleteHandler(
         }?.let {
             chatRepository.removeFavoriteLocation(action.chat, it)
             val response = delFavoriteOverviewService.generateOverviewMessage(it.toLocation())
-            newMessageEventPublisher.publishEvent(MessageEvent(action.chat, response))
-        } ?: newMessageEventPublisher.publishEvent(MessageEvent(action.chat, "Not found favorite location"))
+            newMessageEventPublisher.publishEventAsync(MessageEvent(action.chat, response))
+        } ?: newMessageEventPublisher.publishEventAsync(MessageEvent(action.chat, "Not found favorite location"))
     }
 }

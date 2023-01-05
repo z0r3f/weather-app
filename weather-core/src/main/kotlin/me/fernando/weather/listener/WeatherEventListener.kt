@@ -36,7 +36,7 @@ class WeatherEventListener(
         val weatherData = bus.dispatch(GetForecastByCityNameMessage(cityName))
         val botCallback = buildCallback(chat, cityName)
 
-        newMessageEventPublisher.publishEvent(
+        newMessageEventPublisher.publishEventAsync(
             MessageEvent(
                 chat,
                 forecastOverviewService.generateOverviewMessage(weatherData),
@@ -72,7 +72,7 @@ class WeatherEventListener(
                 bus.dispatch(GetForecastByFavoriteLocationMessage(favoriteLocation)),
                 favoriteLocation.name!!
             )
-            newMessageEventPublisher.publishEvent(
+            newMessageEventPublisher.publishEventAsync(
                 MessageEvent(
                     chat,
                     forecastOverviewService.generateOverviewMessage(weatherData),
