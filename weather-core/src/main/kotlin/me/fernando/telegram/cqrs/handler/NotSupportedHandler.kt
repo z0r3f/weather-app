@@ -12,6 +12,6 @@ class NotSupportedHandler(
     private val newMessageEventPublisher: ApplicationEventPublisher<MessageEvent> = ServiceLocator.locate(),
 ): ActionHandler<NotSupportedQueryMessage, Unit> {
     override fun handle(action: NotSupportedQueryMessage) {
-        newMessageEventPublisher.publishEvent(MessageEvent(action.chat, "Command not supported"))
+        newMessageEventPublisher.publishEventAsync(MessageEvent(action.chat, "Command not supported"))
     }
 }

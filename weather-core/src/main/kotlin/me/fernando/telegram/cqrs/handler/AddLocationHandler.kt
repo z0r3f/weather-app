@@ -17,7 +17,7 @@ class AddLocationHandler(
     override fun handle(action: AddLocationMessage) {
         val location = directGeocodingRepository.getCoordinatesByLocationName(action.cityName).first().toLocation()
 
-        newFavoriteEventPublisher.publishEvent(NewFavoriteEvent(action.chat, location))
-        newLocationEventPublisher.publishEvent(NewLocationEvent(action.chat, location))
+        newFavoriteEventPublisher.publishEventAsync(NewFavoriteEvent(action.chat, location))
+        newLocationEventPublisher.publishEventAsync(NewLocationEvent(action.chat, location))
     }
 }

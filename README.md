@@ -28,3 +28,7 @@ mvn package
 docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:latest .
 docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.0.1 .
 ```
+
+```bash
+docker run -d --name weather-docker -p 8443:8443 -v /Users/fernando/IdeaProjects/weather-app/weather-delivery/data:/data z0r3f/weather-docker:latest
+```

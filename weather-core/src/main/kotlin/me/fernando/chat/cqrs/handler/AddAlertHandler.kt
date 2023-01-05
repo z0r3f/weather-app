@@ -17,7 +17,7 @@ class AddAlertHandler(
 
         chatRepository.addAlert(action.chat, hourOfDay)
 
-        eventPublisher.publishEvent(NewAlertEvent(action.chat, hourOfDay))
+        eventPublisher.publishEventAsync(NewAlertEvent(action.chat, hourOfDay))
     }
 
     private fun validateRequest(hourOfDayRaw: String): Int {

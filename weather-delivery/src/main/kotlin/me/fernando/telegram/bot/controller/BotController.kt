@@ -92,7 +92,7 @@ class BotController(
         }.onFailure { e ->
             val response = e.message ?: "Error processing your request"
 
-            newMessageEventPublisher.publishEvent(MessageEvent(chat, response))
+            newMessageEventPublisher.publishEventAsync(MessageEvent(chat, response))
         }
     }
 

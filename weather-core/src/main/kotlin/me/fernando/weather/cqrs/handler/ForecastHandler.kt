@@ -11,6 +11,6 @@ class ForecastHandler(
     private val requestForecastEvent: ApplicationEventPublisher<RequestForecastEvent>,
 ) : ActionHandler<ForecastMessage, Unit>{
     override fun handle(action: ForecastMessage) {
-        requestForecastEvent.publishEvent(RequestForecastEvent(action.chat, action.cityName))
+        requestForecastEvent.publishEventAsync(RequestForecastEvent(action.chat, action.cityName))
     }
 }

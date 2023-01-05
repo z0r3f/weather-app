@@ -15,6 +15,6 @@ class HelpHandler(
 ): ActionHandler<HelpQueryMessage, Unit> {
     override fun handle(action: HelpQueryMessage) {
         val helpMessage = helpOverviewService.generateOverviewMessage()
-        eventPublisher.publishEvent(MessageEvent(action.chat, helpMessage))
+        eventPublisher.publishEventAsync(MessageEvent(action.chat, helpMessage))
     }
 }

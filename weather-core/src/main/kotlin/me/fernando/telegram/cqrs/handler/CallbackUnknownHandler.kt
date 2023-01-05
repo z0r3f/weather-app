@@ -11,6 +11,6 @@ class CallbackUnknownHandler(
     private val newMessageEventPublisher: ApplicationEventPublisher<MessageEvent>,
 ) : ActionHandler<CallbackUnknownMessage, Unit>{
     override fun handle(action: CallbackUnknownMessage) {
-        newMessageEventPublisher.publishEvent(MessageEvent(action.chat, "Callback unknown"))
+        newMessageEventPublisher.publishEventAsync(MessageEvent(action.chat, "Callback unknown"))
     }
 }
