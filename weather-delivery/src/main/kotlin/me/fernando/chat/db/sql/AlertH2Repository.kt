@@ -8,4 +8,5 @@ import me.fernando.chat.db.entities.AlertEntity
 @JdbcRepository(dialect = Dialect.H2)
 interface AlertH2Repository : CrudRepository<AlertEntity, Long> {
     fun findByHourOfDay(hourOfDay: Int): List<AlertEntity>
+    fun deleteByChatIdAndHourOfDay(chatId: Long, hourOfDay: Int)
 }

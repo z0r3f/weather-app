@@ -17,9 +17,10 @@ class HourlyJob(
     @Scheduled(cron = "0 0 0/1 * * *")
     fun execute() {
         LOG.debug("Hourly job started")
-        val chats = chatAdapterRepository.getAlerts(getHourSystemNow())
+        val hourOfDay = getHourSystemNow()
+        val chats = chatAdapterRepository.getAlerts(hourOfDay)
         LOG.debug("Found {} chats to alert", chats.size)
-        chats.forEach{ bus.dispatch(ForecastMessage(it)) }
+        chats.forEach { bus.dispatch(ForecastMessage(chat = it, hourOfDay = hourOfDay)) }
         LOG.debug("Hourly job finished")
     }
 
