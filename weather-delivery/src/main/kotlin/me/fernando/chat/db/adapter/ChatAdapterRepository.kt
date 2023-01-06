@@ -72,4 +72,8 @@ open class ChatAdapterRepository(
         return alertH2Repository.findByHourOfDay(hourOfDay)
             .map { chatMapper.toModel(it.chat!!) }
     }
+
+    override fun deleteAlert(chat: Chat, hourOfDay: Int) {
+        alertH2Repository.deleteByChatIdAndHourOfDay(chatId = chat.id, hourOfDay = hourOfDay)
+    }
 }

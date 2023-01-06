@@ -9,6 +9,7 @@ import me.fernando.chat.domain.Chat
 import me.fernando.telegram.domain.callback.BotCallback
 import me.fernando.telegram.domain.callback.BotCallbackType
 import me.fernando.telegram.event.MessageEvent
+import me.fernando.util.isNull
 import me.fernando.weather.cqrs.GetFavoriteLocationsMessage
 import me.fernando.weather.cqrs.GetForecastByCityNameMessage
 import me.fernando.weather.cqrs.GetForecastByFavoriteLocationMessage
@@ -26,7 +27,7 @@ class WeatherEventListener(
     @EventListener
     fun onRequestForecastEvent(event: RequestForecastEvent) {
         if (event.cityName.isNullOrBlank()) {
-            newForecastRequestOnChat(event.chat)
+            newForecastRequestOnChat(event.chat, event.hourOfDay)
         } else {
             newForecastRequestWithCityName(event.chat, event.cityName)
         }
@@ -65,7 +66,7 @@ class WeatherEventListener(
     }
 
     // TODO Simplify this ↓ ¿?
-    private fun newForecastRequestOnChat(chat: Chat) {
+    private fun newForecastRequestOnChat(chat: Chat, hourOfDay: Int?) {
         val favoriteLocations = bus.dispatch(GetFavoriteLocationsMessage(chat))
         favoriteLocations.forEach { favoriteLocation ->
             val weatherData = restoreTheOriginalCityName(
@@ -76,14 +77,25 @@ class WeatherEventListener(
                 MessageEvent(
                     chat,
                     forecastOverviewService.generateOverviewMessage(weatherData),
-                    listOf(
-                        BotCallback(
-                            type = BotCallbackType.DELETE,
-                            data = "${BotCallbackType.DELETE.name}:${weatherData.location!!.name}"
-                        )
-                    )
+                    buildCallBackForRequestOnChat(weatherData.location!!.name!!, hourOfDay)
                 )
             )
+        }
+    }
+
+    private fun buildCallBackForRequestOnChat(name: String, hourOfDay: Int?): List<BotCallback> {
+        val deleteFavoriteLocation = BotCallback(
+            type = BotCallbackType.DELETE,
+            data = "${BotCallbackType.DELETE.name}:$name"
+        )
+        return if (hourOfDay.isNull()) {
+            listOf(deleteFavoriteLocation)
+        } else {
+            val deleteAlert = BotCallback(
+                type = BotCallbackType.DELETE_ALERT,
+                data = "${BotCallbackType.DELETE_ALERT.name}:$hourOfDay"
+            )
+            listOf(deleteFavoriteLocation, deleteAlert)
         }
     }
 

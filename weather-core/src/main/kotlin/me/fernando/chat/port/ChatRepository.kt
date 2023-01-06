@@ -15,4 +15,6 @@ interface ChatRepository {
     fun addAlert(chat: Chat, hourOfDay: Int)
 
     fun getAlerts(hourOfDay: Int): List<Chat>
+
+    fun deleteAlert(chat: Chat, hourOfDay: Int)
 }

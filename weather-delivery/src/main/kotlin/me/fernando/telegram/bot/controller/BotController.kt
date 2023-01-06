@@ -8,6 +8,7 @@ import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.*
 import jakarta.annotation.security.PermitAll
 import me.fernando.chat.cqrs.AddAlertMessage
+import me.fernando.chat.cqrs.DeleteAlertMessage
 import me.fernando.chat.domain.Chat
 import me.fernando.telegram.bot.dto.MessageDto
 import me.fernando.telegram.bot.dto.UpdateDto
@@ -52,6 +53,7 @@ class BotController(
             when (botCallback.type) {
                 BotCallbackType.ADD -> bus.dispatch(AddLocationMessage(chat, botCallback.data))
                 BotCallbackType.DELETE -> bus.dispatch(DeleteMessage(chat, botCallback.data))
+                BotCallbackType.DELETE_ALERT -> bus.dispatch(DeleteAlertMessage(chat, botCallback.data))
                 else -> bus.dispatch(CallbackUnknownMessage(chat))
             }
         }
