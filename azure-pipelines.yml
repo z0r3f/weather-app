@@ -24,10 +24,10 @@ steps:
        sonar.projectName=Weather Bot
 
  - task: DownloadSecureFile@1
-   name: git-crypt-secret-key
+   name: GitCryptSecretKey
    displayName: "Download secret key"
    inputs:
-     secureFile: git-crypt-secret-key
+     secureFile: GitCryptSecretKey
  - task: Bash@3
    displayName: "GitCrypt Unlock"
    inputs:
@@ -35,7 +35,7 @@ steps:
      script: |
        sudo apt-get update
        sudo apt-get install git-crypt
-       git-crypt unlock $(git-crypt-secret-key.secureFilePath)
+       git-crypt unlock $(GitCryptSecretKey.secureFilePath)
 
  - task: Maven@3
    inputs:
