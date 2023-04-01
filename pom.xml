@@ -16,8 +16,8 @@
     <packaging>pom</packaging>
 
     <properties>
-        <kotlin.version>1.7.22</kotlin.version>
-        <flyway.version>5.4.1</flyway.version>
+        <kotlin.version>1.8.10</kotlin.version>
+        <flyway.version>5.3.0</flyway.version>
         <h2.version>2.1.210</h2.version>
         <archimedes.version>0.1.2</archimedes.version>
         <assertj.version>3.24.2</assertj.version>
