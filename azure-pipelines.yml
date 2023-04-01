@@ -23,6 +23,20 @@ steps:
        sonar.projectKey=ferozar_Weather-Bot
        sonar.projectName=Weather Bot
 
+ - task: DownloadSecureFile@1
+   name: git-crypt-secret-key
+   displayName: "Download secret key"
+   inputs:
+     secureFile: git-crypt-secret-key
+ - task: Bash@3
+   displayName: "GitCrypt Unlock"
+   inputs:
+     targetType: "inline"
+     script: |
+       sudo apt-get update
+       sudo apt-get install git-crypt
+       git-crypt unlock $(git-crypt-secret-key.secureFilePath)
+
  - task: Maven@3
    inputs:
      mavenPomFile: 'pom.xml'
@@ -41,3 +55,13 @@ steps:
    displayName: 'Publish results on build summary'
    inputs:
      pollingTimeoutSec: '1000'
+
+ - task: Docker@2
+   inputs:
+     containerRegistry: 'Docker hub weather'
+     repository: 'z0r3f/weather-docker'
+     command: 'buildAndPush'
+     Dockerfile: '**/Dockerfile'
+     tags: |
+       $(Build.BuildId)
+       latest
