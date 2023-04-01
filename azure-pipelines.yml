@@ -37,6 +37,16 @@ steps:
        sudo apt-get install git-crypt
        git-crypt unlock $(GitCryptSecretKey.secureFilePath)
 
+ - task: DownloadSecureFile@1
+   inputs:
+    secureFile: 'f5t5p12'
+   displayName: 'Download cer'
+ - task: CopyFiles@2
+   inputs:
+    Contents: $(GitCryptSecretKey.f5t5p12)
+    TargetFolder: '$(System.DefaultWorkingDirectory)/weather-delivery/src/main/resources/cer/'
+   displayName: 'Copy cer'
+
  - task: Maven@3
    inputs:
      mavenPomFile: 'pom.xml'
