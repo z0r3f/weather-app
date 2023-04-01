@@ -1,28 +1,32 @@
 package me.fernando.weather.service
 
 import jakarta.inject.Singleton
+import me.fernando.util.minElementsBy
 import me.fernando.util.trimLeadingSpaces
 import me.fernando.weather.domain.Forecast
 import me.fernando.weather.domain.WeatherData
+import me.fernando.weather.service.comparator.HourComparator
+import java.time.LocalTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
 @Singleton
-class ForecastOverviewService: OverviewService<WeatherData> {
+class ForecastOverviewService(
+    private val hourComparator: HourComparator,
+) : OverviewService<WeatherData> {
 
-    override fun generateOverviewMessage(weatherData: WeatherData) = """
-            *${weatherData.location?.name}*
-            ${generateHours(filterListingByTheMostImportantHours(weatherData))}
+    override fun generateOverviewMessage(data: WeatherData) = """
+            *${data.location?.name}*
+            ${generateHours(filterListingByTheMostImportantHours(data))}
         """.trimLeadingSpaces()
 
     private fun filterListingByTheMostImportantHours(weatherData: WeatherData): WeatherData {
-        val weatherDataFiltered =
-            weatherData.forecasts?.filter { it.timeDataForecasted?.hour in HOURS }
+        val firstHours = weatherData.forecasts!!.minElementsBy(hourComparator.comparator(LocalTime.of(FIRST_HOUR, 0)))
+        val secondHours = weatherData.forecasts.minElementsBy(hourComparator.comparator(LocalTime.of(SECOND_HOUR,0)))
+        val thirdHours = weatherData.forecasts.minElementsBy(hourComparator.comparator(LocalTime.of(THIRD_HOUR,0)))
 
-        return weatherData.copy(
-            forecasts = weatherDataFiltered
-        )
+        return weatherData.copy(forecasts = firstHours + secondHours + thirdHours)
     }
 
     private fun generateHours(weatherData: WeatherData): String {
@@ -55,11 +59,11 @@ class ForecastOverviewService: OverviewService<WeatherData> {
     }
 
     private companion object {
-        val HOURS = listOf(
-            7, 8, 9,   // morning
-            13, 14, 15, // afternoon
-            21, 22, 23  // evening
-        )
+
+        const val FIRST_HOUR = 8
+        const val SECOND_HOUR = 15
+        const val THIRD_HOUR = 22
+
         const val PATTERN_FORMAT = "EE dd-MM-yyyy"
         val icons = mapOf(
             "01d" to "☀️",

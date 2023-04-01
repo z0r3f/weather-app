@@ -20,6 +20,7 @@
         <flyway.version>5.4.1</flyway.version>
         <h2.version>2.1.210</h2.version>
         <archimedes.version>0.1.2</archimedes.version>
+        <assertj.version>3.24.2</assertj.version>
         <mockito.version>4.4.0</mockito.version>
         <mockito-kotlin.version>4.1.0</mockito-kotlin.version>
     </properties>
@@ -70,6 +71,12 @@
                 <groupId>io.archimedesfw.data</groupId>
                 <artifactId>archimedes-data-jdbc-micronaut</artifactId>
                 <version>${archimedes.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
