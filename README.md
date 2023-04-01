@@ -10,6 +10,7 @@ Simple telegram bot for weather information.
 - [Junit](https://junit.org/)
 - [Archimedes Framework](https://github.com/archimedes-projects/archimedes-jvm)
 - [Docker](https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/)
+- [Caffeine, a high performance, near optimal caching library](https://github.com/ben-manes/caffeine)
 
 
 ## Docker db // OLD
