@@ -20,11 +20,11 @@ micronaut:
   server:
     netty:
       log-level: DEBUG
-  caches:
+  caches: # Caching with Caffeine https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html#parse-java.lang.CharSequence-
     search-by-name:
       expire-after-write: P1D
     forecast-by-coordinate:
-      expire-after-write: PT3H
+      expire-after-write: PT59M
 
 flyway:
   datasources:
