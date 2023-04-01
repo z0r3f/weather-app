@@ -58,7 +58,7 @@ steps:
 
  - task: Docker@2
    inputs:
-     containerRegistry: 'Docker hub weather'
+     containerRegistry: 'DockerWeather'
      repository: 'z0r3f/weather-docker'
      command: 'buildAndPush'
      Dockerfile: '**/Dockerfile'
