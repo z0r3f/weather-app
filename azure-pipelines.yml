@@ -37,14 +37,29 @@ steps:
        sudo apt-get install git-crypt
        git-crypt unlock $(GitCryptSecretKey.secureFilePath)
 
+#- task: DownloadSecureFile@1
+#  inputs:
+#    secureFile: 'security.secret.config
+#- task: CopyFiles@2
+#  inputs:
+#    SourceFolder: '$(Agent.TempDirectory)'
+#    Contents: |
+#      AppSettings.secret.config
+#      cache.secret.config
+#      security.secret.config
+#      Smtp.secret.config
+#    TargetFolder: '$(Build.ArtifactStagingDirectory)/PrescQIPPWebApp/config/secret'
+#    OverWrite: true
+#    flattenFolders: true
+
  - task: DownloadSecureFile@1
-   name: f5t5p12
    inputs:
     secureFile: 'f5t5p12'
-   displayName: 'Download cer'
  - task: CopyFiles@2
    inputs:
-    Contents: '$(Pipeline.Workspace)/f5t5p12'
+    SourceFolder: '$(Agent.TempDirectory)'
+    Contents: |
+     f5t5p12
     TargetFolder: '$(System.DefaultWorkingDirectory)/weather-delivery/src/main/resources/cer/'
    displayName: 'Copy cer'
 
