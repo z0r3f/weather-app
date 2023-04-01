@@ -23,6 +23,31 @@ steps:
        sonar.projectKey=ferozar_Weather-Bot
        sonar.projectName=Weather Bot
 
+ - task: DownloadSecureFile@1
+   name: GitCryptSecretKey
+   displayName: "Download secret key"
+   inputs:
+     secureFile: GitCryptSecretKey
+ - task: Bash@3
+   displayName: "GitCrypt Unlock"
+   inputs:
+     targetType: "inline"
+     script: |
+       sudo apt-get update
+       sudo apt-get install git-crypt
+       git-crypt unlock $(GitCryptSecretKey.secureFilePath)
+
+ - task: DownloadSecureFile@1
+   inputs:
+    secureFile: 'f5t5.p12'
+ - task: CopyFiles@2
+   inputs:
+    SourceFolder: '$(Agent.TempDirectory)'
+    Contents: |
+     f5t5.p12
+    TargetFolder: '$(System.DefaultWorkingDirectory)/weather-delivery/src/main/resources/cer/'
+   displayName: 'Copy cer'
+
  - task: Maven@3
    inputs:
      mavenPomFile: 'pom.xml'
@@ -41,3 +66,13 @@ steps:
    displayName: 'Publish results on build summary'
    inputs:
      pollingTimeoutSec: '1000'
+
+ - task: Docker@2
+   inputs:
+     containerRegistry: 'DockerWeather'
+     repository: 'z0r3f/weather-docker'
+     command: 'buildAndPush'
+     Dockerfile: '**/Dockerfile'
+     tags: |
+       $(Build.BuildId)
+       latest

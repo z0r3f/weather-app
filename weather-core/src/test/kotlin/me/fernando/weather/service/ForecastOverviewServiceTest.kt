@@ -4,8 +4,8 @@ import me.fernando.weather.domain.ForecastMother
 import me.fernando.weather.domain.WeatherDataMother
 import me.fernando.weather.domain.WeatherMother
 import me.fernando.weather.service.comparator.HourComparator
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertAll
 import java.time.Instant
 import java.time.ZoneId
 
@@ -17,17 +17,15 @@ internal class ForecastOverviewServiceTest {
     fun generateForecastOverviewMessage() {
         val actual = sut.generateOverviewMessage(WEATHER_DATA)
 
-        assertAll(
-            { assert(actual.contains("*Madrid*")) },
-            { assert(actual.contains("*dom 02-04-2023*")) },
-            { assert(actual.contains("`🌤 2°C|🌤 14°C|🌤 7°C`")) },
-            { assert(actual.contains("*lun 03-04-2023*")) },
-            { assert(actual.contains("`🌤 2°C|🌤 15°C|🌤 9°C`")) },
-            { assert(actual.contains("*mar 04-04-2023*")) },
-            { assert(actual.contains("`🌤 3°C|🌤 16°C|🌤 7°C`")) },
-			{ assert(actual.contains("*mié 05-04-2023*")) },
-			{ assert(actual.contains("`🌤 1°C|🌤 16°C|🌤 8°C`")) },
-        )
+        assertThat(actual.contains("*Madrid*"))
+        assertThat(actual.contains("*dom 02-04-2023*"))
+        assertThat(actual.contains("`🌤 2°C|🌤 14°C|🌤 7°C`"))
+        assertThat(actual.contains("*lun 03-04-2023*"))
+        assertThat(actual.contains("`🌤 2°C|🌤 15°C|🌤 9°C`"))
+        assertThat(actual.contains("*mar 04-04-2023*"))
+        assertThat(actual.contains("`🌤 3°C|🌤 16°C|🌤 7°C`"))
+        assertThat(actual.contains("*mié 05-04-2023*"))
+        assertThat(actual.contains("`🌤 1°C|🌤 16°C|🌤 8°C`"))
     }
 
     companion object {
