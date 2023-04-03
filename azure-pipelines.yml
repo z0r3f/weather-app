@@ -13,7 +13,7 @@ steps:
  - task: SonarCloudPrepare@1
    displayName: 'Prepare analysis configuration'
    inputs:
-     SonarCloud: 'SonarSC'
+     SonarCloud: 'SonarClour from Github'
      organization: 'ferozar'
      scannerMode: 'Other'
      extraProperties: |
