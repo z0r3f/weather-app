@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+
 steps:
  - task: SonarCloudPrepare@1
    displayName: 'Prepare analysis configuration'
@@ -68,7 +71,7 @@ steps:
      pollingTimeoutSec: '1000'
 
  - task: Docker@2
-   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+   condition: and(succeeded(), eq(variables.isMaster, true))
    inputs:
      containerRegistry: 'DockerWeather'
      repository: 'z0r3f/weather-docker'
