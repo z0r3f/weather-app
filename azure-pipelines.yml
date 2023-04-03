@@ -9,18 +9,21 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  isMaster: $[eq(variables['Build.SourceBranch'], 'refs/heads/master')]
+
 steps:
  - task: SonarCloudPrepare@1
    displayName: 'Prepare analysis configuration'
    inputs:
-     SonarCloud: 'SonarSC'
-     organization: 'ferozar'
+     SonarCloud: 'SonarClour from Github'
+     organization: 'z0r3f'
      scannerMode: 'Other'
      extraProperties: |
        # Additional properties that will be passed to the scanner,
        # Put one key=value per line, example:
        # sonar.exclusions=**/*.bin
-       sonar.projectKey=ferozar_Weather-Bot
+       sonar.projectKey=z0r3f_weather-app
        sonar.projectName=Weather Bot
 
  - task: DownloadSecureFile@1
@@ -68,6 +71,7 @@ steps:
      pollingTimeoutSec: '1000'
 
  - task: Docker@2
+   condition: and(succeeded(), eq(variables.isMaster, true))
    inputs:
      containerRegistry: 'DockerWeather'
      repository: 'z0r3f/weather-docker'
