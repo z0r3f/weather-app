@@ -14,13 +14,13 @@ steps:
    displayName: 'Prepare analysis configuration'
    inputs:
      SonarCloud: 'SonarClour from Github'
-     organization: 'ferozar'
+     organization: 'z0r3f'
      scannerMode: 'Other'
      extraProperties: |
        # Additional properties that will be passed to the scanner,
        # Put one key=value per line, example:
        # sonar.exclusions=**/*.bin
-       sonar.projectKey=ferozar_Weather-Bot
+       sonar.projectKey=z0r3f_Weather-Bot
        sonar.projectName=Weather Bot
 
  - task: DownloadSecureFile@1
