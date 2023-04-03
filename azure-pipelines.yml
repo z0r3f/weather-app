@@ -20,7 +20,7 @@ steps:
        # Additional properties that will be passed to the scanner,
        # Put one key=value per line, example:
        # sonar.exclusions=**/*.bin
-       sonar.projectKey=z0r3f_Weather-Bot
+       sonar.projectKey=z0r3f_weather-app
        sonar.projectName=Weather Bot
 
  - task: DownloadSecureFile@1
