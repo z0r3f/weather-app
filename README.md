@@ -12,6 +12,11 @@ Simple telegram bot for weather information.
 - [Docker](https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/)
 - [Caffeine, a high performance, near optimal caching library](https://github.com/ben-manes/caffeine)
 
+## Run
+
+```bash
+mvn mn:run
+```
 
 ## Docker db // OLD
 
@@ -27,9 +32,31 @@ mvn package
 
 ```bash
 docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:latest .
-docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.2.0 .
+docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.2.2 .
 ```
 
 ```bash
 docker run -d --name weather-docker -p 8443:8443 -v /Users/fernando/IdeaProjects/weather-app/weather-delivery/data:/data z0r3f/weather-docker:latest
+```
+
+## Native
+
+First time only:
+```bash
+sdk install java 22.3.r17-grl
+```
+
+Using java version 22.3.r17-grl in this shell:
+```bash
+sdk use java 22.3.r17-grl
+```
+
+Install the native-image component
+```bash
+gu install native-image
+```
+
+To generate a native executable using Maven, run:
+```bash
+mvn package -Dpackaging=native-image
 ```

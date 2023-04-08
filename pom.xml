@@ -7,12 +7,12 @@
     <parent>
         <groupId>io.archimedesfw.maven.micronaut</groupId>
         <artifactId>micronaut-kotlin-parent</artifactId>
-        <version>3.5.3</version>
+        <version>3.8.7</version>
     </parent>
 
     <groupId>me.fernando.weather</groupId>
     <artifactId>weather-app</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.2</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -133,6 +133,10 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>io.micronaut.build</groupId>
+                <artifactId>micronaut-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
                 <!-- Activate integration tests -->
                 <!-- This plugin is preconfigured in micronaut-base-parent, so you only need to declare it -->
                 <groupId>org.apache.maven.plugins</groupId>
@@ -150,8 +154,7 @@
     </build>
 
 
-    <!--    <name>${project.groupId}:${project.artifactId}</name>-->
-    <description>Kotlin parent example.</description>
+    <description>A simple weather bot</description>
     <url>https://www.archimedesfw.io/</url>
     <licenses>
         <license>
