@@ -11,6 +11,7 @@ Simple telegram bot for weather information.
 - [Archimedes Framework](https://github.com/archimedes-projects/archimedes-jvm)
 - [Docker](https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/)
 - [Caffeine, a high performance, near optimal caching library](https://github.com/ben-manes/caffeine)
+- [Micronaut Maven Plugin](https://micronaut-projects.github.io/micronaut-maven-plugin/snapshot/examples/package.html)
 
 ## Run
 
