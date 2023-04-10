@@ -132,10 +132,10 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>io.micronaut.build</groupId>
-                <artifactId>micronaut-maven-plugin</artifactId>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>io.micronaut.build</groupId>-->
+<!--                <artifactId>micronaut-maven-plugin</artifactId>-->
+<!--            </plugin>-->
             <plugin>
                 <!-- Activate integration tests -->
                 <!-- This plugin is preconfigured in micronaut-base-parent, so you only need to declare it -->
