@@ -12,6 +12,11 @@ Simple telegram bot for weather information.
 - [Docker](https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/)
 - [Caffeine, a high performance, near optimal caching library](https://github.com/ben-manes/caffeine)
 
+## Run
+
+```bash
+mvn mn:run
+```
 
 ## Docker db // OLD
 
@@ -27,7 +32,7 @@ mvn package
 
 ```bash
 docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:latest .
-docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.2.0 .
+docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.2.2 .
 ```
 
 ```bash
