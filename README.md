@@ -14,6 +14,7 @@ Simple telegram bot for weather information.
 - [Docker](https://www.docker.com/blog/multi-arch-build-and-images-the-simple-way/)
 - [Caffeine, a high performance, near optimal caching library](https://github.com/ben-manes/caffeine)
 - [Micronaut Maven Plugin](https://micronaut-projects.github.io/micronaut-maven-plugin/snapshot/examples/package.html)
+- [Containerize your Java application](https://github.com/GoogleContainerTools/jib)
 
 ## Run
 
@@ -21,7 +22,17 @@ Simple telegram bot for weather information.
 mvn mn:run
 ```
 
-## Docker db // OLD
+## Build
+```bash
+mvn clean install
+```
+
+## Build and deploy in docker registry
+```bash
+mvn clean install jib:build
+```
+
+## ~~Docker db // OLD~~
 
 ```bash
 docker run -d --name local_postgres -v my_dbdata:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=verysecret -e POSTGRES_DB=postgres -d postgres:latest
