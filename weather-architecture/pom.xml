@@ -5,7 +5,7 @@
     <parent>
         <groupId>me.fernando.weather</groupId>
         <artifactId>weather-app</artifactId>
-        <version>0.2.2</version>
+        <version>0.3.0</version>
     </parent>
 
     <artifactId>weather-architecture</artifactId>

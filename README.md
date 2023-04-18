@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/ferozar/Weather%20Bot/_apis/build/status%2Fz0r3f.weather-app?branchName=master)](https://dev.azure.com/ferozar/Weather%20Bot/_build/latest?definitionId=25&branchName=master)
+
 # Weather Bot
 Simple telegram bot for weather information. 
 
@@ -32,7 +34,7 @@ mvn package
 
 ```bash
 docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:latest .
-docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.2.2 .
+docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.3.0 .
 ```
 
 ```bash
