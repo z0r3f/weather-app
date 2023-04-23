@@ -4,7 +4,7 @@ import jakarta.inject.Singleton
 
 @Singleton
 class RemoveAlertOverviewService: OverviewService<Int> {
-    override fun generateOverviewMessage(hourOfDay: Int): String {
-        return "Deleted alert at $hourOfDay:00 every day"
+    override fun generateOverviewMessage(data: Int): String {
+        return "Deleted alert at $data:00 every day"
     }
 }

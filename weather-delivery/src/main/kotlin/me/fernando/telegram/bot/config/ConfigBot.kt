@@ -20,14 +20,14 @@ class ConfigBot(
     @Value("\${telegram.webhook}") private val telegramWebhook: String,
 ) {
     @EventListener
-    fun onStartup(event: ServerStartupEvent) {
+    fun onStartup(@Suppress("UNUSED_PARAMETER") event: ServerStartupEvent) {
         LOG.info("ConfigBot started")
         telegramApiClient.setWebhook(telegramWebhook)
         bus.dispatch(ConfigureAllAvailableCommandsMessage())
     }
 
     @EventListener
-    fun onShutdown(event: ServerShutdownEvent) {
+    fun onShutdown(@Suppress("UNUSED_PARAMETER") event: ServerShutdownEvent) {
         LOG.info("ConfigBot stopped")
         telegramApiClient.deleteWebhook()
     }

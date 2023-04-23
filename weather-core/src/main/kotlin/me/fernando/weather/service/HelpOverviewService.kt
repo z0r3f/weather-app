@@ -20,9 +20,9 @@ class HelpOverviewService: OverviewService<Unit> {
 
     private fun getCommands(): String {
         var text = ""
-        BotMessageType.values().forEach {
+        BotMessageType.getAvailableBotMessageType().forEach {
             text += """
-                *${it.command}* - ${it.description}
+                ${it.toMarkdown()}
                 """
         }
         return text.trimLeadingSpaces()

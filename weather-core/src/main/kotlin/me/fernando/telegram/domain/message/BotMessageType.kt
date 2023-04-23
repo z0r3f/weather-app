@@ -7,34 +7,37 @@ import com.fasterxml.jackson.databind.ObjectMapper
 // ↓↓↓ Bad Request: BOT_COMMAND_INVALID (400) ↓↓↓
 // Text of the command; 1-32 characters. Can contain only lowercase English letters, digits and underscores.
 // https://core.telegram.org/bots/api#botcommand
-enum class BotMessageType(val command: String, val description: String) {
-    FORECAST("/forecast", "Overview next days (morning | afternoon | evening)"),
-    HELP("/help", "Show this help"),
-    ADD_LOCATION("/addlocation", "Add a new location"),
-    DEL_LOCATION("/dellocation", "Remove a location"),
-    ADD_ALERT("/addalert", "Add a new alert");
+enum class BotMessageType(val description: String, private val enabled: Boolean = true) {
+    FORECAST(description = "Overview next days (morning | afternoon | evening)"),
+    HELP(description = "Show this help"),
+    ADD_LOCATION(description = "Add a location as a Favourite", enabled = false),
+    DEL_LOCATION(description = "Remove a location as a Favourite", enabled = false),
+    ADD_ALERT(description = "Add a new alert");
 
-    private fun getCommandRaw(): String {
-        return command.replace("/", "")
-    }
+    private val commandRaw: String
+        get() = name.lowercase().replace("_", "")
+
+    val command: String
+        get() = "/$commandRaw"
 
     @JsonValue
-    fun getJson(): JsonNode? {
-        return ObjectMapper().readTree("""
+    fun toJson(): JsonNode? {
+        return ObjectMapper().readTree(
+            """
             {
-                "command": "${getCommandRaw()}",
+                "command": "$commandRaw",
                 "description": "$description"
             }
-        """)
+        """
+        )
     }
 
-    fun botCommand(): BotMessage {
-        return BotMessage(getCommandRaw(), description)
-    }
+    fun toMarkdown(): String = "*$command* - $description"
+
+    fun toBotMessage(): BotMessage = BotMessage(commandRaw, description)
 
     companion object {
-        fun getAvailableCommands(): Set<BotMessage> {
-            return values().map { it.botCommand() }.toSet()
-        }
+        fun getAvailableBotMessageType(): Set<BotMessageType> = values().filter { it.enabled }.toSet()
+        fun getAvailableBotMessages(): Set<BotMessage> = getAvailableBotMessageType().map { it.toBotMessage() }.toSet()
     }
 }
