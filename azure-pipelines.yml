@@ -75,6 +75,7 @@ steps:
    inputs:
      codeCoverageTool: 'JaCoCo'
      summaryFileLocation: '$(System.DefaultWorkingDirectory)/weather-report-test/target/site/jacoco-aggregate/jacoco.xml'
+     reportDirectory: '$(System.DefaultWorkingDirectory)/weather-report-test/target/site/jacoco-aggregate'
      pathToSources: |
       '$(System.DefaultWorkingDirectory)/weather-architecture/src/main/kotlin'
       '$(System.DefaultWorkingDirectory)/weather-core/src/main/kotlin'
