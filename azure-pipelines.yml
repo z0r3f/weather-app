@@ -16,7 +16,7 @@ steps:
  - task: SonarCloudPrepare@1
    displayName: 'Prepare analysis configuration'
    inputs:
-     SonarCloud: 'SonarClour from Github'
+     SonarCloud: 'SonarCloud from Github'
      organization: 'z0r3f'
      scannerMode: 'Other'
      extraProperties: |
@@ -25,7 +25,7 @@ steps:
        # sonar.exclusions=**/*.bin
        sonar.projectKey=z0r3f_weather-app
        sonar.projectName=Weather Bot
-       sonar.coverage.jacoco.xmlReportPaths='$(System.DefaultWorkingDirectory)/weather-report-test/target/site/jacoco-aggregate/jacoco.xml'
+       sonar.coverage.jacoco.xmlReportPaths=$(System.DefaultWorkingDirectory)/weather-report-test/target/site/jacoco-aggregate/jacoco.xml
 
  - task: DownloadSecureFile@1
    name: GitCryptSecretKey
@@ -67,11 +67,13 @@ steps:
      sqMavenPluginVersionChoice: 'pom'
 
  - task: PublishTestResults@2
+   displayName: 'Publish Test Results'
    inputs:
      testResultsFormat: 'JUnit'
      testResultsFiles: '**/TEST-*.xml'
 
  - task: PublishCodeCoverageResults@1
+   displayName: 'Publish Code Coverage Results'
    inputs:
      codeCoverageTool: 'JaCoCo'
      summaryFileLocation: '$(System.DefaultWorkingDirectory)/weather-report-test/target/site/jacoco-aggregate/jacoco.xml'
