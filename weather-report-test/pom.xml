@@ -14,7 +14,6 @@
 
     <properties>
         <maven.deploy.skip>true</maven.deploy.skip>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/weather-report-test/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <dependencies>
@@ -45,15 +44,9 @@
                 <executions>
                     <execution>
                         <id>report-aggregate</id>
-                        <phase>verify</phase>
+                        <phase>package</phase>
                         <goals>
                             <goal>report-aggregate</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report-unit-tests</id>
-                        <goals>
-                            <goal>report</goal>
                         </goals>
                     </execution>
                 </executions>
