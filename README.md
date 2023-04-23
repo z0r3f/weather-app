@@ -34,7 +34,7 @@ mvn package
 
 ```bash
 docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:latest .
-docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.4.0-SNAPSHOT .
+docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.4.0 .
 ```
 
 ```bash
