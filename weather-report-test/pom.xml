@@ -50,6 +50,12 @@
                             <goal>report-aggregate</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>report-unit-tests</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
