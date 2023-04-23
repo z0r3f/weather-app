@@ -16,7 +16,7 @@ steps:
  - task: SonarCloudPrepare@1
    displayName: 'Prepare analysis configuration'
    inputs:
-     SonarCloud: 'SonarCloud from Github'
+     SonarCloud: 'SonarClour from Github'
      organization: 'z0r3f'
      scannerMode: 'Other'
      extraProperties: |
