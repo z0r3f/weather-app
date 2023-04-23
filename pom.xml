@@ -12,7 +12,7 @@
 
     <groupId>me.fernando.weather</groupId>
     <artifactId>weather-app</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -29,6 +29,7 @@
         <module>weather-architecture</module>
         <module>weather-core</module>
         <module>weather-delivery</module>
+        <module>weather-report-test</module>
     </modules>
 
     <dependencyManagement>
@@ -146,12 +147,24 @@
                     <target>17</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
 
     <description>A simple weather bot</description>
-    <url>https://www.archimedesfw.io/</url>
+    <url>https://github.com/z0r3f/weather-app</url>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -160,11 +173,9 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git://github.com/archimedes-projects/archimedes-maven-micronaut-examples.git</connection>
-        <developerConnection>scm:git:ssh://github.com:archimedes-projects/archimedes-maven-micronaut-examples.git
-        </developerConnection>
+        <connection>scm:git:git://github.com/z0r3f/weather-app.git</connection>
+        <developerConnection>scm:git:git://github.com/z0r3f/weather-app.git</developerConnection>
         <tag>main</tag>
-        <url>https://github.com/archimedes-projects/archimedes-maven-micronaut-examples</url>
     </scm>
     <developers>
         <developer>

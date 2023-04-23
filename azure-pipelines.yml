@@ -25,6 +25,7 @@ steps:
        # sonar.exclusions=**/*.bin
        sonar.projectKey=z0r3f_weather-app
        sonar.projectName=Weather Bot
+       sonar.coverage.jacoco.xmlReportPaths=$(System.DefaultWorkingDirectory)/weather-report-test/target/site/jacoco-aggregate/jacoco.xml
 
  - task: DownloadSecureFile@1
    name: GitCryptSecretKey
@@ -66,9 +67,21 @@ steps:
      sqMavenPluginVersionChoice: 'pom'
 
  - task: PublishTestResults@2
+   displayName: 'Publish Test Results'
    inputs:
      testResultsFormat: 'JUnit'
      testResultsFiles: '**/TEST-*.xml'
+
+ - task: PublishCodeCoverageResults@1
+   displayName: 'Publish Code Coverage Results'
+   inputs:
+     codeCoverageTool: 'JaCoCo'
+     summaryFileLocation: '$(System.DefaultWorkingDirectory)/weather-report-test/target/site/jacoco-aggregate/jacoco.xml'
+     reportDirectory: '$(System.DefaultWorkingDirectory)/weather-report-test/target/site/jacoco-aggregate'
+     pathToSources: |
+      '$(System.DefaultWorkingDirectory)/weather-architecture/src/main/kotlin'
+      '$(System.DefaultWorkingDirectory)/weather-core/src/main/kotlin'
+      '$(System.DefaultWorkingDirectory)/weather-delivery/src/main/kotlin'
 
  - task: SonarCloudPublish@1
    displayName: 'Publish results on build summary'
@@ -83,5 +96,5 @@ steps:
      command: 'buildAndPush'
      Dockerfile: '**/Dockerfile'
      tags: |
-       $(Build.BuildId)
+       $(mvn -o org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v '\[')
        latest

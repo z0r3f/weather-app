@@ -13,13 +13,13 @@ class ConfigureAllAvailableCommandsHandler(
 ) : ActionHandler<ConfigureAllAvailableCommandsMessage, Unit> {
     override fun handle(action: ConfigureAllAvailableCommandsMessage) {
         val configuredCommands = telegramRepository.getAllTheCommands()
-        val availableCommands = BotMessageType.getAvailableCommands()
+        val availableCommands = BotMessageType.getAvailableBotMessages()
 
         if (configuredCommands == availableCommands) {
             LOG.info("All the commands are configured correctly")
         } else {
             LOG.info("Some commands are not configured. Configuring them...")
-            telegramRepository.setAllTheCommands(BotMessageType.getAvailableCommands())
+            telegramRepository.setAllTheCommands(availableCommands)
             LOG.info("All the commands are now configured correctly")
         }
     }

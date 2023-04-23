@@ -47,6 +47,6 @@ internal class ConfigureAllAvailableCommandsHandlerTest {
     }
 
     private companion object {
-        val ACTIVE_COMMANDS = BotMessageType.getAvailableCommands()
+        val ACTIVE_COMMANDS = BotMessageType.getAvailableBotMessages()
     }
 }

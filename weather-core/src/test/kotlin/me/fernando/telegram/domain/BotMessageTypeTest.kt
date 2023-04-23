@@ -1,20 +1,29 @@
 package me.fernando.telegram.domain
 
 import me.fernando.telegram.domain.message.BotMessageType
+import me.fernando.telegram.domain.message.BotMessageType.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.skyscreamer.jsonassert.JSONAssert.assertEquals
+import org.skyscreamer.jsonassert.JSONAssert
 
 internal class BotMessageTypeTest {
 
     @Test
-    fun should_be_able_to_build_a_Json_with_all_the_commands() {
-        val commandsInJson = BotMessageType.values().map { it.getJson() }.toString()
+    internal fun should_be_able_to_build_a_Json_with_all_the_commands() {
+        val commandsInJson = BotMessageType.values().map { it.toJson() }.toString()
 
-        assertEquals(ACTIVE_COMMANDS, commandsInJson, false)
+        JSONAssert.assertEquals(ALL_COMMANDS_IN_JSON, commandsInJson, false)
+    }
+
+    @Test
+    internal fun should_only_return_enable_commands() {
+        val result = BotMessageType.getAvailableBotMessages()
+
+        assertEquals(ENABLED_COMMANDS, result)
     }
 
     private companion object {
-        const val ACTIVE_COMMANDS: String = """
+        const val ALL_COMMANDS_IN_JSON: String = """
             [
                 {
                     "command": "forecast", 
@@ -26,11 +35,11 @@ internal class BotMessageTypeTest {
                 },
                 {
                     "command": "addlocation", 
-                    "description": "Add a new location"
+                    "description": "Add a location as a Favourite"
                 },
                 {
                     "command": "dellocation", 
-                    "description": "Remove a location"
+                    "description": "Remove a location as a Favourite"
                 },
                 {
                     "command": "addalert", 
@@ -38,5 +47,11 @@ internal class BotMessageTypeTest {
                 }
             ]
         """
+
+        val ENABLED_COMMANDS = setOf(
+            FORECAST.toBotMessage(),
+            HELP.toBotMessage(),
+            ADD_ALERT.toBotMessage(),
+        )
     }
 }
