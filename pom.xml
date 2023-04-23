@@ -164,7 +164,7 @@
 
 
     <description>A simple weather bot</description>
-    <url>https://www.archimedesfw.io/</url>
+    <url>https://github.com/z0r3f/weather-app</url>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -173,11 +173,9 @@
         </license>
     </licenses>
     <scm>
-        <connection>scm:git:git://github.com/archimedes-projects/archimedes-maven-micronaut-examples.git</connection>
-        <developerConnection>scm:git:ssh://github.com:archimedes-projects/archimedes-maven-micronaut-examples.git
-        </developerConnection>
+        <connection>scm:git:git://github.com/z0r3f/weather-app.git</connection>
+        <developerConnection>scm:git:git://github.com/z0r3f/weather-app.git</developerConnection>
         <tag>main</tag>
-        <url>https://github.com/archimedes-projects/archimedes-maven-micronaut-examples</url>
     </scm>
     <developers>
         <developer>
