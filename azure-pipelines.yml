@@ -65,6 +65,11 @@ steps:
      sonarQubeRunAnalysis: true
      sqMavenPluginVersionChoice: 'pom'
 
+ - task: PublishTestResults@2
+   inputs:
+     testResultsFormat: 'JUnit'
+     testResultsFiles: '**/TEST-*.xml'
+
  - task: SonarCloudPublish@1
    displayName: 'Publish results on build summary'
    inputs:
