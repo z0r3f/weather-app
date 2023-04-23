@@ -25,6 +25,7 @@ steps:
        # sonar.exclusions=**/*.bin
        sonar.projectKey=z0r3f_weather-app
        sonar.projectName=Weather Bot
+       sonar.coverage.jacoco.xmlReportPaths=$(Build.SourcesDirectory)/weather-report-test/target/site/jacoco-aggregate/jacoco.xml
 
  - task: DownloadSecureFile@1
    name: GitCryptSecretKey
