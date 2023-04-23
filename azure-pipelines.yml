@@ -66,6 +66,21 @@ steps:
      sonarQubeRunAnalysis: true
      sqMavenPluginVersionChoice: 'pom'
 
+ - task: PublishTestResults@2
+   inputs:
+     testResultsFormat: 'JUnit'
+     testResultsFiles: '**/TEST-*.xml'
+
+ - task: PublishCodeCoverageResults@1
+   inputs:
+     codeCoverageTool: 'JaCoCo'
+     summaryFileLocation: 
+     pathToSources: |
+      '$(System.DefaultWorkingDirectory)/weather-architecture/src/main/kotlin'
+      '$(System.DefaultWorkingDirectory)/weather-core/src/main/kotlin'
+      '$(System.DefaultWorkingDirectory)/weather-delivery/src/main/kotlin'
+     reportDirectory: '$(System.DefaultWorkingDirectory)/weather-report-test/target/site/jacoco-aggregate/jacoco.xml'
+
  - task: SonarCloudPublish@1
    displayName: 'Publish results on build summary'
    inputs:
