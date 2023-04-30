@@ -8,12 +8,12 @@
         <version>0.4.0</version>
     </parent>
 
-    <artifactId>weather-core</artifactId>
+    <artifactId>core</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>me.fernando.weather</groupId>
-            <artifactId>weather-architecture</artifactId>
+            <artifactId>architecture</artifactId>
             <version>${project.version}</version>
         </dependency>
 

@@ -8,7 +8,7 @@
         <version>0.4.0</version>
     </parent>
 
-    <artifactId>weather-architecture</artifactId>
+    <artifactId>architecture</artifactId>
 
     <dependencies>
         <dependency> <!-- TODO Cool? Should not to be -->
