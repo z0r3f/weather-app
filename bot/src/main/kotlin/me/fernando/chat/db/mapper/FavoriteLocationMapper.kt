@@ -6,7 +6,7 @@ import me.fernando.chat.domain.FavoriteLocation
 import me.fernando.weather.architecture.mapper.Mapper
 
 @Singleton
-class FavoriteLocationMapper: Mapper<FavoriteLocation, FavoriteLocationEntity> {
+open class FavoriteLocationMapper: Mapper<FavoriteLocation, FavoriteLocationEntity> {
     override fun toDto(model: FavoriteLocation): FavoriteLocationEntity {
         val entity = FavoriteLocationEntity()
         entity.id = model.id

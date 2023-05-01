@@ -6,7 +6,7 @@ import me.fernando.chat.domain.Chat
 import me.fernando.weather.architecture.mapper.Mapper
 
 @Singleton
-class ChatMapper(
+open class ChatMapper(
     private val favoriteLocationMapper: FavoriteLocationMapper
 ): Mapper<Chat, ChatEntity> {
     override fun toDto(model: Chat): ChatEntity {

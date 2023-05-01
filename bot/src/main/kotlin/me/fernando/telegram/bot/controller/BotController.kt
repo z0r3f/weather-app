@@ -1,7 +1,6 @@
 package me.fernando.telegram.bot.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import io.archimedesfw.context.ServiceLocator.locate
 import io.archimedesfw.cqrs.ActionBus
 import io.micronaut.context.event.ApplicationEventPublisher
 import io.micronaut.http.MediaType
@@ -25,7 +24,7 @@ import org.slf4j.LoggerFactory
 @PermitAll
 class BotController(
     private val bus: ActionBus,
-    private val newMessageEventPublisher: ApplicationEventPublisher<MessageEvent> = locate(),
+    private val newMessageEventPublisher: ApplicationEventPublisher<MessageEvent>,
 ) {
 
     @Produces(MediaType.TEXT_PLAIN)
