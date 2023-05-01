@@ -14,7 +14,6 @@ import me.fernando.weather.port.DirectGeocodingRepository
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.verifyNoMoreInteractions
@@ -31,7 +30,6 @@ internal class AddLocationHandlerTest {
 
     @BeforeEach
     internal fun setUp() {
-        MockitoAnnotations.openMocks(this)
         sut = AddLocationHandler(directGeocodingRepository, newFavoriteEventPublisher, newLocationEventPublisher, newMessageEventPublisher)
     }
 

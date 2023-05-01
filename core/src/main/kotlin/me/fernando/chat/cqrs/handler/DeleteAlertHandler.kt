@@ -13,22 +13,7 @@ class DeleteAlertHandler(
     private val eventPublisher: ApplicationEventPublisher<RemoveAlertEvent>
 ) : ActionHandler<DeleteAlertMessage, Unit> {
     override fun handle(action: DeleteAlertMessage) {
-        val hourOfDay = validateRequest(action.hourOfDayRaw)
-
-        chatRepository.deleteAlert(action.chat, hourOfDay)
-
-        eventPublisher.publishEventAsync(RemoveAlertEvent(action.chat, hourOfDay))
-    }
-
-    private fun validateRequest(hourOfDayRaw: String): Int {
-        try {
-            val hourOfDay = Integer.parseInt(hourOfDayRaw.trim())
-            if (hourOfDay in 0..23) {
-                return hourOfDay
-            }
-            throw IllegalArgumentException("Hour of day must be between 0 and 23")
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("Invalid hour of day: \"$hourOfDayRaw\". Should be an integer between 0 and 23")
-        }
+        chatRepository.deleteAlert(action.chat, action.hourOfDay)
+        eventPublisher.publishEventAsync(RemoveAlertEvent(action.chat, action.hourOfDay))
     }
 }

@@ -13,4 +13,37 @@ internal class ErrorMessageFactoryTest {
             ErrorMessageFactory.coordinateIsMissing(cityName)
         )
     }
+
+    @Test
+    internal fun testCallbackUnknown() {
+        assertEquals(
+            "Callback unknown",
+            ErrorMessageFactory.callbackUnknown()
+        )
+    }
+
+    @Test
+    internal fun testNotFoundFavoriteLocation() {
+        assertEquals(
+            "Not found favorite location",
+            ErrorMessageFactory.notFoundFavoriteLocation()
+        )
+    }
+
+    @Test
+    internal fun testInvalidHourOfDay() {
+        val hourOfDay = " 23 "
+        assertEquals(
+            "Invalid hour of day: \"$hourOfDay\". Should be an integer between 0 and 23",
+            ErrorMessageFactory.invalidHourOfDay(hourOfDay)
+        )
+    }
+
+    @Test
+    internal fun testHourOfDayShouldBeBetweenValidRange() {
+        assertEquals(
+            "Hour of day must be between 0 and 23",
+            ErrorMessageFactory.hourOfDayShouldBeBetweenValidRange()
+        )
+    }
 }
