@@ -1,6 +1,5 @@
 package me.fernando.weather.listener
 
-import io.archimedesfw.context.ServiceLocator.locate
 import io.archimedesfw.cqrs.ActionBus
 import io.micronaut.context.event.ApplicationEventPublisher
 import io.micronaut.runtime.event.annotation.EventListener
@@ -20,8 +19,8 @@ import me.fernando.weather.service.ForecastOverviewService
 @Singleton
 class WeatherEventListener(
     private val bus: ActionBus,
-    private val forecastOverviewService: ForecastOverviewService = locate(),
-    private val newMessageEventPublisher: ApplicationEventPublisher<MessageEvent> = locate(),
+    private val forecastOverviewService: ForecastOverviewService,
+    private val newMessageEventPublisher: ApplicationEventPublisher<MessageEvent>,
 ) {
 
     @EventListener
@@ -65,7 +64,6 @@ class WeatherEventListener(
         return botCallback
     }
 
-    // TODO Simplify this ↓ ¿?
     private fun newForecastRequestOnChat(chat: Chat, hourOfDay: Int?) {
         val favoriteLocations = bus.dispatch(GetFavoriteLocationsMessage(chat))
         favoriteLocations.forEach { favoriteLocation ->
