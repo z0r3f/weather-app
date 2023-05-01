@@ -7,5 +7,6 @@ class ErrorMessageFactory {
         fun notFoundFavoriteLocation() = "Not found favorite location"
         fun invalidHourOfDay(hourOfDay: String) = "Invalid hour of day: \"$hourOfDay\". Should be an integer between 0 and 23"
         fun hourOfDayShouldBeBetweenValidRange() = "Hour of day must be between 0 and 23"
+        fun commandNotSupported() = "Command not supported"
     }
 }

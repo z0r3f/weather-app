@@ -46,4 +46,12 @@ internal class ErrorMessageFactoryTest {
             ErrorMessageFactory.hourOfDayShouldBeBetweenValidRange()
         )
     }
+
+    @Test
+    internal fun testCommandNotSupported() {
+        assertEquals(
+            "Command not supported",
+            ErrorMessageFactory.commandNotSupported()
+        )
+    }
 }
