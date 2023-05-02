@@ -1,16 +1,16 @@
 package me.fernando.telegram.bot.controller
 
 import io.archimedesfw.cqrs.ActionBus
+import io.github.z0r3f.weather.core.chat.cqrs.AddAlertMessage
+import io.github.z0r3f.weather.core.chat.domain.Chat
+import io.github.z0r3f.weather.core.forecast.cqrs.ForecastMessage
+import io.github.z0r3f.weather.core.telegram.cqrs.AddLocationMessage
+import io.github.z0r3f.weather.core.telegram.cqrs.DeleteMessage
+import io.github.z0r3f.weather.core.telegram.cqrs.HelpQueryMessage
+import io.github.z0r3f.weather.core.telegram.event.MessageEvent
 import io.micronaut.context.event.ApplicationEventPublisher
-import me.fernando.chat.cqrs.AddAlertMessage
-import me.fernando.chat.domain.Chat
 import me.fernando.telegram.bot.dto.MessageDtoMother
 import me.fernando.telegram.bot.dto.UpdateDtoMother
-import me.fernando.telegram.cqrs.AddLocationMessage
-import me.fernando.telegram.cqrs.DeleteMessage
-import me.fernando.telegram.cqrs.HelpQueryMessage
-import me.fernando.telegram.event.MessageEvent
-import me.fernando.weather.cqrs.ForecastMessage
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach

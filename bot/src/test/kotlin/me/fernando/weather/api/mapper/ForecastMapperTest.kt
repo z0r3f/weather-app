@@ -1,9 +1,9 @@
 package me.fernando.weather.api.mapper
 
+import io.github.z0r3f.weather.core.forecast.domain.ForecastMother
+import io.github.z0r3f.weather.core.forecast.domain.WeatherMother
 import me.fernando.weather.api.dto.ForecastDtoMother
 import me.fernando.weather.api.dto.WeatherDtoMother
-import me.fernando.weather.domain.ForecastMother
-import me.fernando.weather.domain.WeatherMother
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

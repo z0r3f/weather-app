@@ -8,8 +8,8 @@ import me.fernando.chat.db.mapper.FavoriteLocationMapper
 import me.fernando.chat.db.sql.AlertH2Repository
 import me.fernando.chat.db.sql.ChatH2Repository
 import me.fernando.chat.db.sql.FavoriteLocationH2Repository
-import me.fernando.chat.domain.Chat
-import me.fernando.chat.domain.FavoriteLocation
+import io.github.z0r3f.weather.core.chat.domain.Chat
+import io.github.z0r3f.weather.core.chat.domain.FavoriteLocation
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach

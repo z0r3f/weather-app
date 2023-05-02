@@ -3,8 +3,8 @@ package me.fernando.weather.api.adapter
 import jakarta.inject.Singleton
 import me.fernando.weather.api.client.DirectGeocodingRestClient
 import me.fernando.weather.api.mapper.GeographicalCoordinateMapper
-import me.fernando.weather.domain.GeographicalCoordinate
-import me.fernando.weather.port.DirectGeocodingRepository
+import io.github.z0r3f.weather.core.forecast.domain.GeographicalCoordinate
+import io.github.z0r3f.weather.core.forecast.port.DirectGeocodingRepository
 
 @Singleton
 open class DirectGeocodingAdapterRepository(

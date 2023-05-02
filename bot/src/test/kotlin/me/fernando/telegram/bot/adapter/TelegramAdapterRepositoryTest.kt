@@ -4,9 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SNAKE_CASE
 import me.fernando.telegram.bot.client.TelegramApiClient
 import me.fernando.telegram.bot.dto.*
-import me.fernando.telegram.domain.callback.BotCallback
-import me.fernando.telegram.domain.callback.BotCallbackType.UNKNOWN
-import me.fernando.telegram.domain.message.BotMessage
+import io.github.z0r3f.weather.core.telegram.domain.callback.BotCallback
+import io.github.z0r3f.weather.core.telegram.domain.callback.BotCallbackType.UNKNOWN
+import io.github.z0r3f.weather.core.telegram.domain.message.BotMessage
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

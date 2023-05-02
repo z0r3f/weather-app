@@ -4,9 +4,9 @@ import jakarta.inject.Singleton
 import me.fernando.telegram.bot.client.TelegramApiClient
 import me.fernando.telegram.bot.dto.BotCommandDto
 import me.fernando.telegram.bot.dto.BotSetCommandsRequestDto
-import me.fernando.telegram.domain.callback.BotCallback
-import me.fernando.telegram.domain.message.BotMessage
-import me.fernando.telegram.port.TelegramRepository
+import io.github.z0r3f.weather.core.telegram.domain.callback.BotCallback
+import io.github.z0r3f.weather.core.telegram.domain.message.BotMessage
+import io.github.z0r3f.weather.core.telegram.port.TelegramRepository
 
 @Singleton
 class TelegramAdapterRepository(

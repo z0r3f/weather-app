@@ -7,10 +7,10 @@ import me.fernando.chat.db.mapper.FavoriteLocationMapper
 import me.fernando.chat.db.sql.AlertH2Repository
 import me.fernando.chat.db.sql.ChatH2Repository
 import me.fernando.chat.db.sql.FavoriteLocationH2Repository
-import me.fernando.chat.domain.Chat
-import me.fernando.chat.domain.FavoriteLocation
-import me.fernando.chat.port.ChatRepository
-import me.fernando.util.isNull
+import io.github.z0r3f.weather.core.chat.domain.Chat
+import io.github.z0r3f.weather.core.chat.domain.FavoriteLocation
+import io.github.z0r3f.weather.core.chat.port.ChatRepository
+import io.github.z0r3f.weather.core.util.isNull
 
 @Singleton
 open class ChatAdapterRepository(

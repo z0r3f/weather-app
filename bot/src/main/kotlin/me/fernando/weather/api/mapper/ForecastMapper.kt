@@ -1,9 +1,9 @@
 package me.fernando.weather.api.mapper
 
+import io.github.z0r3f.weather.core.forecast.domain.Forecast
 import jakarta.inject.Singleton
 import me.fernando.weather.api.dto.ForecastDto
 import me.fernando.weather.architecture.mapper.Mapper
-import me.fernando.weather.domain.Forecast
 import java.time.Instant
 import java.time.LocalDateTime
 

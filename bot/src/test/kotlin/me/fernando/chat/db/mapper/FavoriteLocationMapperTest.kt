@@ -1,7 +1,7 @@
 package me.fernando.chat.db.mapper
 
 import me.fernando.chat.db.entities.FavoriteLocationEntity
-import me.fernando.chat.domain.FavoriteLocation
+import io.github.z0r3f.weather.core.chat.domain.FavoriteLocation
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

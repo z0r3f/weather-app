@@ -9,7 +9,7 @@ import io.micronaut.runtime.server.event.ServerShutdownEvent
 import io.micronaut.runtime.server.event.ServerStartupEvent
 import jakarta.inject.Singleton
 import me.fernando.telegram.bot.client.TelegramApiClient
-import me.fernando.telegram.cqrs.ConfigureAllAvailableCommandsMessage
+import io.github.z0r3f.weather.core.telegram.cqrs.ConfigureAllAvailableCommandsMessage
 import org.slf4j.LoggerFactory
 
 @Singleton

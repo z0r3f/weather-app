@@ -3,7 +3,7 @@ package me.fernando.weather.api.mapper
 import jakarta.inject.Singleton
 import me.fernando.weather.api.dto.GeographicalCoordinateDto
 import me.fernando.weather.architecture.mapper.Mapper
-import me.fernando.weather.domain.GeographicalCoordinate
+import io.github.z0r3f.weather.core.forecast.domain.GeographicalCoordinate
 
 @Singleton
 class GeographicalCoordinateMapper: Mapper<GeographicalCoordinate, GeographicalCoordinateDto> {

@@ -3,7 +3,7 @@ package me.fernando.weather.api.mapper
 import jakarta.inject.Singleton
 import me.fernando.weather.api.dto.CityDto
 import me.fernando.weather.architecture.mapper.Mapper
-import me.fernando.weather.domain.Location
+import io.github.z0r3f.weather.core.forecast.domain.Location
 
 @Singleton
 class LocationMapper: Mapper<Location, CityDto> {

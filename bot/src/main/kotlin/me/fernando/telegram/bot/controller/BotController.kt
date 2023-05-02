@@ -2,22 +2,22 @@ package me.fernando.telegram.bot.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.archimedesfw.cqrs.ActionBus
+import io.github.z0r3f.weather.core.chat.cqrs.AddAlertMessage
+import io.github.z0r3f.weather.core.chat.cqrs.DeleteAlertMessage
+import io.github.z0r3f.weather.core.chat.domain.Chat
+import io.github.z0r3f.weather.core.forecast.cqrs.ForecastMessage
+import io.github.z0r3f.weather.core.telegram.cqrs.*
+import io.github.z0r3f.weather.core.telegram.domain.callback.BotCallback
+import io.github.z0r3f.weather.core.telegram.domain.callback.BotCallbackType
+import io.github.z0r3f.weather.core.telegram.domain.message.BotMessageRequest
+import io.github.z0r3f.weather.core.telegram.domain.message.BotMessageType.*
+import io.github.z0r3f.weather.core.telegram.event.MessageEvent
 import io.micronaut.context.event.ApplicationEventPublisher
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.*
 import jakarta.annotation.security.PermitAll
-import me.fernando.chat.cqrs.AddAlertMessage
-import me.fernando.chat.cqrs.DeleteAlertMessage
-import me.fernando.chat.domain.Chat
 import me.fernando.telegram.bot.dto.MessageDto
 import me.fernando.telegram.bot.dto.UpdateDto
-import me.fernando.telegram.cqrs.*
-import me.fernando.telegram.domain.callback.BotCallback
-import me.fernando.telegram.domain.callback.BotCallbackType
-import me.fernando.telegram.domain.message.BotMessageRequest
-import me.fernando.telegram.domain.message.BotMessageType.*
-import me.fernando.telegram.event.MessageEvent
-import me.fernando.weather.cqrs.ForecastMessage
 import org.slf4j.LoggerFactory
 
 @Controller("/bot")

@@ -2,7 +2,7 @@ package me.fernando.chat.db.mapper
 
 import jakarta.inject.Singleton
 import me.fernando.chat.db.entities.ChatEntity
-import me.fernando.chat.domain.Chat
+import io.github.z0r3f.weather.core.chat.domain.Chat
 import me.fernando.weather.architecture.mapper.Mapper
 
 @Singleton
