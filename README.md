@@ -1,4 +1,6 @@
 [![Build Status](https://dev.azure.com/ferozar/Weather%20Bot/_apis/build/status%2Fz0r3f.weather-app?branchName=master)](https://dev.azure.com/ferozar/Weather%20Bot/_build/latest?definitionId=25&branchName=master)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=z0r3f_weather-app&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=z0r3f_weather-app)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=z0r3f_weather-app&metric=coverage)](https://sonarcloud.io/summary/new_code?id=z0r3f_weather-app)
 
 # Weather Bot
 Simple telegram bot for weather information. 
