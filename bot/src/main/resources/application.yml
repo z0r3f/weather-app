@@ -41,7 +41,7 @@ datasources:
 jpa:
   default:
     entity-scan:
-      packages: "me.fernando.chat.db.entities"
+      packages: "io.github.z0r3f.weather.infrastructure.db.chat.entities"
     properties:
       hibernate:
         hbm2ddl:

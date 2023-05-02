@@ -4,7 +4,7 @@ import io.archimedesfw.cqrs.ActionBus
 import io.github.z0r3f.weather.core.forecast.cqrs.ForecastMessage
 import io.micronaut.scheduling.annotation.Scheduled
 import jakarta.inject.Singleton
-import me.fernando.chat.db.adapter.ChatAdapterRepository
+import io.github.z0r3f.weather.infrastructure.db.chat.adapter.ChatAdapterRepository
 import org.slf4j.LoggerFactory
 import java.time.ZoneId
 import java.time.ZonedDateTime

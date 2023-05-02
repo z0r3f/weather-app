@@ -1,15 +1,15 @@
-package me.fernando.chat.db.adapter
+package io.github.z0r3f.weather.infrastructure.db.chat.adapter
 
-import me.fernando.chat.db.entities.AlertEntity
-import me.fernando.chat.db.entities.ChatEntity
-import me.fernando.chat.db.entities.FavoriteLocationEntity
-import me.fernando.chat.db.mapper.ChatMapper
-import me.fernando.chat.db.mapper.FavoriteLocationMapper
-import me.fernando.chat.db.sql.AlertH2Repository
-import me.fernando.chat.db.sql.ChatH2Repository
-import me.fernando.chat.db.sql.FavoriteLocationH2Repository
 import io.github.z0r3f.weather.core.chat.domain.Chat
 import io.github.z0r3f.weather.core.chat.domain.FavoriteLocation
+import io.github.z0r3f.weather.infrastructure.db.chat.entities.AlertEntity
+import io.github.z0r3f.weather.infrastructure.db.chat.entities.ChatEntity
+import io.github.z0r3f.weather.infrastructure.db.chat.entities.FavoriteLocationEntity
+import io.github.z0r3f.weather.infrastructure.db.chat.mapper.ChatMapper
+import io.github.z0r3f.weather.infrastructure.db.chat.mapper.FavoriteLocationMapper
+import io.github.z0r3f.weather.infrastructure.db.chat.sql.AlertH2Repository
+import io.github.z0r3f.weather.infrastructure.db.chat.sql.ChatH2Repository
+import io.github.z0r3f.weather.infrastructure.db.chat.sql.FavoriteLocationH2Repository
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach

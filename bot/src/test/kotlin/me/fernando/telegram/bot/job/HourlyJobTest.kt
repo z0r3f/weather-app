@@ -3,7 +3,7 @@ package me.fernando.telegram.bot.job
 import io.archimedesfw.cqrs.ActionBus
 import io.github.z0r3f.weather.core.chat.domain.Chat
 import io.github.z0r3f.weather.core.forecast.cqrs.ForecastMessage
-import me.fernando.chat.db.adapter.ChatAdapterRepository
+import io.github.z0r3f.weather.infrastructure.db.chat.adapter.ChatAdapterRepository
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

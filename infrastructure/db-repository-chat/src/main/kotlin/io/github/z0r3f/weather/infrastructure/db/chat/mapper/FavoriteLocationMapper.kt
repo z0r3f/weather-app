@@ -1,9 +1,9 @@
-package me.fernando.chat.db.mapper
+package io.github.z0r3f.weather.infrastructure.db.chat.mapper
 
 import io.github.z0r3f.weather.architecture.mapper.Mapper
 import io.github.z0r3f.weather.core.chat.domain.FavoriteLocation
+import io.github.z0r3f.weather.infrastructure.db.chat.entities.FavoriteLocationEntity
 import jakarta.inject.Singleton
-import me.fernando.chat.db.entities.FavoriteLocationEntity
 
 @Singleton
 open class FavoriteLocationMapper: Mapper<FavoriteLocation, FavoriteLocationEntity> {

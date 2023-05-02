@@ -29,6 +29,7 @@
         <module>architecture</module>
         <module>core</module>
         <module>bot</module>
+        <module>infrastructure</module>
     </modules>
 
     <dependencyManagement>

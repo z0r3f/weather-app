@@ -1,4 +1,4 @@
-package me.fernando.chat.db.entities
+package io.github.z0r3f.weather.infrastructure.db.chat.entities
 
 import javax.persistence.*
 
