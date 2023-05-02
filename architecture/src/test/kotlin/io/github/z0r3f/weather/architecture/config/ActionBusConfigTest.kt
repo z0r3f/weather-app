@@ -1,4 +1,4 @@
-package me.fernando.weather.architecture.config
+package io.github.z0r3f.weather.architecture.config
 
 import io.micronaut.context.BeanLocator
 import org.junit.jupiter.api.Assertions.assertNotNull

@@ -1,9 +1,9 @@
 package me.fernando.chat.db.mapper
 
+import io.github.z0r3f.weather.architecture.mapper.Mapper
+import io.github.z0r3f.weather.core.chat.domain.Chat
 import jakarta.inject.Singleton
 import me.fernando.chat.db.entities.ChatEntity
-import io.github.z0r3f.weather.core.chat.domain.Chat
-import me.fernando.weather.architecture.mapper.Mapper
 
 @Singleton
 open class ChatMapper(

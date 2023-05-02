@@ -1,9 +1,9 @@
 package me.fernando.weather.api.mapper
 
+import io.github.z0r3f.weather.architecture.mapper.Mapper
+import io.github.z0r3f.weather.core.forecast.domain.Location
 import jakarta.inject.Singleton
 import me.fernando.weather.api.dto.CityDto
-import me.fernando.weather.architecture.mapper.Mapper
-import io.github.z0r3f.weather.core.forecast.domain.Location
 
 @Singleton
 class LocationMapper: Mapper<Location, CityDto> {
