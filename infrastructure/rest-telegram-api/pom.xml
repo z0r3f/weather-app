@@ -13,9 +13,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.github.z0r3f.weather</groupId>
-            <artifactId>core</artifactId>
-            <version>${project.version}</version>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-http-server-netty</artifactId>
         </dependency>
         <!-- TODO Remove this cross dependency -->
         <dependency>
@@ -24,29 +23,10 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.archimedesfw.context</groupId>
-            <artifactId>archimedes-context-micronaut</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.archimedesfw.context</groupId>
-            <artifactId>archimedes-context-micronaut</artifactId>
-            <type>test-jar</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.skyscreamer</groupId>
             <artifactId>jsonassert</artifactId>
-            <version>1.5.1</version>
+            <version>${jsonassert.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut.cache</groupId>
-            <artifactId>micronaut-cache-caffeine</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib</artifactId>
-            <version>${kotlin.version}</version>
         </dependency>
     </dependencies>
 
