@@ -1,0 +1,49 @@
+weather:
+  api-key: "<YOUR-API-KEY>"
+  url-base: "https://api.openweathermap.org"
+  data:
+    url: "${weather.url-base}/data/2.5"
+  geo:
+    url: "${weather.url-base}/geo/1.0/direct"
+    results-limit: 5
+
+telegram:
+  token: "<YOUR TELEGRAM TOKEN>"
+  webhook: "<YOUR WEBHOOK POST ENDPOINT>"
+
+micronaut:
+  ssl:
+    enabled: true
+    key-store:
+      path: "<YOUR DIGITAL CERTIFICATE>"
+      password: "<YOUR DIGITAL CERTIFICATE PASSWORD>"
+  server:
+    netty:
+      log-level: DEBUG
+  caches: # Caching with Caffeine https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html#parse-java.lang.CharSequence-
+    search-by-name:
+      expire-after-write: P1D
+    forecast-by-coordinate:
+      expire-after-write: PT59M
+
+flyway:
+  datasources:
+    default:
+      enabled: true
+
+datasources:
+  default:
+    url: "<YOUR DB URL>"
+    username: "<YOUR DB USERNAME >"
+    password: "<YOUR DB PASSWORD >"
+    driverClassName: org.h2.Driver
+
+jpa:
+  default:
+    entity-scan:
+      packages: "io.github.z0r3f.weather.infrastructure.db.chat.entities"
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+        show_sql: true

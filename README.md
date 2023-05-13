@@ -1,4 +1,6 @@
 [![Build Status](https://dev.azure.com/ferozar/Weather%20Bot/_apis/build/status%2Fz0r3f.weather-app?branchName=master)](https://dev.azure.com/ferozar/Weather%20Bot/_build/latest?definitionId=25&branchName=master)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=z0r3f_weather-app&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=z0r3f_weather-app)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=z0r3f_weather-app&metric=coverage)](https://sonarcloud.io/summary/new_code?id=z0r3f_weather-app)
 
 # Weather Bot
 Simple telegram bot for weather information. 
@@ -34,9 +36,9 @@ mvn package
 
 ```bash
 docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:latest .
-docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.4.0 .
+docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.5.0 .
 ```
 
 ```bash
-docker run -d --name weather-docker -p 8443:8443 -v /Users/fernando/IdeaProjects/weather-app/weather-delivery/data:/data z0r3f/weather-docker:latest
+docker run -d --name weather-docker -p 8443:8443 -v /Users/fernando/IdeaProjects/weather-app/bot/data:/data z0r3f/weather-docker:latest
 ```

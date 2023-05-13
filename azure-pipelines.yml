@@ -25,7 +25,7 @@ steps:
        # sonar.exclusions=**/*.bin
        sonar.projectKey=z0r3f_weather-app
        sonar.projectName=Weather Bot
-       sonar.coverage.jacoco.xmlReportPaths=$(System.DefaultWorkingDirectory)/weather-report-test/target/site/jacoco-aggregate/jacoco.xml
+       sonar.coverage.jacoco.xmlReportPaths=$(System.DefaultWorkingDirectory)/**/target/site/jacoco-aggregate/jacoco.xml
 
  - task: DownloadSecureFile@1
    name: GitCryptSecretKey
@@ -49,7 +49,7 @@ steps:
     SourceFolder: '$(Agent.TempDirectory)'
     Contents: |
      f5t5.p12
-    TargetFolder: '$(System.DefaultWorkingDirectory)/weather-delivery/src/main/resources/cer/'
+    TargetFolder: '$(System.DefaultWorkingDirectory)/bot/src/main/resources/cer/'
    displayName: 'Copy cer'
 
  - task: Maven@3
@@ -82,12 +82,12 @@ steps:
    displayName: 'Publish Code Coverage Results'
    inputs:
      codeCoverageTool: 'JaCoCo'
-     summaryFileLocation: '$(System.DefaultWorkingDirectory)/weather-report-test/target/site/jacoco-aggregate/jacoco.xml'
-     reportDirectory: '$(System.DefaultWorkingDirectory)/weather-report-test/target/site/jacoco-aggregate'
+     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/target/site/jacoco-aggregate/jacoco.xml'
+     reportDirectory: '$(System.DefaultWorkingDirectory)/**/target/site/jacoco-aggregate'
      pathToSources: |
-      '$(System.DefaultWorkingDirectory)/weather-architecture/src/main/kotlin'
-      '$(System.DefaultWorkingDirectory)/weather-core/src/main/kotlin'
-      '$(System.DefaultWorkingDirectory)/weather-delivery/src/main/kotlin'
+      '$(System.DefaultWorkingDirectory)/architecture/src/main/kotlin'
+      '$(System.DefaultWorkingDirectory)/core/src/main/kotlin'
+      '$(System.DefaultWorkingDirectory)/bot/src/main/kotlin'
 
  - task: SonarCloudPublish@1
    displayName: 'Publish results on build summary'
