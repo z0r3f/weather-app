@@ -1,8 +1,8 @@
 package io.github.z0r3f.weather.infrastructure.rest.telegram.job
 
 import io.archimedesfw.cqrs.ActionBus
+import io.github.z0r3f.weather.core.chat.cqrs.GetChatsMessage
 import io.github.z0r3f.weather.core.forecast.cqrs.ForecastMessage
-import io.github.z0r3f.weather.infrastructure.db.chat.adapter.ChatAdapterRepository
 import io.micronaut.scheduling.annotation.Scheduled
 import jakarta.inject.Singleton
 import org.slf4j.LoggerFactory
@@ -11,7 +11,6 @@ import java.time.ZonedDateTime
 
 @Singleton
 class HourlyJob(
-    private val chatAdapterRepository: ChatAdapterRepository,
     private val bus: ActionBus,
 ) {
 
@@ -19,7 +18,7 @@ class HourlyJob(
     fun execute() {
         LOG.debug("Hourly job started")
         val hourOfDay = getHourAt(MADRID)
-        val chats = chatAdapterRepository.getAlerts(hourOfDay)
+        val chats = bus.dispatch(GetChatsMessage(hourOfDay))
         LOG.debug("Found {} chats to alert", chats.size)
         chats.forEach { bus.dispatch(ForecastMessage(chat = it, hourOfDay = hourOfDay)) }
         LOG.debug("Hourly job finished")
