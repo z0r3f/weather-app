@@ -43,13 +43,13 @@ steps:
 
  - task: DownloadSecureFile@1
    inputs:
-    secureFile: 'f5t5.p12'
+    secureFile: 'server.p12'
  - task: CopyFiles@2
    inputs:
     SourceFolder: '$(Agent.TempDirectory)'
     Contents: |
-     f5t5.p12
-    TargetFolder: '$(System.DefaultWorkingDirectory)/bot/src/main/resources/cer/'
+     server.p12
+    TargetFolder: '$(System.DefaultWorkingDirectory)/bot/src/main/resources/cer/2023-10/'
    displayName: 'Copy cer'
 
  - task: Maven@3
