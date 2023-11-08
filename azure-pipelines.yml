@@ -43,13 +43,13 @@ steps:
 
  - task: DownloadSecureFile@1
    inputs:
-    secureFile: 'server.p12'
+    secureFile: 'f5t5.p12'
  - task: CopyFiles@2
    inputs:
     SourceFolder: '$(Agent.TempDirectory)'
     Contents: |
-     server.p12
-    TargetFolder: '$(System.DefaultWorkingDirectory)/bot/src/main/resources/cer/2023-10/'
+     f5t5.p12
+    TargetFolder: '$(System.DefaultWorkingDirectory)/bot/src/main/resources/cer/'
    displayName: 'Copy cer'
 
  - task: Maven@3
@@ -95,7 +95,7 @@ steps:
      pollingTimeoutSec: '1000'
 
  - task: Docker@2
-   condition: succeeded()
+   condition: and(succeeded(), eq(variables.isMaster, true))
    inputs:
      containerRegistry: 'DockerWeather'
      repository: 'z0r3f/weather-docker'
