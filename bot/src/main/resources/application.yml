@@ -9,15 +9,15 @@ weather:
 
 telegram:
   token: "<YOUR TELEGRAM TOKEN>"
-  webhook: "<YOUR WEBHOOK POST ENDPOINT>"
+  webhook: "https://${telegram.domain}:${micronaut.server.ssl.port}/bot"
 
 micronaut:
-  ssl:
-    enabled: true
-    key-store:
-      path: "<YOUR DIGITAL CERTIFICATE>"
-      password: "<YOUR DIGITAL CERTIFICATE PASSWORD>"
   server:
+    port: 80
+    dual-protocol: true
+    ssl:
+      enabled: true
+      port: 443
     netty:
       log-level: DEBUG
   caches: # Caching with Caffeine https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html#parse-java.lang.CharSequence-
@@ -47,3 +47,18 @@ jpa:
         hbm2ddl:
           auto: none
         show_sql: true
+
+acme:
+  enabled: true
+  tos-agree: true
+  challenge-type: tls
+  domains:
+    - "${telegram.domain}"
+  domain-key: ${myapp.keys-path}/f5t5-domain
+  account-key: ${myapp.keys-path}/f5t5-account
+  acme-server: https://acme-v02.api.letsencrypt.org/directory
+  cert-location: ${myapp.cert-path}
+  refresh:
+    delay: 1m
+    frequency: 24h
+  renew-within: 30d

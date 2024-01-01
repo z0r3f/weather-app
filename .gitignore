@@ -4,5 +4,6 @@
 **/.idea/
 **/*.iml
 **/cer/
-bot/data
+bot/data**
 /.git-cript/
+/store/
