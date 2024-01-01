@@ -5,7 +5,7 @@
     <parent>
         <artifactId>weather-app</artifactId>
         <groupId>io.github.z0r3f.weather</groupId>
-        <version>0.7.2</version>
+        <version>0.8.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -84,6 +84,11 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
             <version>${kotlin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.micronaut.acme</groupId>
+            <artifactId>micronaut-acme</artifactId>
         </dependency>
     </dependencies>
 
