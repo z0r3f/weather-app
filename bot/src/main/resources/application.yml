@@ -25,6 +25,8 @@ micronaut:
       expire-after-write: P1D
     forecast-by-coordinate:
       expire-after-write: PT59M
+    weather-by-coordinate:
+      expire-after-write: PT59M
 
 flyway:
   datasources:
@@ -33,10 +35,14 @@ flyway:
 
 datasources:
   default:
-    url: "<YOUR DB URL>"
+    url: jdbc:h2:${myapp.data-path}/weather;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: "<YOUR DB USERNAME >"
     password: "<YOUR DB PASSWORD >"
     driverClassName: org.h2.Driver
+
+myapp:
+  keys-path: file:${myapp.data-path}/keys
+  cert-path: ${myapp.data-path}/certificates
 
 jpa:
   default:
