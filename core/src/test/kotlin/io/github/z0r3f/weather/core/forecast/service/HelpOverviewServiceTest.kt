@@ -21,7 +21,7 @@ internal class HelpOverviewServiceTest {
 
     @Test
     internal fun shouldReturnRightLines() {
-        val expected = 3
+        val expected = 4
 
         val actual = sut.generateOverviewMessage()
 
@@ -37,6 +37,8 @@ internal class HelpOverviewServiceTest {
             Use the following commands:
 
             */forecast* - Overview next days (morning | afternoon | evening)
+            
+            */current* - Current weather
 
             */help* - Show this help
 

@@ -30,6 +30,10 @@ internal class BotMessageTypeTest {
                     "description": "Overview next days (morning | afternoon | evening)"
                 },
                 {
+                    "command": "current", 
+                    "description": "Current weather"
+                },
+                {
                     "command": "help", 
                     "description": "Show this help"
                 },
@@ -50,6 +54,7 @@ internal class BotMessageTypeTest {
 
         val ENABLED_COMMANDS = setOf(
             FORECAST.toBotMessage(),
+            CURRENT.toBotMessage(),
             HELP.toBotMessage(),
             ADD_ALERT.toBotMessage(),
         )

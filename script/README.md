@@ -21,7 +21,7 @@ Run script
 $ ./db-migrate.sh
 Exporting database...
 Importing data...
-<db-name> migrated succesfully
+weather migrated succesfully
 ```
 
 Result

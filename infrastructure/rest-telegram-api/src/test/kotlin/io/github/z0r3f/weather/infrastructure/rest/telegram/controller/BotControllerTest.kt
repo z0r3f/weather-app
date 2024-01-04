@@ -3,18 +3,22 @@ package io.github.z0r3f.weather.infrastructure.rest.telegram.controller
 import io.archimedesfw.cqrs.ActionBus
 import io.github.z0r3f.weather.core.chat.cqrs.AddAlertMessage
 import io.github.z0r3f.weather.core.chat.domain.Chat
+import io.github.z0r3f.weather.core.forecast.cqrs.CurrentMessage
 import io.github.z0r3f.weather.core.forecast.cqrs.ForecastMessage
 import io.github.z0r3f.weather.core.telegram.cqrs.AddLocationMessage
 import io.github.z0r3f.weather.core.telegram.cqrs.DeleteMessage
 import io.github.z0r3f.weather.core.telegram.cqrs.HelpQueryMessage
+import io.github.z0r3f.weather.core.telegram.domain.message.BotMessageType
 import io.github.z0r3f.weather.core.telegram.event.MessageEvent
 import io.github.z0r3f.weather.infrastructure.rest.telegram.dto.MessageDtoMother
 import io.github.z0r3f.weather.infrastructure.rest.telegram.dto.UpdateDtoMother
 import io.micronaut.context.event.ApplicationEventPublisher
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.verifyNoMoreInteractions
@@ -76,6 +80,26 @@ class BotControllerTest {
         verify(bus).dispatch(AddAlertMessage(chat = CHAT, hourOfDayRaw = " $ALERT_SEVEN"))
     }
 
+    @Test
+    fun `process #current`() {
+        sut.incomingUpdate(CURRENT_COMMAND)
+
+        verify(bus).dispatch(CurrentMessage(chat = CHAT, cityName = ""))
+    }
+
+    @Test
+    fun `whatever valid command should not throws IllegalArgumentException`() {
+        val availableBotMessageType = BotMessageType.getAvailableBotMessageType()
+        availableBotMessageType.forEach { botMessageType ->
+            val update = UpdateDtoMother().of(message = MessageDtoMother().of(text = botMessageType.command + " 23"))
+            assertDoesNotThrow { sut.incomingUpdate(update) }
+        }
+        verify(bus).dispatch(any<ForecastMessage>())
+        verify(bus).dispatch(any<CurrentMessage>())
+        verify(bus).dispatch(any<HelpQueryMessage>())
+        verify(bus).dispatch(any<AddAlertMessage>())
+    }
+
     private companion object {
         const val CITY_SHANGHAI = "Shanghai"
         const val CITY_SAO_PAULO = "São Paulo"
@@ -90,5 +114,6 @@ class BotControllerTest {
         val ADD_LOCATION_COMMAND = UpdateDtoMother().of(message = MessageDtoMother().of(text = "/addlocation $CITY_SHANGHAI"))
         val DEL_LOCATION_COMMAND = UpdateDtoMother().of(message = MessageDtoMother().of(text = "/dellocation $CITY_SAO_PAULO"))
         val ADD_ALERT_COMMAND = UpdateDtoMother().of(message = MessageDtoMother().of(text = "/addalert $ALERT_SEVEN"))
+        val CURRENT_COMMAND = UpdateDtoMother().of(message = MessageDtoMother().of(text = "/current"))
     }
 }

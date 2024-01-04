@@ -2,10 +2,11 @@ package io.github.z0r3f.weather.core.forecast.service
 
 import io.github.z0r3f.weather.core.forecast.domain.Forecast
 import io.github.z0r3f.weather.core.forecast.domain.WeatherData
+import io.github.z0r3f.weather.core.forecast.service.comparator.HourComparator
+import io.github.z0r3f.weather.core.util.WeatherIcon.icons
 import io.github.z0r3f.weather.core.util.minElementsBy
 import io.github.z0r3f.weather.core.util.trimLeadingSpaces
 import jakarta.inject.Singleton
-import io.github.z0r3f.weather.core.forecast.service.comparator.HourComparator
 import java.time.LocalTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
@@ -65,25 +66,5 @@ class ForecastOverviewService(
         const val THIRD_HOUR = 22
 
         const val PATTERN_FORMAT = "EE dd-MM-yyyy"
-        val icons = mapOf(
-            "01d" to "☀️",
-            "02d" to "🌤",
-            "03d" to "🌥",
-            "04d" to "☁️",
-            "09d" to "🌦",
-            "10d" to "🌧",
-            "11d" to "🌩",
-            "13d" to "☃️",
-            "50d" to "🌫️",
-            "01n" to "☀️",
-            "02n" to "🌤",
-            "03n" to "🌥",
-            "04n" to "☁️",
-            "09n" to "🌦",
-            "10n" to "🌧",
-            "11n" to "🌩",
-            "13n" to "☃️",
-            "50n" to "🌫️",
-        )
     }
 }
