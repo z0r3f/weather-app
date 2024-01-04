@@ -27,6 +27,7 @@ class CurrentDataMapper(
                 humidity = dto.main.humidity,
                 windSpeed = dto.wind.speed,
                 windDirection = dto.wind.deg,
+                windGust = dto.wind.gust,
                 cloudiness = dto.clouds.all,
                 visibility = dto.visibility,
                 weather = weatherMapper.toModel(dto.weather),

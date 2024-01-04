@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*
+import org.mockito.kotlin.whenever
 
 internal class ForecastMapperTest {
 
@@ -21,7 +22,7 @@ internal class ForecastMapperTest {
 
     @Test
     fun toModel() {
-        `when`(weatherMapper.toModel(WeatherDtoMother().of())).thenReturn(WeatherMother().of())
+        whenever(weatherMapper.toModel(WeatherDtoMother().of())).thenReturn(WeatherMother().of())
 
         val result = sut.toModel(ForecastDtoMother().of())
 

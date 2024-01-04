@@ -10,6 +10,7 @@ data class Current(
     val weather: Weather? = null,
     val windSpeed: Double? = null,
     val windDirection: Double? = null,
+    val windGust: Double? = null,
     val visibility: Int? = null,
     val cloudiness: Int? = null, // Cloudiness, %
 )

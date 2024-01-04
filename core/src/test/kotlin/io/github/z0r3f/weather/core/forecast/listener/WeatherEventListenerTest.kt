@@ -41,7 +41,7 @@ internal class WeatherEventListenerTest {
     }
 
     @Test
-    internal fun `request forecast event with city not is favorite`() {
+    internal fun `request forecast event with city not is favourite`() {
         val request = REQUEST_SAO_PAULO
         val weatherData = WeatherDataMother().of()
         whenever(bus.dispatch(GetForecastByCityNameMessage(CITY_SAO_PAULO))).thenReturn(weatherData)

@@ -5,6 +5,7 @@ import io.archimedesfw.cqrs.ActionBus
 import io.github.z0r3f.weather.core.chat.cqrs.AddAlertMessage
 import io.github.z0r3f.weather.core.chat.cqrs.DeleteAlertMessage
 import io.github.z0r3f.weather.core.chat.domain.Chat
+import io.github.z0r3f.weather.core.forecast.cqrs.CurrentMessage
 import io.github.z0r3f.weather.core.forecast.cqrs.ForecastMessage
 import io.github.z0r3f.weather.core.telegram.cqrs.*
 import io.github.z0r3f.weather.core.telegram.domain.callback.BotCallback
@@ -82,6 +83,7 @@ class BotController(
 
             when (botCommandRequest.command) {
                 FORECAST -> bus.dispatch(ForecastMessage(chat, botCommandRequest.arguments))
+                CURRENT -> bus.dispatch(CurrentMessage(chat, botCommandRequest.arguments))
                 HELP -> bus.dispatch(HelpQueryMessage(chat))
                 ADD_LOCATION -> bus.dispatch(AddLocationMessage(chat, botCommandRequest.arguments))
                 DEL_LOCATION -> bus.dispatch(DeleteMessage(chat, botCommandRequest.arguments))
@@ -102,6 +104,10 @@ class BotController(
             messageText.startsWith(FORECAST.command) -> BotMessageRequest(
                 command = FORECAST,
                 arguments = messageText.substringAfter(FORECAST.command)
+            )
+            messageText.startsWith(CURRENT.command) -> BotMessageRequest(
+                command = CURRENT,
+                arguments = messageText.substringAfter(CURRENT.command)
             )
             messageText.startsWith(HELP.command) -> BotMessageRequest(
                 command = HELP,

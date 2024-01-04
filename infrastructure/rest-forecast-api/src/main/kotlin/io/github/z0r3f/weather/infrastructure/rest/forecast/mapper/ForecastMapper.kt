@@ -4,8 +4,9 @@ import io.github.z0r3f.weather.architecture.mapper.Mapper
 import io.github.z0r3f.weather.core.forecast.domain.Forecast
 import io.github.z0r3f.weather.infrastructure.rest.forecast.dto.ForecastDto
 import jakarta.inject.Singleton
-import java.time.Instant
-import java.time.LocalDateTime
+import java.time.Instant.ofEpochSecond
+import java.time.LocalDateTime.ofInstant
+import java.time.ZoneOffset.ofTotalSeconds
 
 @Singleton
 class ForecastMapper(
@@ -32,5 +33,5 @@ class ForecastMapper(
     }
 
     private fun getLocalDateTime(epochSecond: Long, timezone: Int?) =
-        LocalDateTime.ofInstant(Instant.ofEpochSecond(epochSecond), java.time.ZoneOffset.ofTotalSeconds(timezone ?: 0))
+        ofInstant(ofEpochSecond(epochSecond), ofTotalSeconds(timezone ?: 0))
 }

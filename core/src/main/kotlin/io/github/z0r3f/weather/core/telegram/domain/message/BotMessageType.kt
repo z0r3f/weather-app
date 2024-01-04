@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 // https://core.telegram.org/bots/api#botcommand
 enum class BotMessageType(val description: String, private val enabled: Boolean = true) {
     FORECAST(description = "Overview next days (morning | afternoon | evening)"),
+    CURRENT(description = "Current weather"),
     HELP(description = "Show this help"),
     ADD_LOCATION(description = "Add a location as a Favourite", enabled = false),
     DEL_LOCATION(description = "Remove a location as a Favourite", enabled = false),
