@@ -23,7 +23,6 @@ import org.mockito.kotlin.whenever
 
 internal class CurrentEventListenerTest {
 
-
     private lateinit var bus: ActionBus
     private lateinit var currentOverviewService: CurrentOverviewService
     private lateinit var newMessageEventPublisher: ApplicationEventPublisher<MessageEvent>

@@ -21,7 +21,7 @@ class CurrentOverviewServiceTest {
         val EXPECTED = """
             *Madrid*
             🌤 23°C (23°C)
-            ↙️ 9 km/h (23 km/h)
+            ⬇️ 9 km/h (15 km/h)
             💧42% 🌀1021.0 hPa
             🌅 07:02 🌇 21:21
         """.trimIndent()
