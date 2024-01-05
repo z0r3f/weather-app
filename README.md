@@ -36,9 +36,25 @@ mvn package
 
 ```bash
 docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:latest .
-docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.9.0 .
+docker buildx build --push --platform linux/amd64 --tag z0r3f/weather-docker:0.10.0 .
 ```
 
 ```bash
 docker run -d --name weather-docker -p 8443:8443 -v /Users/fernando/IdeaProjects/weather-app/bot/data:/data z0r3f/weather-docker:latest
+```
+## Example on Docker:
+
+```bash
+docker run --detach \
+           --name weather-docker \
+           --cap-add NET_ADMIN \
+           --network VLAN1 \
+           --hostname weather-syno \
+           --OPENWEATHERMAP_API_KEY=1234567890 \
+           --BOT_DOMAIN=mydomain.com \
+           --TELEGRAM_TOKEN=1234567890 \
+           --DB_USER=root \
+           --DB_PASSWORD=verysecret \
+           --DATA_PATH=/data \
+           z0r3f/weather-docker:latest
 ```
