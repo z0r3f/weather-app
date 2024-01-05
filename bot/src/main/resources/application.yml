@@ -1,5 +1,5 @@
 weather:
-  api-key: "<YOUR-API-KEY>"
+  api-key: ${OPENWEATHERMAP_API_KEY}
   url-base: "https://api.openweathermap.org"
   data:
     url: "${weather.url-base}/data/2.5"
@@ -8,7 +8,8 @@ weather:
     results-limit: 5
 
 telegram:
-  token: "<YOUR TELEGRAM TOKEN>"
+  domain: ${BOT_DOMAIN}
+  token: ${TELEGRAM_TOKEN}
   webhook: "https://${telegram.domain}:${micronaut.server.ssl.port}/bot"
 
 micronaut:
@@ -36,11 +37,12 @@ flyway:
 datasources:
   default:
     url: jdbc:h2:${myapp.data-path}/weather;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    username: "<YOUR DB USERNAME >"
-    password: "<YOUR DB PASSWORD >"
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driverClassName: org.h2.Driver
 
 myapp:
+  data-path: ${DATA_PATH:/data}
   keys-path: file:${myapp.data-path}/keys
   cert-path: ${myapp.data-path}/certificates
 
@@ -59,7 +61,7 @@ acme:
   tos-agree: true
   challenge-type: tls
   domains:
-    - "${telegram.domain}"
+    - "${BOT_DOMAIN}"
   domain-key: ${myapp.keys-path}/f5t5-domain
   account-key: ${myapp.keys-path}/f5t5-account
   acme-server: https://acme-v02.api.letsencrypt.org/directory

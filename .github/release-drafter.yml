@@ -9,6 +9,7 @@ categories:
     labels:
       - 'feature'
       - 'enhancement'
+      - 'minor'
   - title: '🐛 Bug Fixes'
     labels:
       - 'fix'
@@ -22,13 +23,22 @@ categories:
 version-resolver:
   major:
     labels:
+      - 'breaking-change'
       - 'major'
   minor:
     labels:
+      - 'feature'
+      - 'enhancement'
       - 'minor'
   patch:
     labels:
       - 'patch'
+      - 'chore'
+      - 'dependencies'
+      - 'security'
+      - 'fix'
+      - 'bugfix'
+      - 'bug'
   default: patch
 autolabeler:
   - label: 'chore'
