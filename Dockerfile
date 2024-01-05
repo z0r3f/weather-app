@@ -1,5 +1,5 @@
 FROM openjdk:17.0-jdk
-COPY bot/target/bot-*.jar weather.jar
+COPY bot/target/weather.jar .
 EXPOSE 443
 EXPOSE 80
 RUN mkdir /data
