@@ -27,6 +27,20 @@ steps:
        sonar.projectName=Weather Bot
        sonar.coverage.jacoco.xmlReportPaths=$(System.DefaultWorkingDirectory)/**/target/site/jacoco-aggregate/jacoco.xml
 
+ - task: DownloadSecureFile@1
+   name: GitCryptSecretKey
+   displayName: "Download secret key"
+   inputs:
+     secureFile: GitCryptSecretKey
+ - task: Bash@3
+   displayName: "GitCrypt Unlock"
+   inputs:
+     targetType: "inline"
+     script: |
+       sudo apt-get update
+       sudo apt-get install git-crypt
+       git-crypt unlock $(GitCryptSecretKey.secureFilePath)
+
  - task: Maven@3
    inputs:
      mavenPomFile: 'pom.xml'
