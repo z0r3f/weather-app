@@ -26,14 +26,14 @@ class AirOverviewService : OverviewService<AirData> {
             *${data.location?.name}*
             ```
             ${generateAlignedLine("AQI:", generateAQILine(data.air?.airQualityIndex ?: 0), maxLabelSize, maxValueSize)}
-            ${generateAlignedLine("CO:", "${formatNumber(data.air?.carbonMonoxide ?: 0.0)} μg/m3", maxLabelSize, maxValueSize)}
-            ${generateAlignedLine("NO:", "${formatNumber(data.air?.nitrogenMonoxide ?: 0.0)} μg/m3", maxLabelSize, maxValueSize)}
-            ${generateAlignedLine("NO2:", "${formatNumber(data.air?.nitrogenDioxide ?: 0.0)} μg/m3", maxLabelSize, maxValueSize)}
-            ${generateAlignedLine("O3:", "${formatNumber(data.air?.ozone ?: 0.0)} μg/m3", maxLabelSize, maxValueSize)}
-            ${generateAlignedLine("SO2:", "${formatNumber(data.air?.sulphurDioxide ?: 0.0)} μg/m3", maxLabelSize, maxValueSize)}
-            ${generateAlignedLine("PM2.5:", "${formatNumber(data.air?.fineParticlesMatter ?: 0.0)} μg/m3", maxLabelSize, maxValueSize)}
-            ${generateAlignedLine("PM10:", "${formatNumber(data.air?.coarseParticulateMatter ?: 0.0)} μg/m3", maxLabelSize, maxValueSize)}
-            ${generateAlignedLine("NH3:", "${formatNumber(data.air?.ammonia ?: 0.0)} μg/m3", maxLabelSize, maxValueSize)}
+            ${generateAlignedLine("CO:", "${formatNumber(data.air?.carbonMonoxide ?: 0.0)} $UNIT", maxLabelSize, maxValueSize)}
+            ${generateAlignedLine("NO:", "${formatNumber(data.air?.nitrogenMonoxide ?: 0.0)} $UNIT", maxLabelSize, maxValueSize)}
+            ${generateAlignedLine("NO2:", "${formatNumber(data.air?.nitrogenDioxide ?: 0.0)} $UNIT", maxLabelSize, maxValueSize)}
+            ${generateAlignedLine("O3:", "${formatNumber(data.air?.ozone ?: 0.0)} $UNIT", maxLabelSize, maxValueSize)}
+            ${generateAlignedLine("SO2:", "${formatNumber(data.air?.sulphurDioxide ?: 0.0)} $UNIT", maxLabelSize, maxValueSize)}
+            ${generateAlignedLine("PM2.5:", "${formatNumber(data.air?.fineParticlesMatter ?: 0.0)} $UNIT", maxLabelSize, maxValueSize)}
+            ${generateAlignedLine("PM10:", "${formatNumber(data.air?.coarseParticulateMatter ?: 0.0)} $UNIT", maxLabelSize, maxValueSize)}
+            ${generateAlignedLine("NH3:", "${formatNumber(data.air?.ammonia ?: 0.0)} $UNIT", maxLabelSize, maxValueSize)}
             ```
         """.trimIndent()
     }
@@ -59,5 +59,9 @@ class AirOverviewService : OverviewService<AirData> {
         val formattedLabel = String.format("%-${maxLabelSize}s", label)
         val formattedValue = String.format("%${maxValueSize}s", value)
         return "$formattedLabel $formattedValue"
+    }
+
+    private companion object {
+        const val UNIT = "μg/m3"
     }
 }

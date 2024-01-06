@@ -12,7 +12,7 @@ open class CurrentAdapterRepository(
     private val currentDataMapper: CurrentDataMapper,
 ): CurrentRepository {
     override fun getCurrent(latitude: Double, longitude: Double): CurrentData {
-        val response = currentRestClient.getWeather(latitude, longitude)
+        val response = currentRestClient.getCurrent(latitude, longitude)
         return currentDataMapper.toModel(response)
     }
 }

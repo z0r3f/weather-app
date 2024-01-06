@@ -28,6 +28,8 @@ micronaut:
       expire-after-write: PT59M
     weather-by-coordinate:
       expire-after-write: PT59M
+    air-by-coordinate:
+      expire-after-write: PT59M
 
 flyway:
   datasources:
