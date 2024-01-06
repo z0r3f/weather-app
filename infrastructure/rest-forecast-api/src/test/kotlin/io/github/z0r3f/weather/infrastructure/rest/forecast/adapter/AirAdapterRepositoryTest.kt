@@ -31,22 +31,25 @@ internal class AirAdapterRepositoryTest {
         assertEquals(CIUDAD_REAL_LONGITUDE, result.location?.longitude)
 
         with(result.air ?: fail("Current air quality data is null")) {
-            assertTrue(airQualityIndex in 1..5, "airQualityIndex should be between 1 and 5")
             assertNotNull(carbonMonoxide, "carbonMonoxide should not be null")
-            assertTrue(carbonMonoxide!! >= 0.0, "carbonMonoxide should be 0.0 or more")
             assertNotNull(nitrogenMonoxide, "nitrogenMonoxide should not be null")
-            assertTrue(nitrogenMonoxide!! >= 0.0, "nitrogenMonoxide should be 0.0 or more")
             assertNotNull(nitrogenDioxide, "nitrogenDioxide should not be null")
-            assertTrue(nitrogenDioxide!! >= 0.0, "nitrogenDioxide should be 0.0 or more")
             assertNotNull(ozone, "ozone should not be null")
-            assertTrue(ozone!! >= 0.0, "ozone should be 0.0 or more")
             assertNotNull(sulphurDioxide, "sulphurDioxide should not be null")
-            assertTrue(sulphurDioxide!! >= 0.0, "sulphurDioxide should be 0.0 or more")
             assertNotNull(fineParticlesMatter, "fineParticlesMatter should not be null")
-            assertTrue(fineParticlesMatter!! >= 0.0, "fineParticlesMatter should be 0.0 or more")
             assertNotNull(coarseParticulateMatter, "coarseParticulateMatter should not be null")
-            assertTrue(coarseParticulateMatter!! >= 0.0, "coarseParticulateMatter should be 0.0 or more")
             assertNotNull(ammonia, "ammonia should not be null")
+        }
+
+        with(result.air ?: fail("Current air quality data is null")) {
+            assertTrue(airQualityIndex in 1..5, "airQualityIndex should be between 1 and 5")
+            assertTrue(carbonMonoxide!! >= 0.0, "carbonMonoxide should be 0.0 or more")
+            assertTrue(nitrogenMonoxide!! >= 0.0, "nitrogenMonoxide should be 0.0 or more")
+            assertTrue(nitrogenDioxide!! >= 0.0, "nitrogenDioxide should be 0.0 or more")
+            assertTrue(ozone!! >= 0.0, "ozone should be 0.0 or more")
+            assertTrue(sulphurDioxide!! >= 0.0, "sulphurDioxide should be 0.0 or more")
+            assertTrue(fineParticlesMatter!! >= 0.0, "fineParticlesMatter should be 0.0 or more")
+            assertTrue(coarseParticulateMatter!! >= 0.0, "coarseParticulateMatter should be 0.0 or more")
             assertTrue(ammonia!! >= 0.0, "ammonia should be 0.0 or more")
         }
     }

@@ -3,6 +3,7 @@ package io.github.z0r3f.weather.infrastructure.rest.telegram.controller
 import io.archimedesfw.cqrs.ActionBus
 import io.github.z0r3f.weather.core.chat.cqrs.AddAlertMessage
 import io.github.z0r3f.weather.core.chat.domain.Chat
+import io.github.z0r3f.weather.core.forecast.cqrs.AirMessage
 import io.github.z0r3f.weather.core.forecast.cqrs.CurrentMessage
 import io.github.z0r3f.weather.core.forecast.cqrs.ForecastMessage
 import io.github.z0r3f.weather.core.telegram.cqrs.AddLocationMessage
@@ -96,6 +97,7 @@ class BotControllerTest {
         }
         verify(bus).dispatch(any<ForecastMessage>())
         verify(bus).dispatch(any<CurrentMessage>())
+        verify(bus).dispatch(any<AirMessage>())
         verify(bus).dispatch(any<HelpQueryMessage>())
         verify(bus).dispatch(any<AddAlertMessage>())
     }

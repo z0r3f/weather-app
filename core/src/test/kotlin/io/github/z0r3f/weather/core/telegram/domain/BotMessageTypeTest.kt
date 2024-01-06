@@ -34,6 +34,10 @@ internal class BotMessageTypeTest {
                     "description": "Current weather"
                 },
                 {
+                    "command": "air", 
+                    "description": "Air quality"
+                },
+                {
                     "command": "help", 
                     "description": "Show this help"
                 },
@@ -55,6 +59,7 @@ internal class BotMessageTypeTest {
         val ENABLED_COMMANDS = setOf(
             FORECAST.toBotMessage(),
             CURRENT.toBotMessage(),
+            AIR.toBotMessage(),
             HELP.toBotMessage(),
             ADD_ALERT.toBotMessage(),
         )

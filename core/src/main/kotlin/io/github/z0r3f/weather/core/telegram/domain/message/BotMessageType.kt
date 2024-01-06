@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 enum class BotMessageType(val description: String, private val enabled: Boolean = true) {
     FORECAST(description = "Overview next days (morning | afternoon | evening)"),
     CURRENT(description = "Current weather"),
+    AIR(description = "Air quality"),
     HELP(description = "Show this help"),
     ADD_LOCATION(description = "Add a location as a Favourite", enabled = false),
     DEL_LOCATION(description = "Remove a location as a Favourite", enabled = false),
