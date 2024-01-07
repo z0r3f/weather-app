@@ -72,3 +72,7 @@ acme:
     delay: 1m
     frequency: 24h
   renew-within: 30d
+
+number:
+  format: "0.00"
+  locale: "es"

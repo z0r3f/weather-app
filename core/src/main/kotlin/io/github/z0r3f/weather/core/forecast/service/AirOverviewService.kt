@@ -1,10 +1,17 @@
 package io.github.z0r3f.weather.core.forecast.service
 
 import io.github.z0r3f.weather.core.forecast.domain.AirData
+import io.micronaut.context.annotation.Value
 import jakarta.inject.Singleton
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.util.*
 
 @Singleton
-class AirOverviewService : OverviewService<AirData> {
+class AirOverviewService(
+    @Value("\${number.format}") private val numberFormat: String,
+    @Value("\${number.locale}") private val locale: String
+) : OverviewService<AirData> {
     override fun generateOverviewMessage(data: AirData): String {
         val labels = listOf("AQI", "CO", "NO", "NO2", "O3", "SO2", "PM2.5", "PM10", "NH3")
         val values = listOf(
@@ -51,8 +58,10 @@ class AirOverviewService : OverviewService<AirData> {
         return "$filled$empty $emoji $aqi/5"
     }
 
-    private fun formatNumber(num: Double): String {
-        return String.format("%.2f", num)
+    private fun formatNumber(number: Double): String {
+        val symbols = DecimalFormatSymbols(Locale.forLanguageTag(locale))
+        val formatter = DecimalFormat(numberFormat, symbols)
+        return formatter.format(number)
     }
 
     private fun generateAlignedLine(label: String, value: String, maxLabelSize: Int, maxValueSize: Int): String {

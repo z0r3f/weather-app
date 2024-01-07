@@ -4,12 +4,12 @@ import io.github.z0r3f.weather.core.forecast.domain.AirDataMother
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class AirOverviewServiceTest {
+internal class AirOverviewServiceTest {
 
-    val sut = AirOverviewService()
+    val sut = AirOverviewService("0.00", "es")
 
     @Test
-    fun generateOverviewMessage() {
+    internal fun generateOverviewMessage() {
         val overviewMessage = sut.generateOverviewMessage(AIR_DATA)
 
         assertThat(overviewMessage).isEqualTo(EXPECTED)
