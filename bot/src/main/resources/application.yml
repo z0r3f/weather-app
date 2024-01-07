@@ -28,6 +28,8 @@ micronaut:
       expire-after-write: PT59M
     weather-by-coordinate:
       expire-after-write: PT59M
+    air-by-coordinate:
+      expire-after-write: PT59M
 
 flyway:
   datasources:
@@ -70,3 +72,7 @@ acme:
     delay: 1m
     frequency: 24h
   renew-within: 30d
+
+number:
+  format: "0.00"
+  locale: "es"

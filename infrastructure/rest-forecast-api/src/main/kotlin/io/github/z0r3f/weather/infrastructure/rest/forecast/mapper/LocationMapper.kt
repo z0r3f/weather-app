@@ -2,6 +2,7 @@ package io.github.z0r3f.weather.infrastructure.rest.forecast.mapper
 
 import io.github.z0r3f.weather.architecture.mapper.Mapper
 import io.github.z0r3f.weather.core.forecast.domain.Location
+import io.github.z0r3f.weather.infrastructure.rest.forecast.dto.AirDataDto
 import io.github.z0r3f.weather.infrastructure.rest.forecast.dto.CityDto
 import io.github.z0r3f.weather.infrastructure.rest.forecast.dto.CurrentDataDto
 import jakarta.inject.Singleton
@@ -35,6 +36,13 @@ class LocationMapper: Mapper<Location, CityDto> {
             timezone = dto.timezone,
             sunrise = dto.sys.sunrise,
             sunset = dto.sys.sunset,
+        )
+    }
+
+    fun toModel(dto: AirDataDto): Location {
+        return Location(
+            latitude = dto.coordinate.latitude,
+            longitude = dto.coordinate.longitude,
         )
     }
 }
