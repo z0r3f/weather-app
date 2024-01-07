@@ -5,6 +5,7 @@ import io.github.z0r3f.weather.core.chat.domain.Chat
 import io.github.z0r3f.weather.core.forecast.cqrs.GetCurrentByCityNameMessage
 import io.github.z0r3f.weather.core.forecast.cqrs.GetCurrentByFavoriteLocationMessage
 import io.github.z0r3f.weather.core.forecast.cqrs.GetFavoriteLocationsMessage
+import io.github.z0r3f.weather.core.forecast.domain.CurrentData
 import io.github.z0r3f.weather.core.forecast.event.RequestCurrentEvent
 import io.github.z0r3f.weather.core.forecast.service.CurrentOverviewService
 import io.github.z0r3f.weather.core.telegram.event.MessageEvent
@@ -30,8 +31,12 @@ class CurrentEventListener(
 
     private fun newCurrentRequestOnChat(chat: Chat) {
         val favoriteLocations = bus.dispatch(GetFavoriteLocationsMessage(chat))
-        favoriteLocations.forEach{ favoriteLocation ->
-            val currentData = bus.dispatch(GetCurrentByFavoriteLocationMessage(favoriteLocation))
+        favoriteLocations.forEach { favoriteLocation ->
+            val currentData =
+                restoreTheOriginalCityName(
+                    bus.dispatch(GetCurrentByFavoriteLocationMessage(favoriteLocation)),
+                    favoriteLocation.name!!
+                )
 
             newMessageEventPublisher.publishEventAsync(
                 MessageEvent(
@@ -41,6 +46,9 @@ class CurrentEventListener(
             )
         }
     }
+
+    private fun restoreTheOriginalCityName(currentData: CurrentData, cityName: String) =
+        currentData.copy(location = currentData.location?.copy(name = cityName))
 
     private fun newCurrentRequestWithCityName(chat: Chat, cityName: String) {
         val currentData = bus.dispatch(GetCurrentByCityNameMessage(cityName))
