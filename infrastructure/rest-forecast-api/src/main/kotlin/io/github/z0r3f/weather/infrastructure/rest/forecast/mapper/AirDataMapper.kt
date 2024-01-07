@@ -30,7 +30,7 @@ class AirDataMapper(
                 nitrogenDioxide = airDataDto.components.no2,
                 ozone = airDataDto.components.o3,
                 sulphurDioxide = airDataDto.components.so2,
-                fineParticlesMatter = airDataDto.components.pm2_5,
+                fineParticlesMatter = airDataDto.components.pm25,
                 coarseParticulateMatter = airDataDto.components.pm10,
                 ammonia = airDataDto.components.nh3,
             ),

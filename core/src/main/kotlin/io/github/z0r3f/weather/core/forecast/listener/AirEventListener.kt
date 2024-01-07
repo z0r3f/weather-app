@@ -21,7 +21,7 @@ class AirEventListener(
 ) {
 
     @EventListener
-    fun onRequestCurrentEvent(event: RequestAirEvent) {
+    fun onRequestAirEvent(event: RequestAirEvent) {
         if (event.cityName.isNullOrBlank()) {
             newAirRequestOnChat(event.chat)
         } else {
@@ -32,7 +32,7 @@ class AirEventListener(
     private fun newAirRequestOnChat(chat: Chat) {
         val favoriteLocations = bus.dispatch(GetFavoriteLocationsMessage(chat))
         favoriteLocations.forEach { favoriteLocation ->
-            val currentData = restoreTheOriginalCityName(
+            val airData = restoreTheOriginalCityName(
                 bus.dispatch(GetAirByFavoriteLocationMessage(favoriteLocation)),
                 favoriteLocation.name!!
             )
@@ -40,22 +40,22 @@ class AirEventListener(
             newMessageEventPublisher.publishEventAsync(
                 MessageEvent(
                     chat,
-                    airOverviewService.generateOverviewMessage(currentData),
+                    airOverviewService.generateOverviewMessage(airData),
                 )
             )
         }
     }
 
-    private fun restoreTheOriginalCityName(currentData: AirData, cityName: String) =
-        currentData.copy(location = currentData.location?.copy(name = cityName))
+    private fun restoreTheOriginalCityName(airData: AirData, cityName: String) =
+        airData.copy(location = airData.location?.copy(name = cityName))
 
     private fun newAirRequestWithCityName(chat: Chat, cityName: String) {
-        val currentData = bus.dispatch(GetAirByCityNameMessage(cityName))
+        val airData = bus.dispatch(GetAirByCityNameMessage(cityName))
 
         newMessageEventPublisher.publishEventAsync(
             MessageEvent(
                 chat,
-                airOverviewService.generateOverviewMessage(currentData),
+                airOverviewService.generateOverviewMessage(airData),
             )
         )
     }

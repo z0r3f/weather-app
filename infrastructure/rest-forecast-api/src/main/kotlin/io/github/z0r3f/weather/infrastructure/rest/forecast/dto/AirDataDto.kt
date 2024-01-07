@@ -24,7 +24,7 @@ data class ComponentsDto(
     @JsonProperty("no2") val no2: Double,
     @JsonProperty("o3") val o3: Double,
     @JsonProperty("so2") val so2: Double,
-    @JsonProperty("pm2_5") val pm2_5: Double,
+    @JsonProperty("pm2_5") val pm25: Double,
     @JsonProperty("pm10") val pm10: Double,
     @JsonProperty("nh3") val nh3: Double,
 )
