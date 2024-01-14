@@ -3,7 +3,7 @@ package io.github.z0r3f.weather.core.forecast.domain
 open class CurrentMother {
     open fun of(
         temperature: Double? = 23.05,
-        feelsLike: Double? = 22.51,
+        feelsLike: Double? = 22.11,
         temperatureMin: Double? = 23.05,
         temperatureMax: Double? = 23.9,
         pressure: Double? = 1021.0,
