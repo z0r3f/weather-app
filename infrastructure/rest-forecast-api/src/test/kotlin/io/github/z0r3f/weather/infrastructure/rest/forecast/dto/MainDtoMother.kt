@@ -14,7 +14,7 @@ open class MainDtoMother {
     ): MainDto {
         return MainDto(
             temp = temp ?: 23.05,
-            feelsLike = feelsLike ?: 22.51,
+            feelsLike = feelsLike ?: 22.11,
             tempMin = tempMin ?: 23.05,
             tempMax = tempMax ?: 23.9,
             pressure = pressure ?: 1021.0,

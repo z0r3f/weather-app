@@ -21,19 +21,33 @@ class CurrentOverviewService : OverviewService<CurrentData> {
             
         """.trimLeadingSpaces()
 
-    private fun generateWeather(currentData: CurrentData) = """
-        ${icons[currentData.current?.weather?.icon]} ${currentData.current?.temperature?.roundToInt() ?: "--"}°C (${currentData.current?.feelsLike?.roundToInt() ?: "--"}°C)
-        """.trimLeadingSpaces()
+    private fun generateWeather(currentData: CurrentData): String {
+        val temperature = currentData.current?.temperature?.roundToInt() ?: "--"
+        val feelsLike = currentData.current?.feelsLike?.roundToInt() ?: "--"
 
-    private fun generateWind(currentData: CurrentData) = """
-        ${WindIcon.getIcon(currentData.current?.windDirection)} ${mpsToKph(currentData.current?.windSpeed)} km/h (${mpsToKph(currentData.current?.windGust)} km/h)
-        """.trimLeadingSpaces()
+        return if (temperature == feelsLike) {
+            "${icons[currentData.current?.weather?.icon]} $temperature°C"
+        } else {
+            "${icons[currentData.current?.weather?.icon]} $temperature°C ($feelsLike°C)"
+        }.trimLeadingSpaces()
+    }
+
+    private fun generateWind(currentData: CurrentData): String {
+        val windSpeed = mpsToKph(currentData.current?.windSpeed)
+        val windGust = mpsToKph(currentData.current?.windGust)
+
+        return if (windSpeed == windGust || windGust == 0) {
+            "${WindIcon.getIcon(currentData.current?.windDirection)} $windSpeed km/h"
+        } else {
+            "${WindIcon.getIcon(currentData.current?.windDirection)} $windSpeed km/h ($windGust km/h)"
+        }.trimLeadingSpaces()
+    }
 
     private fun mpsToKph(mps: Double?) = mps?.times(3.6)?.roundToInt() ?: "--"
 
     private fun generateHumidity(currentData: CurrentData) = "💧${currentData.current?.humidity ?: "--"}%"
 
-    private fun generatePressure(currentData: CurrentData) = "🌀${currentData.current?.pressure ?: "--"} hPa"
+    private fun generatePressure(currentData: CurrentData) = "🌀${currentData.current?.pressure?.roundToInt() ?: "--"} hPa"
 
     private fun generateSunrise(currentData: CurrentData): String {
         val zoneOffset = ZoneOffset.ofTotalSeconds(currentData.location?.timezone ?: 0)

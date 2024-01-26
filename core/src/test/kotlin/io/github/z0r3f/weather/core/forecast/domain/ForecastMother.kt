@@ -7,7 +7,7 @@ open class ForecastMother {
     open fun of(
         timeDataForecasted: LocalDateTime? = LocalDateTime.ofEpochSecond(1644958800, 0, ZoneOffset.UTC),
         temperature: Double? = 23.05,
-        feelsLike: Double? = 22.51,
+        feelsLike: Double? = 22.11,
         temperatureMin: Double? = 23.05,
         temperatureMax: Double? = 23.9,
         pressure: Double? = 1021.0,
