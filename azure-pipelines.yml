@@ -74,9 +74,7 @@ steps:
      summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/target/site/jacoco-aggregate/jacoco.xml'
      reportDirectory: '$(System.DefaultWorkingDirectory)/**/target/site/jacoco-aggregate'
      pathToSources: |
-      '$(System.DefaultWorkingDirectory)/architecture/src/main/kotlin'
-      '$(System.DefaultWorkingDirectory)/core/src/main/kotlin'
-      '$(System.DefaultWorkingDirectory)/bot/src/main/kotlin'
+      '$(System.DefaultWorkingDirectory)/**/src/main/kotlin'
 
  - task: SonarCloudPublish@1
    displayName: 'Publish results on build summary'
