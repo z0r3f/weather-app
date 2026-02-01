@@ -16,6 +16,8 @@
     <packaging>pom</packaging>
 
     <properties>
+        <sonar.projectKey>z0r3f_weather-app</sonar.projectKey>
+        <sonar.organization>z0r3f</sonar.organization>
         <kotlin.version>1.8.10</kotlin.version>
         <flyway.version>5.5.0</flyway.version>
         <h2.version>2.2.224</h2.version>
